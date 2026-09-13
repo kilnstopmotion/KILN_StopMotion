@@ -11,11 +11,11 @@
   <style>
     .product-motion-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}.product-motion-visual{position:sticky;top:110px;height:70vh;min-height:520px}.product-visual-screen{height:100%;position:relative;overflow:hidden;display:grid;place-items:center;background:var(--dark);color:var(--cream);border:1px solid #30322d}.product-visual-screen:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 55% 40%,rgba(230,93,34,.18),transparent 24%),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:auto,48px 48px}.product-frame-tag{position:absolute;left:16px;top:14px;font:9px var(--mono);letter-spacing:.14em;color:#9b9d94}.product-visual-center{position:relative;z-index:2;text-align:center;font-family:var(--serif);font-size:clamp(38px,5vw,72px);line-height:.88}.product-visual-center em{color:var(--orange);font-weight:500}.product-scan{position:absolute;left:0;right:0;height:1px;background:rgba(230,93,34,.45);top:12%;animation:scan 5s linear infinite}.product-steps{display:grid;gap:18px;padding:8vh 0}.product-step{min-height:250px}.product-step h3{margin-top:42px}
 
-    /* Entire-frame carousel: the paper border, tape, metadata, image and caption all move together. */
-    .product-carousel-stage{width:100%;position:relative;cursor:pointer;user-select:none;outline:none;transform-style:preserve-3d;will-change:transform}.product-carousel-stage:focus-visible{outline:3px solid rgba(230,93,34,.3);outline-offset:7px}.product-carousel-viewport{overflow:hidden;width:100%;padding:14px 0 28px;margin:-14px 0 -28px}.product-carousel-track{display:flex;width:100%;align-items:flex-start;transform:translate3d(0,0,0);transition:transform .72s cubic-bezier(.22,.78,.18,1);will-change:transform}.product-frame-card{flex:0 0 100%;width:100%;margin:0;cursor:pointer}.product-frame-card .preview-screen{aspect-ratio:16/9;min-height:0;display:grid;place-items:center;position:relative;background:#11120f;overflow:hidden}.product-frame-card .frame-meta{z-index:5}.product-frame-card .photo-caption{align-items:center}.product-frame-card .photo-caption span:last-child{color:var(--orange-dark);font-weight:800}.product-frame-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:1}.product-frame-placeholder{position:relative;z-index:0;text-align:center;padding:24px;color:#8b8e86}.product-frame-placeholder strong{display:block;font:800 13px var(--mono);letter-spacing:.14em;color:#aaa99f}.product-frame-placeholder small{display:block;margin-top:10px;font:10px var(--mono);letter-spacing:.08em;color:#74766f}.product-slide-label{position:absolute;left:16px;bottom:14px;z-index:3;padding:6px 8px;background:rgba(17,18,15,.76);border:1px solid rgba(248,245,237,.16);color:var(--cream);font:800 9px var(--mono);letter-spacing:.14em;backdrop-filter:blur(8px)}.product-frame-card .scan-line{z-index:4;pointer-events:none}.product-carousel-hint{display:inline-flex;align-items:center;gap:7px}.product-carousel-hint:after{content:"→";transition:transform .22s var(--ease)}.product-carousel-stage:hover .product-carousel-hint:after{transform:translateX(4px)}
+    /* Product carousel architecture: root -> tilt shell -> viewport -> track -> complete frame cards. */
+    .product-carousel-root{width:100%;position:relative;cursor:pointer;user-select:none;outline:none;touch-action:pan-y}.product-carousel-root:focus-visible{outline:3px solid rgba(230,93,34,.3);outline-offset:8px}.product-carousel-tilt{width:100%;position:relative;transform-style:preserve-3d;will-change:transform}.product-carousel-viewport{width:100%;overflow:hidden;padding:16px 0 32px;margin:-16px 0 -32px}.product-carousel-track{display:flex;width:100%;align-items:flex-start;transform:translate3d(-100%,0,0);transition:transform 640ms cubic-bezier(.22,.8,.22,1);will-change:transform;backface-visibility:hidden}.product-frame-card{flex:0 0 100%;width:100%;margin:0;box-sizing:border-box;cursor:pointer;transform:none!important}.product-frame-card .preview-screen{aspect-ratio:16/9;min-height:0;display:grid;place-items:center;position:relative;background:#11120f;overflow:hidden}.product-frame-card .frame-meta{z-index:5}.product-frame-card .photo-caption{align-items:center}.product-frame-card .photo-caption span:last-child{color:var(--orange-dark);font-weight:800}.product-frame-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:1}.product-frame-placeholder{position:relative;z-index:0;text-align:center;padding:24px;color:#8b8e86}.product-frame-placeholder strong{display:block;font:800 13px var(--mono);letter-spacing:.14em;color:#aaa99f}.product-frame-placeholder small{display:block;margin-top:10px;font:10px var(--mono);letter-spacing:.08em;color:#74766f}.product-slide-label{position:absolute;left:16px;bottom:14px;z-index:3;padding:6px 8px;background:rgba(17,18,15,.76);border:1px solid rgba(248,245,237,.16);color:var(--cream);font:800 9px var(--mono);letter-spacing:.14em;backdrop-filter:blur(8px)}.product-frame-card .scan-line{z-index:4;pointer-events:none}.product-carousel-hint{display:inline-flex;align-items:center;gap:7px}.product-carousel-hint:after{content:"→";transition:transform .22s var(--ease)}.product-carousel-root:hover .product-carousel-hint:after{transform:translateX(4px)}.product-carousel-root.is-moving{cursor:grabbing}.product-carousel-status{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 
     @media(max-width:980px){.product-motion-grid{grid-template-columns:1fr}.product-motion-visual{position:relative;top:auto;height:55vh;min-height:380px}.product-steps{padding:12px 0}}
-    @media(prefers-reduced-motion:reduce){.product-carousel-track{transition:none!important}}
+    @media(prefers-reduced-motion:reduce){.product-carousel-track{transition:none!important}.product-carousel-tilt{transform:none!important}}
   </style>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
@@ -28,120 +28,147 @@
   <main>
     <section class="motion-hero product-hero"><div class="container story-grid"><div class="hero-copy"><span class="eyebrow">DA&amp;A / PRODUCT</span><h1 class="editorial-title" style="font-size:clamp(58px,7vw,98px)"><span class="title-line" data-i18n="productHero">Workflow từng khung hình, nhưng không rối mắt.</span></h1><p class="lead" data-i18n="productLead">DA&amp;A StopMotion được xây theo đúng trình tự sản xuất stop-motion: chụp, animate, review, tổ chức và xuất.</p><div class="hero-actions"><a class="btn btn-primary magnetic" href="index.html#download"><span data-i18n="heroDownload">Tải DA&amp;A v5.0.0</span><span class="arrow">→</span></a></div><div class="lang-switch mobile-lang"><button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button></div></div>
 
-      <div class="product-carousel-stage" data-product-carousel data-tilt role="button" tabindex="0" aria-label="Frame 1. Nhấn để xem Frame 2.">
-        <div class="product-carousel-viewport">
-          <div class="product-carousel-track" data-product-track>
-            <article class="photo-frame motion-photo product-frame-card" data-product-slide="1">
-              <div class="frame-meta" data-depth=".35"><span>FRAME 1</span><span>PRODUCT</span><span>1 / 4</span></div>
-              <div class="preview-screen" data-depth="1">
-                <div class="product-frame-placeholder"><strong>FRAME 1</strong><small>assets/images/app/product-frame-1.webp</small></div>
-                <img class="product-frame-image" src="assets/images/app/product-frame-1.webp" alt="DA&A StopMotion — Frame 1" onerror="this.style.display='none'">
-                <span class="product-slide-label">FRAME 1</span><span class="scan-line" aria-hidden="true"></span>
-              </div>
-              <div class="photo-caption" data-depth=".45"><span>16:9 / PRODUCT FRAMES</span><span class="product-carousel-hint">CLICK / NEXT FRAME</span></div>
-            </article>
+      <div class="product-carousel-root" data-product-carousel role="region" aria-roledescription="carousel" aria-label="DA&A product frames" tabindex="0">
+        <div class="product-carousel-tilt" data-tilt>
+          <div class="product-carousel-viewport">
+            <div class="product-carousel-track" data-product-track>
+              <article class="photo-frame motion-photo product-frame-card" data-product-slide="1" role="group" aria-roledescription="slide" aria-label="Frame 1 of 4">
+                <div class="frame-meta"><span>FRAME 1</span><span>PRODUCT</span><span>1 / 4</span></div>
+                <div class="preview-screen">
+                  <div class="product-frame-placeholder"><strong>FRAME 1</strong><small>assets/images/app/product-frame-1.webp</small></div>
+                  <img class="product-frame-image" src="assets/images/app/product-frame-1.webp" alt="DA&A StopMotion — Frame 1" onerror="this.style.display='none'">
+                  <span class="product-slide-label">FRAME 1</span><span class="scan-line" aria-hidden="true"></span>
+                </div>
+                <div class="photo-caption"><span>16:9 / PRODUCT FRAMES</span><span class="product-carousel-hint">CLICK / NEXT FRAME</span></div>
+              </article>
 
-            <article class="photo-frame motion-photo product-frame-card" data-product-slide="2">
-              <div class="frame-meta" data-depth=".35"><span>FRAME 2</span><span>PRODUCT</span><span>2 / 4</span></div>
-              <div class="preview-screen" data-depth="1">
-                <div class="product-frame-placeholder"><strong>FRAME 2</strong><small>assets/images/app/product-frame-2.webp</small></div>
-                <img class="product-frame-image" src="assets/images/app/product-frame-2.webp" alt="DA&A StopMotion — Frame 2" onerror="this.style.display='none'">
-                <span class="product-slide-label">FRAME 2</span><span class="scan-line" aria-hidden="true"></span>
-              </div>
-              <div class="photo-caption" data-depth=".45"><span>16:9 / PRODUCT FRAMES</span><span class="product-carousel-hint">CLICK / NEXT FRAME</span></div>
-            </article>
+              <article class="photo-frame motion-photo product-frame-card" data-product-slide="2" role="group" aria-roledescription="slide" aria-label="Frame 2 of 4">
+                <div class="frame-meta"><span>FRAME 2</span><span>PRODUCT</span><span>2 / 4</span></div>
+                <div class="preview-screen">
+                  <div class="product-frame-placeholder"><strong>FRAME 2</strong><small>assets/images/app/product-frame-2.webp</small></div>
+                  <img class="product-frame-image" src="assets/images/app/product-frame-2.webp" alt="DA&A StopMotion — Frame 2" onerror="this.style.display='none'">
+                  <span class="product-slide-label">FRAME 2</span><span class="scan-line" aria-hidden="true"></span>
+                </div>
+                <div class="photo-caption"><span>16:9 / PRODUCT FRAMES</span><span class="product-carousel-hint">CLICK / NEXT FRAME</span></div>
+              </article>
 
-            <article class="photo-frame motion-photo product-frame-card" data-product-slide="3">
-              <div class="frame-meta" data-depth=".35"><span>FRAME 3</span><span>PRODUCT</span><span>3 / 4</span></div>
-              <div class="preview-screen" data-depth="1">
-                <div class="product-frame-placeholder"><strong>FRAME 3</strong><small>assets/images/app/product-frame-3.webp</small></div>
-                <img class="product-frame-image" src="assets/images/app/product-frame-3.webp" alt="DA&A StopMotion — Frame 3" onerror="this.style.display='none'">
-                <span class="product-slide-label">FRAME 3</span><span class="scan-line" aria-hidden="true"></span>
-              </div>
-              <div class="photo-caption" data-depth=".45"><span>16:9 / PRODUCT FRAMES</span><span class="product-carousel-hint">CLICK / NEXT FRAME</span></div>
-            </article>
+              <article class="photo-frame motion-photo product-frame-card" data-product-slide="3" role="group" aria-roledescription="slide" aria-label="Frame 3 of 4">
+                <div class="frame-meta"><span>FRAME 3</span><span>PRODUCT</span><span>3 / 4</span></div>
+                <div class="preview-screen">
+                  <div class="product-frame-placeholder"><strong>FRAME 3</strong><small>assets/images/app/product-frame-3.webp</small></div>
+                  <img class="product-frame-image" src="assets/images/app/product-frame-3.webp" alt="DA&A StopMotion — Frame 3" onerror="this.style.display='none'">
+                  <span class="product-slide-label">FRAME 3</span><span class="scan-line" aria-hidden="true"></span>
+                </div>
+                <div class="photo-caption"><span>16:9 / PRODUCT FRAMES</span><span class="product-carousel-hint">CLICK / NEXT FRAME</span></div>
+              </article>
 
-            <article class="photo-frame motion-photo product-frame-card" data-product-slide="4">
-              <div class="frame-meta" data-depth=".35"><span>FRAME 4</span><span>PRODUCT</span><span>4 / 4</span></div>
-              <div class="preview-screen" data-depth="1">
-                <div class="product-frame-placeholder"><strong>FRAME 4</strong><small>assets/images/app/product-frame-4.webp</small></div>
-                <img class="product-frame-image" src="assets/images/app/product-frame-4.webp" alt="DA&A StopMotion — Frame 4" onerror="this.style.display='none'">
-                <span class="product-slide-label">FRAME 4</span><span class="scan-line" aria-hidden="true"></span>
-              </div>
-              <div class="photo-caption" data-depth=".45"><span>16:9 / PRODUCT FRAMES</span><span class="product-carousel-hint">CLICK / NEXT FRAME</span></div>
-            </article>
+              <article class="photo-frame motion-photo product-frame-card" data-product-slide="4" role="group" aria-roledescription="slide" aria-label="Frame 4 of 4">
+                <div class="frame-meta"><span>FRAME 4</span><span>PRODUCT</span><span>4 / 4</span></div>
+                <div class="preview-screen">
+                  <div class="product-frame-placeholder"><strong>FRAME 4</strong><small>assets/images/app/product-frame-4.webp</small></div>
+                  <img class="product-frame-image" src="assets/images/app/product-frame-4.webp" alt="DA&A StopMotion — Frame 4" onerror="this.style.display='none'">
+                  <span class="product-slide-label">FRAME 4</span><span class="scan-line" aria-hidden="true"></span>
+                </div>
+                <div class="photo-caption"><span>16:9 / PRODUCT FRAMES</span><span class="product-carousel-hint">CLICK / NEXT FRAME</span></div>
+              </article>
+            </div>
           </div>
         </div>
+        <span class="product-carousel-status" data-product-status aria-live="polite">Frame 1 of 4</span>
       </div>
     </div></section>
 
     <section class="section product-motion-flow"><div class="container"><div class="section-head motion-reveal"><div><span class="section-kicker" data-i18n="workflow">Quy trình</span><h2>Capture → Animate → Review → Organize → Export</h2></div><p class="section-copy" data-i18n="productLead">DA&amp;A StopMotion được xây theo đúng trình tự sản xuất stop-motion: chụp, animate, review, tổ chức và xuất.</p></div><div class="product-motion-grid"><div class="product-motion-visual motion-mask"><div class="product-visual-screen"><span class="product-frame-tag">LIVE / FRAME 021</span><div class="product-visual-center">DA&amp;A<br><em>workflow</em></div><span class="product-scan"></span></div></div><div class="product-steps motion-stagger"><article class="product-step card"><span class="step-no">01 / CAPTURE</span><h3 data-i18n="f1">Chụp</h3><p data-i18n="captureDesc">Chụp frame ưu tiên camera, luôn giữ feedback production ở gần.</p></article><article class="product-step card"><span class="step-no">02 / ANIMATE</span><h3 data-i18n="f2">Animate</h3><p data-i18n="animateDesc">Hỗ trợ timing và chuyển động cho những quyết định frame-by-frame.</p></article><article class="product-step card"><span class="step-no">03 / REVIEW</span><h3 data-i18n="f3">Review</h3><p data-i18n="reviewDesc">Kiểm tra chuyển động và continuity mà không rời workflow.</p></article><article class="product-step card"><span class="step-no">04 / ORGANIZE</span><h3 data-i18n="f4">Tổ chức</h3><p data-i18n="organizeDesc">Giữ shot và frame có cấu trúc khi project lớn dần.</p></article><article class="product-step card"><span class="step-no">05 / EXPORT</span><h3>Export</h3><p data-i18n="exportDesc">Đưa material hoàn thiện sang hậu kỳ một cách sạch sẽ.</p></article></div></div></div></section>
     <section class="section identity-section"><div class="container story-grid"><div class="image-slot motion-mask" data-tilt><div><strong>KILN Motion → DA&amp;A</strong><p class="micro">PROJECT IDENTITY / FRAME 000</p></div><span class="image-cross x1"></span><span class="image-cross x2"></span></div><div class="motion-reveal"><span class="eyebrow" data-i18n="former">Tiền thân: KILN Motion</span><h2>KILN Motion → DA&amp;A StopMotion</h2><p class="lead" style="font-size:19px" data-i18n="formerCopy">Dự án bắt đầu với tên KILN Motion và phát triển thành DA&amp;A StopMotion khi workflow, phạm vi và nhận diện trưởng thành hơn.</p></div></div></section>
   </main>
-  <footer class="footer"><div class="footer-marquee"><span>DA&amp;A PRODUCT · CAPTURE · ANIMATE · REVIEW · ORGANIZE · EXPORT · DA&amp;A PRODUCT · </span></div><div class="container footer-grid"><div><strong>DA&amp;A StopMotion</strong><span data-i18n="footerTagline">Mỗi khung hình đều có ý nghĩa.</span></div><div><div class="footer-links"><a href="index.html">Home</a><a href="developer.html" data-i18n="navDeveloper">Nhà phát triển</a><a href="index.html#download" data-i18n="navDownload">Tải xuống</a></div><div style="margin-top:12px" data-i18n="footerNote">Tiền thân là KILN Motion</div></div></div></footer>
+  <footer class="footer"><div class="footer-marquee"><span>DA&amp;A PRODUCT · CAPTURE · ANIMATE · REVIEW · ORGANIZE · EXPORT · DA&amp;A PRODUCT · </span></div><div class="container footer-grid"><div><strong>DA&amp;A StopMotion</strong><span data-i18n="footerTagline">Mỗi khung hình đều có ý nghĩa.</span></div><div><div class="footer-links"><a href="index.html">Home</a><a href="developer.html" data-i18n="navDeveloper">Sản phẩm</a><a href="index.html#download" data-i18n="navDownload">Tải xuống</a></div><div style="margin-top:12px" data-i18n="footerNote">Tiền thân là KILN Motion</div></div></div></footer>
 
   <script>
     (()=>{
-      const carousel=document.querySelector('[data-product-carousel]');
-      const track=carousel?.querySelector('[data-product-track]');
-      if(!carousel||!track)return;
+      const root=document.querySelector('[data-product-carousel]');
+      const track=root?.querySelector('[data-product-track]');
+      const status=root?.querySelector('[data-product-status]');
+      if(!root||!track)return;
 
-      const originalSlides=[...track.querySelectorAll('[data-product-slide]')];
-      if(originalSlides.length<2)return;
+      const originals=[...track.querySelectorAll('[data-product-slide]')];
+      const total=originals.length;
+      if(total<2)return;
 
       const reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
-      const clone=originalSlides[0].cloneNode(true);
-      clone.setAttribute('aria-hidden','true');
-      clone.removeAttribute('data-product-slide');
-      track.appendChild(clone);
+      const firstClone=originals[0].cloneNode(true);
+      const lastClone=originals[total-1].cloneNode(true);
+      [firstClone,lastClone].forEach(clone=>{
+        clone.removeAttribute('data-product-slide');
+        clone.setAttribute('aria-hidden','true');
+        clone.querySelectorAll('[id]').forEach(el=>el.removeAttribute('id'));
+      });
+      track.prepend(lastClone);
+      track.append(firstClone);
 
-      let index=0;
-      let animating=false;
-      const duration=720;
+      let logicalIndex=0;
+      let physicalIndex=1;
+      let moving=false;
+      const duration=640;
+      const easing='cubic-bezier(.22,.8,.22,1)';
 
-      function updateAria(){
-        const human=index+1;
-        const following=(index+1)%originalSlides.length+1;
-        carousel.setAttribute('aria-label',`Frame ${human}. Nhấn để xem Frame ${following}.`);
+      function setTrack(index,animate){
+        track.style.transition=animate&&!reduce.matches?`transform ${duration}ms ${easing}`:'none';
+        track.style.transform=`translate3d(-${index*100}%,0,0)`;
       }
 
-      function moveNext(){
-        if(animating)return;
-        animating=true;
+      function updateState(announce=true){
+        originals.forEach((slide,i)=>slide.setAttribute('aria-hidden',i===logicalIndex?'false':'true'));
+        root.setAttribute('aria-label',`DA&A product frames. Frame ${logicalIndex+1} of ${total}.`);
+        if(status&&announce)status.textContent=`Frame ${logicalIndex+1} of ${total}`;
+      }
 
+      function finishAtRealSlide(){
+        if(physicalIndex===0){
+          physicalIndex=total;
+          logicalIndex=total-1;
+          setTrack(physicalIndex,false);
+          track.getBoundingClientRect();
+        }else if(physicalIndex===total+1){
+          physicalIndex=1;
+          logicalIndex=0;
+          setTrack(physicalIndex,false);
+          track.getBoundingClientRect();
+        }else{
+          logicalIndex=physicalIndex-1;
+        }
+        moving=false;
+        root.classList.remove('is-moving');
+        updateState(true);
+      }
+
+      function move(delta){
+        if(moving)return;
         if(reduce.matches){
-          index=(index+1)%originalSlides.length;
-          track.style.transition='none';
-          track.style.transform=`translate3d(-${index*100}%,0,0)`;
-          updateAria();
-          animating=false;
+          logicalIndex=(logicalIndex+delta+total)%total;
+          physicalIndex=logicalIndex+1;
+          setTrack(physicalIndex,false);
+          updateState(true);
           return;
         }
-
-        index+=1;
-        track.style.transition=`transform ${duration}ms cubic-bezier(.22,.78,.18,1)`;
-        requestAnimationFrame(()=>{track.style.transform=`translate3d(-${index*100}%,0,0)`});
+        moving=true;
+        root.classList.add('is-moving');
+        physicalIndex+=delta;
+        setTrack(physicalIndex,true);
       }
 
       track.addEventListener('transitionend',e=>{
-        if(e.propertyName!=='transform')return;
-        if(index===originalSlides.length){
-          track.style.transition='none';
-          track.style.transform='translate3d(0,0,0)';
-          index=0;
-          track.getBoundingClientRect();
-          requestAnimationFrame(()=>{track.style.transition=`transform ${duration}ms cubic-bezier(.22,.78,.18,1)`});
-        }
-        updateAria();
-        animating=false;
+        if(e.target!==track||e.propertyName!=='transform'||!moving)return;
+        finishAtRealSlide();
       });
 
-      carousel.addEventListener('click',moveNext);
-      carousel.addEventListener('keydown',e=>{
-        if(e.key==='Enter'||e.key===' '){e.preventDefault();moveNext()}
+      root.addEventListener('click',()=>move(1));
+      root.addEventListener('keydown',e=>{
+        if(e.key==='ArrowRight'||e.key==='Enter'||e.key===' '){e.preventDefault();move(1)}
+        else if(e.key==='ArrowLeft'){e.preventDefault();move(-1)}
       });
 
-      updateAria();
+      setTrack(physicalIndex,false);
+      updateState(false);
     })();
   </script>
 </body>
