@@ -22,3 +22,6 @@ Change it to `true` only when the section is ready to be public.
 
 ## Images / logo
 Current logo, app screenshots and profile imagery are intentional placeholders so they can be replaced with official assets later.
+
+## Deployment
+GitHub Pages deploys from the `main` branch at the repository root.
