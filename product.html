@@ -11,16 +11,16 @@
   <style>
     .product-motion-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}.product-motion-visual{position:sticky;top:110px;height:70vh;min-height:520px}.product-visual-screen{height:100%;position:relative;overflow:hidden;display:grid;place-items:center;background:var(--dark);color:var(--cream);border:1px solid #30322d}.product-visual-screen:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 55% 40%,rgba(230,93,34,.18),transparent 24%),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:auto,48px 48px}.product-frame-tag{position:absolute;left:16px;top:14px;font:9px var(--mono);letter-spacing:.14em;color:#9b9d94}.product-visual-center{position:relative;z-index:2;text-align:center;font-family:var(--serif);font-size:clamp(38px,5vw,72px);line-height:.88}.product-visual-center em{color:var(--orange);font-weight:500}.product-scan{position:absolute;left:0;right:0;height:1px;background:rgba(230,93,34,.45);top:12%;animation:scan 5s linear infinite}.product-steps{display:grid;gap:18px;padding:8vh 0}.product-step{min-height:250px}.product-step h3{margin-top:42px}
 
-    /* Keep both grid columns shrinkable so the flex track cannot force the hero wider than its container. */
+    /* Keep the hero columns shrinkable: the stack must never expand the grid. */
     .product-hero .story-grid{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:56px}.product-hero .hero-copy{min-width:0}
 
-    /* Three isolated transform layers: GSAP hero motion -> pointer tilt -> carousel track. */
-    .product-carousel-root{width:100%;max-width:680px;min-width:0;justify-self:end;position:relative;cursor:pointer;user-select:none;outline:none;touch-action:pan-y}.product-carousel-root:focus-visible{outline:3px solid rgba(230,93,34,.3);outline-offset:8px}.product-carousel-motion,.product-carousel-tilt,.product-carousel-viewport{width:100%;max-width:100%;min-width:0;position:relative}.product-carousel-motion{will-change:transform}.product-carousel-tilt{transform-style:preserve-3d;will-change:transform}.product-carousel-viewport{overflow:hidden;padding:16px 0 32px;margin:-16px 0 -32px}.product-carousel-track{--carousel-gap:20px;display:flex;gap:var(--carousel-gap);width:100%;min-width:0;align-items:flex-start;transition:transform 640ms cubic-bezier(.22,.8,.22,1);will-change:transform;backface-visibility:hidden}.product-frame-card{flex:0 0 100%;width:100%;min-width:0;max-width:100%;margin:0;box-sizing:border-box;cursor:pointer}.product-frame-card .preview-screen{aspect-ratio:16/9;min-height:0;width:100%;display:grid;place-items:center;position:relative;background:#11120f;overflow:hidden}.product-frame-card .frame-meta{z-index:5}.product-frame-card .photo-caption{align-items:center}.product-frame-card .photo-caption span:last-child{color:var(--orange-dark);font-weight:800}.product-frame-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:1}.product-frame-placeholder{position:relative;z-index:0;text-align:center;padding:24px;color:#8b8e86}.product-frame-placeholder strong{display:block;font:800 13px var(--mono);letter-spacing:.14em;color:#aaa99f}.product-frame-placeholder small{display:block;margin-top:10px;font:10px var(--mono);letter-spacing:.08em;color:#74766f}.product-slide-label{position:absolute;left:16px;bottom:14px;z-index:3;padding:6px 8px;background:rgba(17,18,15,.76);border:1px solid rgba(248,245,237,.16);color:var(--cream);font:800 9px var(--mono);letter-spacing:.14em;backdrop-filter:blur(8px)}.product-frame-card .scan-line{z-index:4;pointer-events:none}.product-carousel-hint{display:inline-flex;align-items:center;gap:7px}.product-carousel-hint:after{content:"→";transition:transform .22s var(--ease)}.product-carousel-root:hover .product-carousel-hint:after{transform:translateX(4px)}.product-carousel-root.is-moving{cursor:grabbing}.product-carousel-status{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+    /* Photo Stack Carousel: one focused print + two visible prints behind it. */
+    .product-carousel-root{width:100%;max-width:680px;min-width:0;justify-self:end;position:relative;cursor:pointer;user-select:none;outline:none;touch-action:pan-y;isolation:isolate}.product-carousel-root:focus-visible{outline:3px solid rgba(230,93,34,.3);outline-offset:8px}.product-carousel-motion,.product-carousel-tilt,.product-carousel-viewport,.product-carousel-track{width:100%;max-width:100%;min-width:0;position:relative}.product-carousel-motion{will-change:transform}.product-carousel-tilt{transform-style:preserve-3d;will-change:transform}.product-carousel-viewport{overflow:visible;padding:18px 0 46px;margin:-18px 0 -46px}.product-carousel-track{min-height:430px}.product-frame-card{position:absolute;left:0;top:0;width:calc(100% - 68px);max-width:612px;min-width:0;margin:0;box-sizing:border-box;cursor:pointer;transform-origin:50% 52%;backface-visibility:hidden;will-change:transform,opacity,box-shadow}.product-frame-card .preview-screen{aspect-ratio:16/9;min-height:0;width:100%;display:grid;place-items:center;position:relative;background:#11120f;overflow:hidden}.product-frame-card .frame-meta{z-index:5}.product-frame-card .photo-caption{align-items:center}.product-frame-card .photo-caption span:last-child{color:var(--orange-dark);font-weight:800}.product-frame-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:1}.product-frame-placeholder{position:relative;z-index:0;text-align:center;padding:24px;color:#8b8e86}.product-frame-placeholder strong{display:block;font:800 13px var(--mono);letter-spacing:.14em;color:#aaa99f}.product-frame-placeholder small{display:block;margin-top:10px;font:10px var(--mono);letter-spacing:.08em;color:#74766f}.product-slide-label{position:absolute;left:16px;bottom:14px;z-index:3;padding:6px 8px;background:rgba(17,18,15,.76);border:1px solid rgba(248,245,237,.16);color:var(--cream);font:800 9px var(--mono);letter-spacing:.14em;backdrop-filter:blur(8px)}.product-frame-card .scan-line{z-index:4;pointer-events:none}.product-carousel-hint{display:inline-flex;align-items:center;gap:7px}.product-carousel-hint:after{content:"→";transition:transform .22s var(--ease)}.product-carousel-root:hover .product-carousel-hint:after{transform:translateX(4px)}.product-carousel-root.is-moving{cursor:grabbing}.product-frame-card.stack-top{box-shadow:0 30px 60px rgba(46,39,26,.2)}.product-frame-card.stack-back-1{box-shadow:0 22px 46px rgba(46,39,26,.14)}.product-frame-card.stack-back-2{box-shadow:0 16px 34px rgba(46,39,26,.1)}.product-carousel-status{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 
-    @media(max-width:1180px){.product-hero .story-grid{gap:42px}.product-carousel-root{max-width:620px}}
-    @media(max-width:980px){.product-hero .story-grid,.product-motion-grid{grid-template-columns:1fr}.product-motion-visual{position:relative;top:auto;height:55vh;min-height:380px}.product-steps{padding:12px 0}.product-carousel-root{max-width:760px;justify-self:center;margin-top:22px}.product-carousel-track{--carousel-gap:14px}}
-    @media(max-width:720px){.product-carousel-root{max-width:100%}.product-frame-card{padding:34px 12px 14px}.product-frame-card .frame-meta{left:12px;right:12px}.product-frame-card .photo-caption{gap:10px;font-size:8px}}
-    @media(prefers-reduced-motion:reduce){.product-carousel-track{transition:none!important}.product-carousel-motion,.product-carousel-tilt{transform:none!important}}
+    @media(max-width:1180px){.product-hero .story-grid{gap:42px}.product-carousel-root{max-width:620px}.product-frame-card{width:calc(100% - 60px);max-width:560px}}
+    @media(max-width:980px){.product-hero .story-grid,.product-motion-grid{grid-template-columns:1fr}.product-motion-visual{position:relative;top:auto;height:55vh;min-height:380px}.product-steps{padding:12px 0}.product-carousel-root{max-width:760px;justify-self:center;margin-top:30px}.product-frame-card{width:calc(100% - 64px);max-width:696px}}
+    @media(max-width:720px){.product-carousel-root{max-width:100%}.product-frame-card{width:calc(100% - 34px);max-width:none;padding:34px 12px 14px}.product-frame-card .frame-meta{left:12px;right:12px}.product-frame-card .photo-caption{gap:10px;font-size:8px}.product-carousel-track{min-height:340px}}
+    @media(prefers-reduced-motion:reduce){.product-carousel-motion,.product-carousel-tilt{transform:none!important}}
   </style>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
@@ -91,118 +91,121 @@
   <footer class="footer"><div class="footer-marquee"><span>DA&amp;A PRODUCT · CAPTURE · ANIMATE · REVIEW · ORGANIZE · EXPORT · DA&amp;A PRODUCT · </span></div><div class="container footer-grid"><div><strong>DA&amp;A StopMotion</strong><span data-i18n="footerTagline">Mỗi khung hình đều có ý nghĩa.</span></div><div><div class="footer-links"><a href="index.html">Home</a><a href="developer.html" data-i18n="navDeveloper">Nhà phát triển</a><a href="index.html#download" data-i18n="navDownload">Tải xuống</a></div><div style="margin-top:12px" data-i18n="footerNote">Tiền thân là KILN Motion</div></div></div></footer>
 
   <script>
-    (()=>{
+    document.addEventListener('DOMContentLoaded',()=>{
       const root=document.querySelector('[data-product-carousel]');
       const viewport=root?.querySelector('[data-product-viewport]');
       const track=root?.querySelector('[data-product-track]');
       const status=root?.querySelector('[data-product-status]');
       if(!root||!viewport||!track)return;
 
-      const originals=[...track.querySelectorAll('[data-product-slide]')];
-      const total=originals.length;
+      const cards=[...track.querySelectorAll('[data-product-slide]')];
+      const total=cards.length;
       if(total<2)return;
 
       const reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
-      const firstClone=originals[0].cloneNode(true);
-      const lastClone=originals[total-1].cloneNode(true);
-      [firstClone,lastClone].forEach(clone=>{
-        clone.removeAttribute('data-product-slide');
-        clone.setAttribute('aria-hidden','true');
-        clone.querySelectorAll('[id]').forEach(el=>el.removeAttribute('id'));
-      });
-      track.prepend(lastClone);
-      track.append(firstClone);
-
-      let logicalIndex=0;
-      let physicalIndex=1;
+      let order=cards.map((_,i)=>i);
       let moving=false;
-      let stepPx=0;
-      const duration=640;
-      const easing='cubic-bezier(.22,.8,.22,1)';
 
-      function measureStep(){
-        const styles=getComputedStyle(track);
-        const gap=parseFloat(styles.columnGap||styles.gap||'0')||0;
-        stepPx=viewport.clientWidth+gap;
-      }
+      const stackPoses=()=>{
+        const narrow=root.clientWidth<520;
+        return [
+          {x:0,y:0,r:0,s:1,o:1,z:40,cls:'stack-top'},
+          {x:narrow?18:34,y:narrow?14:20,r:4.8,s:.968,o:.97,z:30,cls:'stack-back-1'},
+          {x:narrow?34:66,y:narrow?28:40,r:-5.8,s:.935,o:.9,z:20,cls:'stack-back-2'},
+          {x:narrow?46:86,y:narrow?38:54,r:7.5,s:.91,o:0,z:10,cls:''}
+        ];
+      };
 
-      function setTrack(index,animate){
-        if(!stepPx)measureStep();
-        track.style.transition=animate&&!reduce.matches?`transform ${duration}ms ${easing}`:'none';
-        track.style.transform=`translate3d(${-index*stepPx}px,0,0)`;
-      }
+      const clearStackClasses=card=>card.classList.remove('stack-top','stack-back-1','stack-back-2');
 
       function updateState(announce=true){
-        originals.forEach((slide,i)=>slide.setAttribute('aria-hidden',i===logicalIndex?'false':'true'));
-        root.setAttribute('aria-label',`DA&A product frames. Frame ${logicalIndex+1} of ${total}.`);
-        if(status&&announce)status.textContent=`Frame ${logicalIndex+1} of ${total}`;
+        const current=order[0];
+        cards.forEach((card,i)=>card.setAttribute('aria-hidden',i===current?'false':'true'));
+        root.setAttribute('aria-label',`DA&A product frames. Frame ${current+1} of ${total}.`);
+        if(status&&announce)status.textContent=`Frame ${current+1} of ${total}`;
       }
 
-      function settle(){
-        if(physicalIndex===0){
-          physicalIndex=total;
-          logicalIndex=total-1;
-          setTrack(physicalIndex,false);
-          track.getBoundingClientRect();
-        }else if(physicalIndex===total+1){
-          physicalIndex=1;
-          logicalIndex=0;
-          setTrack(physicalIndex,false);
-          track.getBoundingClientRect();
-        }else{
-          logicalIndex=physicalIndex-1;
+      function sizeStage(){
+        const topCard=cards[order[0]]||cards[0];
+        const cardHeight=topCard.getBoundingClientRect().height||topCard.offsetHeight||0;
+        const extra=root.clientWidth<520?52:72;
+        if(cardHeight)track.style.height=`${Math.ceil(cardHeight+extra)}px`;
+      }
+
+      function applyPose(card,pose){
+        clearStackClasses(card);
+        if(pose.cls)card.classList.add(pose.cls);
+        const vars={x:pose.x,y:pose.y,rotation:pose.r,scale:pose.s,opacity:pose.o,zIndex:pose.z,pointerEvents:pose.z===40?'auto':'none',display:'block'};
+        if(window.gsap)gsap.set(card,vars);
+        else{
+          card.style.transform=`translate3d(${pose.x}px,${pose.y}px,0) rotate(${pose.r}deg) scale(${pose.s})`;
+          card.style.opacity=String(pose.o);
+          card.style.zIndex=String(pose.z);
+          card.style.pointerEvents=pose.z===40?'auto':'none';
+          card.style.display='block';
         }
+      }
+
+      function renderStack(){
+        const poses=stackPoses();
+        order.forEach((cardIndex,depth)=>applyPose(cards[cardIndex],poses[Math.min(depth,poses.length-1)]));
+        sizeStage();
+        updateState(false);
+      }
+
+      function finishNext(nextOrder){
+        order=nextOrder;
+        renderStack();
         moving=false;
         root.classList.remove('is-moving');
         updateState(true);
       }
 
-      function move(delta){
+      function nextFrame(){
         if(moving)return;
-        if(reduce.matches){
-          logicalIndex=(logicalIndex+delta+total)%total;
-          physicalIndex=logicalIndex+1;
-          setTrack(physicalIndex,false);
-          updateState(true);
+        const nextOrder=[order[1],order[2],order[3],order[0]];
+
+        if(reduce.matches||!window.gsap){
+          finishNext(nextOrder);
           return;
         }
+
         moving=true;
         root.classList.add('is-moving');
-        physicalIndex+=delta;
-        setTrack(physicalIndex,true);
+        const poses=stackPoses();
+        const current=cards[order[0]],second=cards[order[1]],third=cards[order[2]],fourth=cards[order[3]];
+        [current,second,third,fourth].forEach(clearStackClasses);
+
+        gsap.set(fourth,{display:'block',x:poses[3].x,y:poses[3].y,rotation:poses[3].r,scale:poses[3].s,opacity:0,zIndex:10,pointerEvents:'none'});
+
+        const flyX=root.clientWidth<520?-110:-165;
+        const flyY=root.clientWidth<520?-18:-28;
+        const tl=gsap.timeline({defaults:{ease:'power3.inOut'},onComplete:()=>finishNext(nextOrder)});
+
+        /* Lift the top print, then throw it to the left while the stack rises beneath it. */
+        tl.to(current,{duration:.16,y:-8,rotation:-2,scale:1.015,boxShadow:'0 36px 70px rgba(46,39,26,.24)',ease:'power2.out'},0)
+          .to(current,{duration:.5,x:flyX,y:flyY,rotation:-12,scale:.985,opacity:0,ease:'power3.in'},.12)
+          .to(second,{duration:.62,x:poses[0].x,y:poses[0].y,rotation:poses[0].r,scale:poses[0].s,opacity:1,zIndex:40,boxShadow:'0 30px 60px rgba(46,39,26,.2)'},.08)
+          .to(third,{duration:.64,x:poses[1].x,y:poses[1].y,rotation:poses[1].r,scale:poses[1].s,opacity:poses[1].o,zIndex:30,boxShadow:'0 22px 46px rgba(46,39,26,.14)'},.11)
+          .to(fourth,{duration:.66,x:poses[2].x,y:poses[2].y,rotation:poses[2].r,scale:poses[2].s,opacity:poses[2].o,zIndex:20,boxShadow:'0 16px 34px rgba(46,39,26,.1)'},.16);
       }
 
-      track.addEventListener('transitionend',e=>{
-        if(e.target!==track||e.propertyName!=='transform'||!moving)return;
-        settle();
-      });
-
-      track.addEventListener('transitioncancel',e=>{
-        if(e.target!==track||e.propertyName!=='transform'||!moving)return;
-        moving=false;
-        root.classList.remove('is-moving');
-        physicalIndex=logicalIndex+1;
-        setTrack(physicalIndex,false);
-      });
-
-      root.addEventListener('click',()=>move(1));
+      root.addEventListener('click',nextFrame);
       root.addEventListener('keydown',e=>{
-        if(e.key==='ArrowRight'||e.key==='Enter'||e.key===' '){e.preventDefault();move(1)}
-        else if(e.key==='ArrowLeft'){e.preventDefault();move(-1)}
+        if(e.key==='ArrowRight'||e.key==='Enter'||e.key===' '){e.preventDefault();nextFrame()}
       });
 
-      const reposition=()=>{
-        if(moving)return;
-        measureStep();
-        setTrack(physicalIndex,false);
-      };
-      if('ResizeObserver'in window)new ResizeObserver(reposition).observe(viewport);
-      else window.addEventListener('resize',reposition,{passive:true});
+      const resize=()=>{if(!moving)renderStack()};
+      if('ResizeObserver'in window)new ResizeObserver(resize).observe(root);
+      else window.addEventListener('resize',resize,{passive:true});
 
-      measureStep();
-      setTrack(physicalIndex,false);
-      updateState(false);
-    })();
+      cards.forEach(card=>{
+        const img=card.querySelector('img');
+        if(img&&!img.complete)img.addEventListener('load',resize,{once:true});
+      });
+
+      renderStack();
+    });
   </script>
 </body>
 </html>
