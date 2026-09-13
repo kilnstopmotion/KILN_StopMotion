@@ -42,7 +42,7 @@ const I18N={
   }
 };
 
-let lang=localStorage.getItem("daa-lang")||"en";
+let lang=localStorage.getItem("daa-lang")||"vi";
 function t(key){return I18N[lang]?.[key]??key}
 function applyI18n(){
   document.documentElement.lang=lang;
