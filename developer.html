@@ -7,68 +7,27 @@
   <meta name="description" content="KILN — nhóm phát triển đứng sau DA&A StopMotion." />
   <title>Nhà phát triển — DA&A StopMotion</title>
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="index.html">DA&amp;A StopMotion</a>
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="product.html" data-i18n="navProduct">Sản phẩm</a>
-        <a class="active" href="developer.html" data-i18n="navDeveloper">Nhà phát triển</a>
-        <div class="lang-switch" aria-label="Language"><button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button></div>
-        <a class="nav-cta" href="index.html#download"><span data-i18n="navDownload">Tải xuống</span><span class="arrow">↓</span></a>
-      </nav>
-    </div>
-  </header>
-
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+  <div class="cursor-frame" aria-hidden="true"><span>FRAME</span><b>K01</b></div>
+  <header class="site-header"><div class="container nav"><a class="brand magnetic" href="index.html">DA&amp;A StopMotion</a><nav class="nav-links" aria-label="Main navigation"><a href="product.html" data-i18n="navProduct">Sản phẩm</a><a class="active" href="developer.html" data-i18n="navDeveloper">Nhà phát triển</a><div class="lang-switch"><button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button></div><a class="nav-cta magnetic" href="index.html#download"><span data-i18n="navDownload">Tải xuống</span><span class="arrow">↓</span></a></nav></div></header>
   <main>
-    <section class="hero">
-      <div class="container story-grid">
-        <div class="reveal is-visible">
-          <span class="eyebrow">KILN / DEVELOPER</span>
-          <h1 class="editorial-title" style="font-size:clamp(58px,7vw,98px)" data-i18n="devHero">Được làm bởi chính những người cần công cụ này.</h1>
-          <p class="lead" data-i18n="devLead">DA&amp;A StopMotion được phát triển bởi KILN — một nhóm sáng tạo nhỏ tập trung vào những công cụ thực tế cho sản xuất frame-by-frame.</p>
-          <div class="lang-switch mobile-lang" aria-label="Language"><button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button></div>
-        </div>
-        <div class="photo-frame reveal" data-tilt>
-          <div class="frame-meta"><span>FRAME K001</span><span>KILN</span><span>TAKE 01</span></div>
-          <div class="preview-screen" data-parallax="1"><div><div class="logo-slot">KILN</div><strong>TEAM / STUDIO IMAGE</strong><p class="micro">PLACEHOLDER / YOUR VISUAL HERE</p></div></div>
-          <div class="photo-caption"><span>BUILT BY KILN</span><span>FORMERLY KILN MOTION</span></div>
-        </div>
-      </div>
-    </section>
+    <section class="motion-hero developer-hero"><div class="container story-grid"><div class="hero-copy"><span class="eyebrow">KILN / DEVELOPER</span><h1 class="editorial-title" style="font-size:clamp(58px,7vw,98px)"><span class="title-line" data-i18n="devHero">Được làm bởi chính những người cần công cụ này.</span></h1><p class="lead" data-i18n="devLead">DA&amp;A StopMotion được phát triển bởi KILN — một nhóm sáng tạo nhỏ tập trung vào những công cụ thực tế cho sản xuất frame-by-frame.</p><div class="lang-switch mobile-lang"><button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button></div></div><div class="photo-frame motion-photo" data-tilt><div class="frame-meta" data-depth=".35"><span>FRAME K001</span><span>KILN</span><span>TAKE 01</span></div><div class="preview-screen" data-depth="1"><div><div class="logo-slot">KILN</div><strong>TEAM / STUDIO IMAGE</strong><p class="micro">PLACEHOLDER / YOUR VISUAL HERE</p></div><span class="scan-line"></span></div><div class="photo-caption" data-depth=".45"><span>BUILT BY KILN</span><span>FORMERLY KILN MOTION</span></div></div></div></section>
 
-    <section class="section">
-      <div class="container story-grid reveal">
-        <div><span class="eyebrow" data-i18n="behind">Đằng sau DA&amp;A StopMotion</span><h2>KILN</h2><p class="lead" style="font-size:19px" data-i18n="kilnCopy">KILN là nhóm phát triển đứng sau DA&amp;A StopMotion. Phần mềm được xây từ trải nghiệm stop-motion, làm phim và mỹ thuật số thực tế thay vì từ một mẫu productivity chung chung.</p></div>
-        <div><span class="section-kicker" data-i18n="history">Lịch sử dự án</span><div class="timeline" style="margin-top:16px"><div class="timeline-item"><strong>KILN Motion</strong><span class="release-date">Origin / Early development</span></div><div class="timeline-item"><strong>DA&amp;A StopMotion</strong><span class="release-date">Current product identity</span></div><div class="timeline-item"><strong>5.0.0</strong><span class="release-date">Current release track</span></div></div></div>
-      </div>
-    </section>
+    <section class="section"><div class="container story-grid"><div class="motion-reveal"><span class="eyebrow" data-i18n="behind">Đằng sau DA&amp;A StopMotion</span><h2>KILN</h2><p class="lead" style="font-size:19px" data-i18n="kilnCopy">KILN là nhóm phát triển đứng sau DA&amp;A StopMotion. Phần mềm được xây từ trải nghiệm stop-motion, làm phim và mỹ thuật số thực tế thay vì từ một mẫu productivity chung chung.</p></div><div class="motion-reveal"><span class="section-kicker" data-i18n="history">Lịch sử dự án</span><div class="timeline" style="margin-top:16px"><div class="timeline-item"><strong>KILN Motion</strong><span class="release-date">Origin / Early development</span></div><div class="timeline-item"><strong>DA&amp;A StopMotion</strong><span class="release-date">Current product identity</span></div><div class="timeline-item"><strong>5.0.0</strong><span class="release-date">Current release track</span></div></div></div></div></section>
 
-    <section class="section">
-      <div class="container">
-        <div class="section-head reveal"><div><span class="section-kicker">CREATOR / FRAME 001</span><h2 data-i18n="creator">Creator &amp; Developer</h2></div><p class="section-copy" data-i18n="creatorCopy">Định hướng sản phẩm, thiết kế và phát triển DA&amp;A StopMotion.</p></div>
-        <div class="card developer-card reveal"><div class="avatar-slot">PHOTO</div><div><h3>Lê Triệu Phi</h3><p data-i18n="creatorCopy">Định hướng sản phẩm, thiết kế và phát triển DA&amp;A StopMotion.</p></div></div>
-      </div>
-    </section>
+    <section class="type-sequence dev-type" data-type-section><div class="container type-stage"><div class="type-meta"><span>KILN / NOTE</span><span>HAND / FRAME / STORY</span><span>2026</span></div><div class="type-copy"><p class="type-line" data-type-key="typeLine1">Một chuyển động tốt không bắt đầu từ playback.</p><p class="type-line" data-type-key="typeLine2">Nó bắt đầu từ một frame.</p><p class="type-line accent-line" data-type-key="typeLine3">Rồi thêm một frame nữa.</p></div><div class="typing-cursor">|</div></div></section>
 
-    <section class="section">
-      <div class="container">
-        <div class="section-head reveal"><div><span class="section-kicker">PRINCIPLES</span><h2 data-i18n="philosophy">Triết lý thiết kế</h2></div><p class="section-copy">FRAME / PEOPLE / TOOLS / STORIES</p></div>
-        <div class="feature-grid reveal" style="grid-template-columns:repeat(3,1fr)">
-          <article class="card"><span class="card-kicker">01 / SIMPLE</span><span class="feature-mark">LESS NOISE</span><h3 data-i18n="p1">Đơn giản</h3><p data-i18n="p1c">Giữ hành động quan trọng luôn dễ thấy và giảm nhiễu.</p></article>
-          <article class="card"><span class="card-kicker">02 / SET</span><span class="feature-mark">PRODUCTION</span><h3 data-i18n="p2">Tập trung production</h3><p data-i18n="p2c">Ưu tiên những quyết định thật sự quan trọng trên set.</p></article>
-          <article class="card"><span class="card-kicker">03 / FRAME</span><span class="feature-mark">RHYTHM</span><h3 data-i18n="p3">Hiểu từng frame</h3><p data-i18n="p3c">Thiết kế theo nhịp đặc trưng của công việc frame-by-frame.</p></article>
-        </div>
-      </div>
-    </section>
+    <section class="section"><div class="container"><div class="section-head motion-reveal"><div><span class="section-kicker">CREATOR / FRAME 001</span><h2 data-i18n="creator">Creator &amp; Developer</h2></div><p class="section-copy" data-i18n="creatorCopy">Định hướng sản phẩm, thiết kế và phát triển DA&amp;A StopMotion.</p></div><div class="card developer-card motion-reveal"><div class="avatar-slot">PHOTO</div><div><h3>Lê Triệu Phi</h3><p data-i18n="creatorCopy">Định hướng sản phẩm, thiết kế và phát triển DA&amp;A StopMotion.</p></div></div></div></section>
 
-    <section class="section coffee" aria-hidden="true">
-      <div class="container"><div class="card"><span class="eyebrow">☕ Support</span><h2 data-i18n="coffeeTitle">Ủng hộ DA&amp;A StopMotion</h2><p class="section-copy" data-i18n="coffeeCopy">Nếu DA&amp;A hữu ích cho công việc của bạn, bạn có thể hỗ trợ dự án tiếp tục phát triển.</p><div class="hero-actions"><a class="btn btn-primary" href="#" data-i18n="coffeeBtn">Buy me a coffee</a></div></div></div>
-    </section>
+    <section class="section"><div class="container"><div class="section-head motion-reveal"><div><span class="section-kicker">PRINCIPLES</span><h2 data-i18n="philosophy">Triết lý thiết kế</h2></div><p class="section-copy">FRAME / PEOPLE / TOOLS / STORIES</p></div><div class="feature-grid motion-stagger" style="grid-template-columns:repeat(3,1fr)"><article class="card"><span class="card-kicker">01 / SIMPLE</span><span class="feature-mark">LESS NOISE</span><h3 data-i18n="p1">Đơn giản</h3><p data-i18n="p1c">Giữ hành động quan trọng luôn dễ thấy và giảm nhiễu.</p></article><article class="card"><span class="card-kicker">02 / SET</span><span class="feature-mark">PRODUCTION</span><h3 data-i18n="p2">Tập trung production</h3><p data-i18n="p2c">Ưu tiên những quyết định thật sự quan trọng trên set.</p></article><article class="card"><span class="card-kicker">03 / FRAME</span><span class="feature-mark">RHYTHM</span><h3 data-i18n="p3">Hiểu từng frame</h3><p data-i18n="p3c">Thiết kế theo nhịp đặc trưng của công việc frame-by-frame.</p></article></div></div></section>
+
+    <section class="section coffee" aria-hidden="true"><div class="container"><div class="card"><span class="eyebrow">☕ Support</span><h2 data-i18n="coffeeTitle">Ủng hộ DA&amp;A StopMotion</h2><p class="section-copy" data-i18n="coffeeCopy">Nếu DA&amp;A hữu ích cho công việc của bạn, bạn có thể hỗ trợ dự án tiếp tục phát triển.</p><div class="hero-actions"><a class="btn btn-primary" href="#" data-i18n="coffeeBtn">Buy me a coffee</a></div></div></div></section>
   </main>
-
-  <footer class="footer"><div class="container footer-grid"><div><strong>DA&amp;A StopMotion</strong><span data-i18n="footerTagline">Mỗi khung hình đều có ý nghĩa.</span></div><div><div class="footer-links"><a href="index.html">Home</a><a href="product.html" data-i18n="navProduct">Sản phẩm</a><a href="index.html#download" data-i18n="navDownload">Tải xuống</a></div><div style="margin-top:12px" data-i18n="footerNote">Tiền thân là KILN Motion</div></div></div></footer>
+  <footer class="footer"><div class="footer-marquee"><span>KILN · DA&amp;A STOPMOTION · BUILT FRAME BY FRAME · KILN · DA&amp;A STOPMOTION · </span></div><div class="container footer-grid"><div><strong>DA&amp;A StopMotion</strong><span data-i18n="footerTagline">Mỗi khung hình đều có ý nghĩa.</span></div><div><div class="footer-links"><a href="index.html">Home</a><a href="product.html" data-i18n="navProduct">Sản phẩm</a><a href="index.html#download" data-i18n="navDownload">Tải xuống</a></div><div style="margin-top:12px" data-i18n="footerNote">Tiền thân là KILN Motion</div></div></div></footer>
 </body>
 </html>
