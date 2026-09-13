@@ -7,75 +7,115 @@
   <meta name="description" content="DA&A StopMotion — phần mềm sản xuất stop-motion được phát triển bởi KILN." />
   <title>DA&A StopMotion — by KILN</title>
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+  <div class="cursor-frame" aria-hidden="true"><span>FRAME</span><b>001</b></div>
+
   <header class="site-header">
     <div class="container nav">
-      <a class="brand" href="index.html">DA&amp;A StopMotion</a>
+      <a class="brand magnetic" href="index.html">DA&amp;A StopMotion</a>
       <nav class="nav-links" aria-label="Main navigation">
         <a href="product.html" data-i18n="navProduct">Sản phẩm</a>
         <a href="developer.html" data-i18n="navDeveloper">Nhà phát triển</a>
         <div class="lang-switch" aria-label="Language"><button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button></div>
-        <a class="nav-cta" href="#download" data-download-scroll><span data-i18n="navDownload">Tải xuống</span><span class="arrow">↓</span></a>
+        <a class="nav-cta magnetic" href="#download" data-download-scroll><span data-i18n="navDownload">Tải xuống</span><span class="arrow">↓</span></a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero motion-hero">
+      <div class="hero-orbit orbit-a" aria-hidden="true">FRAME / FRAME / FRAME / FRAME / FRAME</div>
+      <div class="hero-orbit orbit-b" aria-hidden="true">24 FPS · TAKE 03 · KILN · DA&amp;A</div>
       <div class="container hero-grid">
-        <div class="hero-copy reveal is-visible">
+        <div class="hero-copy" data-motion="hero-copy">
           <span class="eyebrow" data-i18n="heroEyebrow">Phát triển bởi KILN</span>
-          <h1 class="editorial-title">DA&amp;A<br><span class="accent">StopMotion</span></h1>
+          <h1 class="editorial-title hero-title"><span class="title-line">DA&amp;A</span><br><span class="accent title-line">StopMotion</span></h1>
           <p class="lead" data-i18n="heroLead">Công cụ sản xuất stop-motion được xây quanh từng khung hình, từng take và những quyết định nhỏ khiến chuyển động trở nên có hồn.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary hover-shift" href="#download" data-download-scroll><span data-i18n="heroDownload">Tải DA&amp;A v5.0.0</span><span class="arrow">↓</span></a>
-            <a class="btn btn-secondary hover-shift" href="product.html"><span data-i18n="heroExplore">Khám phá phần mềm</span><span class="arrow">→</span></a>
+            <a class="btn btn-primary magnetic" href="#download" data-download-scroll><span data-i18n="heroDownload">Tải DA&amp;A v5.0.0</span><span class="arrow">↓</span></a>
+            <a class="btn btn-secondary magnetic" href="product.html"><span data-i18n="heroExplore">Khám phá phần mềm</span><span class="arrow">→</span></a>
           </div>
           <p class="micro" data-i18n="heroMicro">Windows · Installer &amp; Portable · yêu cầu hệ thống đang chờ xác nhận</p>
           <div class="lang-switch mobile-lang" aria-label="Language"><button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button></div>
           <div class="hand-note" data-i18n="heroNote">Những điều nhỏ tạo nên câu chuyện lớn.</div>
         </div>
 
-        <div class="photo-frame reveal" data-tilt aria-label="Application preview placeholder">
-          <div class="frame-meta"><span>FRAME 001</span><span>24 FPS</span><span>TAKE 03</span></div>
-          <div class="preview-screen" data-parallax="1.2">
+        <div class="photo-frame motion-photo" data-tilt data-motion="hero-image" aria-label="Application preview placeholder">
+          <div class="frame-meta" data-depth=".35"><span>FRAME 001</span><span>24 FPS</span><span>TAKE 03</span></div>
+          <div class="preview-screen" data-depth="1.1">
             <div>
               <div class="logo-slot">LOGO</div>
               <strong data-i18n="preview">ẢNH GIAO DIỆN ỨNG DỤNG</strong>
               <p class="micro" data-i18n="previewHint">Sau này chỉ cần thay bằng screenshot DA&amp;A StopMotion</p>
             </div>
+            <span class="scan-line" aria-hidden="true"></span>
           </div>
-          <div class="photo-caption"><span data-i18n="frameCaption">Không gian sản xuất frame-by-frame</span><span>KILN / DA&amp;A</span></div>
+          <div class="photo-caption" data-depth=".5"><span data-i18n="frameCaption">Không gian sản xuất frame-by-frame</span><span>KILN / DA&amp;A</span></div>
+        </div>
+      </div>
+      <div class="frame-ribbon" aria-hidden="true"><span>001</span><span>002</span><span>003</span><span>004</span><span>005</span><span>006</span><span>007</span><span>008</span><span>009</span><span>010</span><span>011</span><span>012</span></div>
+    </section>
+
+    <section class="type-sequence" data-type-section>
+      <div class="container type-stage">
+        <div class="type-meta"><span>SCENE / 01</span><span>INPUT / HUMAN</span><span>OUTPUT / MOTION</span></div>
+        <div class="type-copy">
+          <p class="type-line" data-type-key="typeLine1">Một chuyển động tốt không bắt đầu từ playback.</p>
+          <p class="type-line" data-type-key="typeLine2">Nó bắt đầu từ một frame.</p>
+          <p class="type-line accent-line" data-type-key="typeLine3">Rồi thêm một frame nữa.</p>
+        </div>
+        <div class="typing-cursor" aria-hidden="true">|</div>
+      </div>
+    </section>
+
+    <section class="section feature-section">
+      <div class="container">
+        <div class="section-head motion-reveal">
+          <div><span class="section-kicker" data-i18n="featKicker">Từ những khung hình nhỏ đến những câu chuyện lớn</span><h2 data-i18n="featTitle">Mọi thứ bạn cần cho stop-motion.</h2></div>
+          <p class="section-copy" data-i18n="featCopy">Chụp, animate, review và tổ chức mà không làm đứt nhịp của cảnh quay.</p>
+        </div>
+        <div class="feature-grid motion-stagger">
+          <article class="card motion-card"><span class="card-kicker">01 / FRAME</span><span class="feature-mark">CAMERA</span><h3 data-i18n="f1">Chụp</h3><p data-i18n="f1c">Kết nối camera và chụp frame với cách điều khiển rõ ràng, phù hợp production.</p><span class="card-frame-no">0001</span></article>
+          <article class="card motion-card"><span class="card-kicker">02 / MOTION</span><span class="feature-mark">GUIDE</span><h3 data-i18n="f2">Animate</h3><p data-i18n="f2c">Tinh chỉnh timing và chuyển động bằng những công cụ dành cho quyết định frame-by-frame.</p><span class="card-frame-no">0002</span></article>
+          <article class="card motion-card"><span class="card-kicker">03 / PLAY</span><span class="feature-mark">REVIEW</span><h3 data-i18n="f3">Review</h3><p data-i18n="f3c">Phát lại, so sánh và kiểm tra chuyển động ngay khi cảnh quay vẫn đang được thực hiện.</p><span class="card-frame-no">0003</span></article>
+          <article class="card motion-card"><span class="card-kicker">04 / TAKE</span><span class="feature-mark">PROJECT</span><h3 data-i18n="f4">Tổ chức</h3><p data-i18n="f4c">Giữ frame, take và cấu trúc project rõ ràng khi production lớn dần.</p><span class="card-frame-no">0004</span></article>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container">
-        <div class="section-head reveal">
-          <div><span class="section-kicker" data-i18n="featKicker">Từ những khung hình nhỏ đến những câu chuyện lớn</span><h2 data-i18n="featTitle">Mọi thứ bạn cần cho stop-motion.</h2></div>
-          <p class="section-copy" data-i18n="featCopy">Chụp, animate, review và tổ chức mà không làm đứt nhịp của cảnh quay.</p>
+    <section class="image-story" data-image-story>
+      <div class="container image-story-grid">
+        <div class="story-visual motion-mask">
+          <div class="story-screen" data-story-screen>
+            <span class="story-counter">FRAME <b data-story-frame>001</b></span>
+            <div class="story-placeholder"><span data-i18n="preview">ẢNH GIAO DIỆN ỨNG DỤNG</span><small>CAPTURE → ANIMATE → REVIEW</small></div>
+            <div class="focus-ring" aria-hidden="true"></div>
+          </div>
         </div>
-        <div class="feature-grid reveal">
-          <article class="card"><span class="card-kicker">01 / FRAME</span><span class="feature-mark">CAMERA</span><h3 data-i18n="f1">Chụp</h3><p data-i18n="f1c">Kết nối camera và chụp frame với cách điều khiển rõ ràng, phù hợp production.</p></article>
-          <article class="card"><span class="card-kicker">02 / MOTION</span><span class="feature-mark">GUIDE</span><h3 data-i18n="f2">Animate</h3><p data-i18n="f2c">Tinh chỉnh timing và chuyển động bằng những công cụ dành cho quyết định frame-by-frame.</p></article>
-          <article class="card"><span class="card-kicker">03 / PLAY</span><span class="feature-mark">REVIEW</span><h3 data-i18n="f3">Review</h3><p data-i18n="f3c">Phát lại, so sánh và kiểm tra chuyển động ngay khi cảnh quay vẫn đang được thực hiện.</p></article>
-          <article class="card"><span class="card-kicker">04 / TAKE</span><span class="feature-mark">PROJECT</span><h3 data-i18n="f4">Tổ chức</h3><p data-i18n="f4c">Giữ frame, take và cấu trúc project rõ ràng khi production lớn dần.</p></article>
+        <div class="story-copy-stack">
+          <article class="story-step is-active" data-story-step="001"><span>01</span><h3 data-i18n="f1">Chụp</h3><p data-i18n="captureDesc">Chụp frame ưu tiên camera, luôn giữ feedback production ở gần.</p></article>
+          <article class="story-step" data-story-step="072"><span>02</span><h3 data-i18n="f2">Animate</h3><p data-i18n="animateDesc">Hỗ trợ timing và chuyển động cho những quyết định frame-by-frame.</p></article>
+          <article class="story-step" data-story-step="144"><span>03</span><h3 data-i18n="f3">Review</h3><p data-i18n="reviewDesc">Kiểm tra chuyển động và continuity mà không rời workflow.</p></article>
+          <article class="story-step" data-story-step="216"><span>04</span><h3 data-i18n="f4">Tổ chức</h3><p data-i18n="organizeDesc">Giữ shot và frame có cấu trúc khi project lớn dần.</p></article>
         </div>
       </div>
     </section>
 
     <section class="section dark-section" id="download">
+      <div class="film-strip film-strip-top" aria-hidden="true"></div>
       <div class="container">
-        <div class="section-head reveal">
+        <div class="section-head motion-reveal">
           <div><span class="section-kicker" data-i18n="releaseEyebrow">Bản phát hành mới nhất</span><h2 data-i18n="releaseTitle">Tải DA&amp;A StopMotion</h2></div>
           <p class="section-copy" data-i18n="releaseCopy">Chọn bộ cài hoặc bản portable. Các phiên bản cũ vẫn được giữ lại khi cần tương thích.</p>
         </div>
-        <div class="release-card reveal" data-release-latest></div>
+        <div class="release-card motion-release" data-release-latest></div>
 
-        <div class="archive-wrap reveal">
+        <div class="archive-wrap motion-reveal">
           <div class="archive-head">
             <div><span class="section-kicker">FRAME ARCHIVE</span><h3 data-i18n="previous">Các phiên bản trước</h3></div>
             <p class="section-copy" data-i18n="oldWarn">Các bản cũ vẫn được giữ để tương thích. Với đa số người dùng, nên dùng bản stable mới nhất.</p>
@@ -85,15 +125,15 @@
       </div>
     </section>
 
-    <section class="section reveal">
+    <section class="section kiln-section">
       <div class="container story-grid">
-        <div>
+        <div class="motion-reveal">
           <span class="eyebrow no-line">DEVELOPED BY</span>
           <h2>KILN</h2>
           <p class="lead" style="font-size:19px" data-i18n="kilnCopy">KILN là nhóm phát triển đứng sau DA&amp;A StopMotion. Phần mềm được xây từ trải nghiệm stop-motion, làm phim và mỹ thuật số thực tế thay vì từ một mẫu productivity chung chung.</p>
-          <div class="hero-actions"><a class="btn btn-secondary" href="developer.html"><span data-i18n="navDeveloper">Nhà phát triển</span><span class="arrow">→</span></a></div>
+          <div class="hero-actions"><a class="btn btn-secondary magnetic" href="developer.html"><span data-i18n="navDeveloper">Nhà phát triển</span><span class="arrow">→</span></a></div>
         </div>
-        <div class="image-slot" data-tilt><div><div class="logo-slot">KILN</div><strong>KILN / STUDIO VISUAL</strong><p class="micro" data-i18n="footerNote">Tiền thân là KILN Motion</p></div></div>
+        <div class="image-slot motion-mask" data-tilt><div><div class="logo-slot">KILN</div><strong>KILN / STUDIO VISUAL</strong><p class="micro" data-i18n="footerNote">Tiền thân là KILN Motion</p></div><span class="image-cross x1"></span><span class="image-cross x2"></span></div>
       </div>
     </section>
 
@@ -103,6 +143,7 @@
   </main>
 
   <footer class="footer">
+    <div class="footer-marquee" aria-hidden="true"><span>DA&amp;A STOPMOTION · FRAME BY FRAME · KILN · DA&amp;A STOPMOTION · FRAME BY FRAME · KILN · </span></div>
     <div class="container footer-grid">
       <div><strong>DA&amp;A StopMotion</strong><span data-i18n="footerTagline">Mỗi khung hình đều có ý nghĩa.</span></div>
       <div><div class="footer-links"><a href="product.html" data-i18n="navProduct">Sản phẩm</a><a href="developer.html" data-i18n="navDeveloper">Nhà phát triển</a><a href="#download" data-download-scroll data-i18n="navDownload">Tải xuống</a></div><div style="margin-top:12px" data-i18n="footerNote">Tiền thân là KILN Motion</div></div>
