@@ -1,114 +1,108 @@
 <!doctype html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>KILN StopMotion</title>
-  <meta name="description" content="KILN StopMotion — official project page." />
-  <style>
-    :root { color-scheme: dark; }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(255,255,255,.07), transparent 34%),
-        #0a0a0b;
-      color: #f4f4f5;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-    main {
-      width: min(920px, calc(100% - 40px));
-      text-align: center;
-      padding: 72px 24px;
-    }
-    .badge {
-      display: inline-block;
-      padding: 8px 13px;
-      border: 1px solid #303036;
-      border-radius: 999px;
-      color: #a1a1aa;
-      font-size: 12px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      background: rgba(255,255,255,.025);
-    }
-    h1 {
-      margin: 26px 0 14px;
-      font-size: clamp(44px, 8vw, 92px);
-      line-height: .94;
-      letter-spacing: -.06em;
-    }
-    p {
-      margin: 0 auto;
-      max-width: 640px;
-      color: #a1a1aa;
-      font-size: clamp(16px, 2.2vw, 20px);
-      line-height: 1.65;
-    }
-    .actions {
-      margin-top: 34px;
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 0 18px;
-      border-radius: 12px;
-      border: 1px solid #34343a;
-      text-decoration: none;
-      color: #f4f4f5;
-      background: #17171a;
-      transition: transform .18s ease, border-color .18s ease, background .18s ease;
-    }
-    .button:hover {
-      transform: translateY(-2px);
-      border-color: #55555f;
-      background: #1e1e22;
-    }
-    .status {
-      margin-top: 26px;
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      color: #d4d4d8;
-      font-size: 14px;
-    }
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 18px rgba(34,197,94,.65);
-    }
-    .version {
-      margin-top: 14px;
-      color: #71717a;
-      font-size: 12px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-  </style>
+  <meta name="theme-color" content="#090a0c" />
+  <meta name="description" content="DA&A StopMotion — stop-motion production software developed by KILN." />
+  <title>DA&A StopMotion — by KILN</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="app.js" defer></script>
 </head>
 <body>
-  <main>
-    <span class="badge">KILN Studio</span>
-    <h1>KILN StopMotion</h1>
-    <p>A dedicated stop-motion workspace is being built here. This is the live web home for KILN StopMotion.</p>
-
-    <div class="actions">
-      <a class="button" href="https://github.com/kilnstopmotion/KILN_StopMotion" target="_blank" rel="noreferrer">View GitHub</a>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">DA&amp;A StopMotion</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="product.html" data-i18n="navProduct">Product</a>
+        <a href="developer.html" data-i18n="navDeveloper">Developer</a>
+        <div class="lang-switch" aria-label="Language">
+          <button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button>
+        </div>
+        <a class="nav-cta" href="#download" data-download-scroll data-i18n="navDownload">Download</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="status"><span class="dot"></span> Live deployment ready</div>
-    <div class="version">Prototype v0.1</div>
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="fade-up">
+          <span class="eyebrow"><span class="eyebrow-dot"></span><span data-i18n="heroEyebrow">Developed by KILN</span></span>
+          <h1 data-i18n="heroTitle">DA&amp;A StopMotion</h1>
+          <p class="lead" data-i18n="heroLead">A focused stop-motion production workspace built around the rhythm of frame-by-frame creation.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#download" data-download-scroll data-i18n="heroDownload">Download v5.0.0</a>
+            <a class="btn btn-secondary" href="product.html" data-i18n="heroExplore">Explore the product</a>
+          </div>
+          <p class="micro" data-i18n="heroMicro">Windows · Installer &amp; Portable · system requirements pending confirmation</p>
+          <div class="lang-switch mobile-lang" aria-label="Language">
+            <button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button>
+          </div>
+          <div class="frame-ruler" aria-hidden="true">01&nbsp;&nbsp;02&nbsp;&nbsp;03&nbsp;&nbsp;04&nbsp;&nbsp;05&nbsp;&nbsp;06&nbsp;&nbsp;07&nbsp;&nbsp;08&nbsp;&nbsp;09&nbsp;&nbsp;10&nbsp;&nbsp;11&nbsp;&nbsp;12</div>
+        </div>
+
+        <div class="app-preview fade-up" aria-label="Application preview placeholder">
+          <div class="preview-bar"><span>DA&amp;A StopMotion</span><span class="preview-dots"><span></span><span></span><span></span></span></div>
+          <div class="preview-body">
+            <div>
+              <div class="logo-slot">LOGO</div>
+              <strong data-i18n="preview">APP PREVIEW</strong>
+              <p class="micro" data-i18n="previewHint">Drop your DA&amp;A StopMotion screenshot here later</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div><span class="eyebrow">DA&amp;A / Workflow</span><h2 data-i18n="featTitle">Built for the stop-motion workflow</h2></div>
+          <p class="section-copy" data-i18n="featCopy">A clean production flow from capture to review, without turning the interface into a wall of tools.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="card"><span class="card-kicker">01</span><h3 data-i18n="f1">Capture</h3><p data-i18n="f1c">Connect the camera and capture frames with a workflow designed for animation.</p></article>
+          <article class="card"><span class="card-kicker">02</span><h3 data-i18n="f2">Animate</h3><p data-i18n="f2c">Use motion guidance, onion-skin style references and frame-by-frame tools.</p></article>
+          <article class="card"><span class="card-kicker">03</span><h3 data-i18n="f3">Review</h3><p data-i18n="f3c">Inspect timing, playback and frame continuity while you work.</p></article>
+          <article class="card"><span class="card-kicker">04</span><h3 data-i18n="f4">Organize</h3><p data-i18n="f4c">Keep frames, takes and project structure easy to understand.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="download">
+      <div class="container">
+        <div class="section-head">
+          <div><span class="eyebrow" data-i18n="releaseEyebrow">Releases</span><h2 data-i18n="releaseTitle">Download DA&amp;A StopMotion</h2></div>
+          <p class="section-copy" data-i18n="releaseCopy">Get the current build or return to an older version whenever your production needs it.</p>
+        </div>
+
+        <div class="release-card" data-release-latest></div>
+
+        <div style="margin-top:46px">
+          <div class="section-head" style="margin-bottom:18px">
+            <div><h3 data-i18n="previous">Previous releases</h3></div>
+            <p class="section-copy" data-i18n="oldWarn">Older releases remain available for compatibility. For most users, the latest stable version is recommended.</p>
+          </div>
+          <div class="release-list" data-release-list></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section coffee" aria-hidden="true">
+      <div class="container">
+        <div class="card">
+          <span class="eyebrow">☕ Support</span>
+          <h2 style="margin-top:12px" data-i18n="coffeeTitle">Support DA&amp;A StopMotion</h2>
+          <p class="section-copy" data-i18n="coffeeCopy">If DA&amp;A helps your work, you can support its continued development.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="#" data-i18n="coffeeBtn">Buy me a coffee</a></div>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer class="footer">
+    <div class="container footer-grid"><span data-i18n="footer">DA&amp;A StopMotion · Developed by KILN</span><span data-i18n="footerNote">Formerly KILN Motion</span></div>
+  </footer>
 </body>
 </html>
