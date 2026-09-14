@@ -5,15 +5,20 @@
   --heat-alpha:.12;
   isolation:isolate;
 }
-#download::before{z-index:0}
+/* Keep the dark-section grid, but remove its fixed orange radial glow. */
+#download::before{
+  z-index:0;
+  background:linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+  background-size:52px 52px;
+}
+/* The only ambient glow in this section. Its coordinates are driven by pointer position. */
 #download::after{
   content:"";
   position:absolute;
-  inset:-12%;
+  inset:0;
   z-index:1;
   pointer-events:none;
-  background:
-    radial-gradient(circle 330px at var(--heat-x) var(--heat-y),rgba(255,137,78,var(--heat-alpha)) 0%,rgba(230,93,34,.08) 34%,rgba(184,63,18,.035) 52%,transparent 74%);
+  background:radial-gradient(circle 330px at var(--heat-x) var(--heat-y),rgba(255,137,78,var(--heat-alpha)) 0%,rgba(230,93,34,.08) 34%,rgba(184,63,18,.035) 52%,transparent 74%);
   filter:blur(7px);
   opacity:.58;
   transition:opacity .45s var(--ease);
@@ -22,29 +27,18 @@
 #download>.film-strip,#download>.container{position:relative;z-index:2}
 
 #download .release-card{
-  --card-x:72%;
-  --card-y:44%;
   display:block;
   padding:0;
   background:rgba(255,255,255,.022);
   border-color:rgba(248,245,237,.18);
   transition:border-color .35s var(--ease),box-shadow .35s var(--ease),background .35s var(--ease);
 }
-#download .release-card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:1;
-  pointer-events:none;
-  background:radial-gradient(circle 235px at var(--card-x) var(--card-y),rgba(255,137,78,.16),rgba(230,93,34,.055) 38%,transparent 72%);
-  opacity:.5;
-  transition:opacity .3s var(--ease);
-}
+/* No second card-level radial glow: the section glow already follows the pointer. */
+#download .release-card::before{content:none}
 #download .release-card:hover{
   border-color:rgba(255,151,104,.34);
   box-shadow:0 28px 70px rgba(0,0,0,.18),inset 0 0 0 1px rgba(255,137,78,.035);
 }
-#download .release-card:hover::before{opacity:1}
 #download .release-card::after{z-index:4}
 #download .release-card-surface{
   position:relative;
