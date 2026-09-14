@@ -4,10 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#f2efe7" />
-  <meta name="description" content="Khám phá workflow và triết lý sản phẩm của DA&A StopMotion." />
+  <meta name="description" content="Khám phá workflow, công cụ stop-motion, camera integration, project workflow và output của DA&A StopMotion." />
   <title>Sản phẩm — DA&A StopMotion</title>
   <link rel="icon" type="image/webp" href="assets/images/app/logo.webp" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="product-info.css" />
   <style>
     .product-motion-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}.product-motion-visual{position:sticky;top:110px;height:70vh;min-height:520px}.product-visual-screen{height:100%;position:relative;overflow:hidden;display:grid;place-items:center;background:var(--dark);color:var(--cream);border:1px solid #30322d}.product-visual-screen:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 55% 40%,rgba(230,93,34,.18),transparent 24%),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:auto,48px 48px}.product-frame-tag{position:absolute;left:16px;top:14px;font:9px var(--mono);letter-spacing:.14em;color:#9b9d94}.product-visual-center{position:relative;z-index:2;text-align:center;font-family:var(--serif);font-size:clamp(38px,5vw,72px);line-height:.88}.product-visual-center em{color:var(--orange);font-weight:500}.product-scan{position:absolute;left:0;right:0;height:1px;background:rgba(230,93,34,.45);top:12%;animation:scan 5s linear infinite}.product-steps{display:grid;gap:18px;padding:8vh 0}.product-step{min-height:250px}.product-step h3{margin-top:42px}
 
@@ -25,6 +26,7 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
   <script src="app.js" defer></script>
+  <script src="product-info.js" defer></script>
 </head>
 <body>
   <div class="scroll-progress" aria-hidden="true"><span></span></div>
@@ -85,7 +87,88 @@
       </div>
     </div></section>
 
-    <section class="section product-motion-flow"><div class="container"><div class="section-head motion-reveal"><div><span class="section-kicker" data-i18n="workflow">Quy trình</span><h2>Capture → Animate → Review → Organize → Export</h2></div><p class="section-copy" data-i18n="productLead">DA&amp;A StopMotion được xây theo đúng trình tự sản xuất stop-motion: chụp, animate, review, tổ chức và xuất.</p></div><div class="product-motion-grid"><div class="product-motion-visual motion-mask"><div class="product-visual-screen"><span class="product-frame-tag">LIVE / FRAME 021</span><div class="product-visual-center">DA&amp;A<br><em>workflow</em></div><span class="product-scan"></span></div></div><div class="product-steps motion-stagger"><article class="product-step card"><span class="step-no">01 / CAPTURE</span><h3 data-i18n="f1">Chụp</h3><p data-i18n="captureDesc">Chụp frame ưu tiên camera, luôn giữ feedback production ở gần.</p></article><article class="product-step card"><span class="step-no">02 / ANIMATE</span><h3 data-i18n="f2">Animate</h3><p data-i18n="animateDesc">Hỗ trợ timing và chuyển động cho những quyết định frame-by-frame.</p></article><article class="product-step card"><span class="step-no">03 / REVIEW</span><h3 data-i18n="f3">Review</h3><p data-i18n="reviewDesc">Kiểm tra chuyển động và continuity mà không rời workflow.</p></article><article class="product-step card"><span class="step-no">04 / ORGANIZE</span><h3 data-i18n="f4">Tổ chức</h3><p data-i18n="organizeDesc">Giữ shot và frame có cấu trúc khi project lớn dần.</p></article><article class="product-step card"><span class="step-no">05 / EXPORT</span><h3>Export</h3><p data-i18n="exportDesc">Đưa material hoàn thiện sang hậu kỳ một cách sạch sẽ.</p></article></div></div></div></section>
+    <div class="product-subnav-wrap">
+      <nav class="container product-subnav" aria-label="Product sections">
+        <a href="#workflow" data-i18n="productNavWorkflow">Workflow</a>
+        <a href="#workspace" data-i18n="productNavWorkspace">Công cụ</a>
+        <a href="#project-media" data-i18n="productNavProject">Dự án &amp; tệp</a>
+        <a href="#camera" data-i18n="productNavCamera">Camera</a>
+        <a href="#output" data-i18n="productNavOutput">Xuất &amp; kỹ thuật</a>
+      </nav>
+    </div>
+
+    <section class="section product-motion-flow" id="workflow"><div class="container"><div class="section-head motion-reveal"><div><span class="section-kicker" data-i18n="workflow">Quy trình</span><h2>Capture → Animate → Review → Organize → Export</h2></div><p class="section-copy" data-i18n="productLead">DA&amp;A StopMotion được xây theo đúng trình tự sản xuất stop-motion: chụp, animate, review, tổ chức và xuất.</p></div><div class="product-motion-grid"><div class="product-motion-visual motion-mask"><div class="product-visual-screen"><span class="product-frame-tag">LIVE / FRAME 021</span><div class="product-visual-center">DA&amp;A<br><em>workflow</em></div><span class="product-scan"></span></div></div><div class="product-steps motion-stagger"><article class="product-step card"><span class="step-no">01 / CAPTURE</span><h3 data-i18n="f1">Chụp</h3><p data-i18n="captureDesc">Chụp frame ưu tiên camera, luôn giữ feedback production ở gần.</p></article><article class="product-step card"><span class="step-no">02 / ANIMATE</span><h3 data-i18n="f2">Animate</h3><p data-i18n="animateDesc">Hỗ trợ timing và chuyển động cho những quyết định frame-by-frame.</p></article><article class="product-step card"><span class="step-no">03 / REVIEW</span><h3 data-i18n="f3">Review</h3><p data-i18n="reviewDesc">Kiểm tra chuyển động và continuity mà không rời workflow.</p></article><article class="product-step card"><span class="step-no">04 / ORGANIZE</span><h3 data-i18n="f4">Tổ chức</h3><p data-i18n="organizeDesc">Giữ shot và frame có cấu trúc khi project lớn dần.</p></article><article class="product-step card"><span class="step-no">05 / EXPORT</span><h3>Export</h3><p data-i18n="exportDesc">Đưa material hoàn thiện sang hậu kỳ một cách sạch sẽ.</p></article></div></div></div></section>
+
+    <section class="section product-info-section" id="workspace">
+      <div class="container">
+        <div class="section-head motion-reveal">
+          <div class="product-info-intro"><span class="section-kicker" data-i18n="insideKicker">Bên trong workflow</span><h2 data-i18n="insideTitle">Không chỉ là 5 bước.</h2></div>
+          <p class="section-copy" data-i18n="insideCopy">DA&amp;A gom những thao tác quan trọng của stop-motion vào cùng một không gian: chụp, sắp xếp frame, xem lại chuyển động, lập kế hoạch và chuẩn bị material cho hậu kỳ.</p>
+        </div>
+        <div class="product-capability-grid motion-stagger">
+          <article class="card product-capability" data-frame="01"><div class="capability-meta"><span>01 / CAPTURE</span><span>CAMERA</span></div><h3 data-i18n="toolCameraTitle">Camera Capture</h3><p data-i18n="toolCameraCopy">Kết nối camera, Live View và đưa ảnh chụp vào timeline sau khi file được nhận.</p><div class="capability-tags"><span>LIVE VIEW</span><span>CAPTURE</span><span>EXPOSURE</span><span>ONION</span></div></article>
+          <article class="card product-capability" data-frame="02"><div class="capability-meta"><span>02 / EDIT</span><span>FRAMES</span></div><h3 data-i18n="toolTimelineTitle">Timeline &amp; Frame</h3><p data-i18n="toolTimelineCopy">Chọn nhiều frame, kéo đổi thứ tự, copy/cut/paste, đảo chiều, nhân bản, ẩn frame, Hold/Exposure và phục hồi frame đã xóa.</p><div class="capability-tags"><span>REORDER</span><span>HOLD</span><span>UNDO</span><span>RECOVERY</span></div></article>
+          <article class="card product-capability" data-frame="03"><div class="capability-meta"><span>03 / REVIEW</span><span>PLAYBACK</span></div><h3 data-i18n="toolPreviewTitle">Preview &amp; Playback</h3><p data-i18n="toolPreviewCopy">Phát theo FPS và Hold, đặt vùng phát A–B, lặp, bước từng frame, zoom/pan, xoay/lật, Onion Skin ảnh trước hoặc sau, lưới và vùng an toàn.</p><div class="capability-tags"><span>FPS</span><span>A–B RANGE</span><span>ONION SKIN</span><span>FULLSCREEN</span></div></article>
+          <article class="card product-capability" data-frame="04"><div class="capability-meta"><span>04 / PLAN</span><span>X-SHEET</span></div><h3 data-i18n="toolXsheetTitle">X-Sheet</h3><p data-i18n="toolXsheetCopy">Theo dõi shot ở dạng bảng, làm việc với frame/exposure, ghi chú và thao tác theo hàng để kế hoạch animation dễ đọc hơn khi cảnh dài dần.</p><div class="capability-tags"><span>EXPOSURE</span><span>NOTES</span><span>ROWS</span><span>PLANNING</span></div></article>
+          <article class="card product-capability" data-frame="05"><div class="capability-meta"><span>05 / MOTION</span><span>GUIDE</span></div><h3 data-i18n="toolGuideTitle">Motion Guide</h3><p data-i18n="toolGuideCopy">Vẽ đường chuyển động, chia nhịp theo frame và kiểm tra spacing. Luồng Sony có lịch timing/easing riêng; Canon hiện có bộ guide nhiều đường và marker riêng.</p><div class="capability-tags"><span>PATH</span><span>SPACING</span><span>EASING</span><span>FRAME PLAN</span></div></article>
+          <article class="card product-capability" data-frame="06"><div class="capability-meta"><span>06 / ANALYZE</span><span>PREVIEW</span></div><h3 data-i18n="toolAnalysisTitle">Preview Tools</h3><p data-i18n="toolAnalysisCopy">Chroma Key phục vụ xem thử ghép nền trên Preview; Flicker Detection phân tích biến động sáng sau khi chụp. Các công cụ này không tự sửa ảnh nguồn.</p><div class="capability-tags"><span>CHROMA</span><span>FLICKER</span><span>ANNOTATION</span><span>NON-DESTRUCTIVE</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section product-info-section" id="project-media">
+      <div class="container">
+        <div class="section-head motion-reveal"><div><span class="section-kicker" data-i18n="projectKicker">Dự án &amp; media</span><h2 data-i18n="projectTitle">Giữ project rõ ràng mà không giấu file của bạn.</h2></div><p class="section-copy" data-i18n="projectCopy">Project DA&amp;A lưu cấu trúc và trạng thái làm việc, trong khi media nguồn vẫn là file thật trên ổ đĩa.</p></div>
+        <div class="product-deep-grid">
+          <div class="product-fact-panel motion-reveal">
+            <span class="section-kicker">PROJECT / STRUCTURE</span>
+            <h3>.smproj + source media</h3>
+            <dl class="product-fact-list">
+              <div class="product-fact"><dt data-i18n="factProject">Project</dt><dd data-i18n="factProjectCopy">File .smproj lưu timeline và cài đặt; ảnh nguồn vẫn phải còn trên ổ đĩa.</dd></div>
+              <div class="product-fact"><dt data-i18n="factLabels">Shot labels</dt><dd data-i18n="factLabelsCopy">Production / Scene / Take dùng để định danh shot và liên kết một số dữ liệu kế hoạch theo take.</dd></div>
+              <div class="product-fact"><dt data-i18n="factImport">Import</dt><dd data-i18n="factImportCopy">Open Folder và Watch Folder nhận ảnh mới vào timeline; luồng import hiện nhận JPG, JPEG, PNG, TIF và TIFF.</dd></div>
+              <div class="product-fact"><dt data-i18n="factRecovery">Recovery</dt><dd data-i18n="factRecoveryCopy">Có snapshot phục hồi dự án, khay frame đã xóa và Undo/Redo cho các chỉnh sửa timeline trong phiên.</dd></div>
+            </dl>
+          </div>
+          <div class="product-process motion-stagger">
+            <article class="process-row"><span>01</span><div><strong data-i18n="process1">Nhập hoặc chụp</strong><p data-i18n="process1c">Chụp trực tiếp từ Camera Capture hoặc theo dõi một thư mục ảnh đang nhận file mới.</p></div></article>
+            <article class="process-row"><span>02</span><div><strong data-i18n="process2">Tổ chức shot</strong><p data-i18n="process2c">Gắn Production / Scene / Take, sắp xếp frame, Hold, nhóm hoặc di chuyển media theo nhu cầu.</p></div></article>
+            <article class="process-row"><span>03</span><div><strong data-i18n="process3">Kiểm tra chuyển động</strong><p data-i18n="process3c">Playback, Onion Skin, X-Sheet, Motion Guide và các công cụ Preview hỗ trợ việc ra quyết định trên từng frame.</p></div></article>
+            <article class="process-row"><span>04</span><div><strong data-i18n="process4">Đóng gói / xuất</strong><p data-i18n="process4c">Có thể đóng gói project cùng media liên quan hoặc xuất sequence được đánh số để chuyển tiếp sang hậu kỳ.</p></div></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark-section" id="camera">
+      <div class="container">
+        <div class="section-head motion-reveal"><div><span class="section-kicker" data-i18n="cameraKicker">Camera integration</span><h2 data-i18n="cameraTitle">Mức hỗ trợ được ghi rõ, không đánh đồng mọi body.</h2></div><p class="section-copy" data-i18n="cameraCopy">Website chỉ công bố những gì có bằng chứng trong source hiện tại. Danh sách body và mức tương thích thực tế vẫn cần QA phần cứng.</p></div>
+        <div class="camera-matrix motion-reveal">
+          <div class="camera-row"><div class="camera-brand">Sony</div><span class="status-pill reference" data-i18n="sonyStatus">Luồng tham chiếu</span><div class="camera-detail" data-i18n="sonyCopy">Sony là luồng đã được audit sâu nhất: kết nối, Live View, chụp, ISO/khẩu/tốc/Kelvin, grid/aspect overlay, Onion Skin, Test Shot, Retake, Motion Guide và Flicker UI đã có đường xử lý trong source.</div></div>
+          <div class="camera-row"><div class="camera-brand">Canon</div><span class="status-pill partial" data-i18n="canonStatus">Luồng riêng hiện có</span><div class="camera-detail" data-i18n="canonCopy">Canon có kết nối/chụp, Live View, thư mục, các thông số phơi sáng cơ bản, grid/aspect/onion, Test Shot, Retake và Motion Guide riêng.</div></div>
+          <div class="camera-row"><div class="camera-brand">Nikon</div><span class="status-pill validation" data-i18n="nikonStatus">Cần xác minh runtime</span><div class="camera-detail" data-i18n="nikonCopy">Backend Nikon và entry chọn hãng đã tồn tại, nhưng runtime phụ thuộc SDK ngoài và mức tương thích trên máy đích/body thực tế vẫn cần kiểm tra.</div></div>
+        </div>
+        <div class="product-evidence-note" data-i18n="cameraAuditNote">Ghi chú kỹ thuật: các trạng thái trên đến từ source audit tĩnh. “Có trong source” không đồng nghĩa với chứng nhận đã chạy trên mọi firmware/body.</div>
+      </div>
+    </section>
+
+    <section class="section product-info-section" id="output">
+      <div class="container">
+        <div class="section-head motion-reveal"><div><span class="section-kicker" data-i18n="outputKicker">Output &amp; technical status</span><h2 data-i18n="outputTitle">Từ preview tới material hậu kỳ.</h2></div><p class="section-copy" data-i18n="outputCopy">DA&amp;A tách rõ trải nghiệm Preview và dữ liệu nguồn. Các lớp hỗ trợ như Onion Skin, grid hay Chroma Preview không được ghi đè vào ảnh gốc.</p></div>
+        <div class="output-grid motion-stagger">
+          <article class="output-card"><span class="step-no">VIDEO / RENDER</span><h3 data-i18n="renderTitle">Video render</h3><p data-i18n="renderCopy">Renderer hiện có lựa chọn tỷ lệ Gốc, 16:9, 9:16, 1:1, 4:3 và 2.39:1 cùng các mức 720p, 1080p, 4K và Max Setting.</p><div class="spec-chips"><span>ORIGINAL</span><span>16:9</span><span>9:16</span><span>1:1</span><span>4:3</span><span>2.39:1</span><span>720P</span><span>1080P</span><span>4K</span></div></article>
+          <article class="output-card"><span class="step-no">IMAGE / SEQUENCE</span><h3 data-i18n="sequenceTitle">Image sequence</h3><p data-i18n="sequenceCopy">Export Sequence / Copy and Rename tạo bản sao đánh số theo timeline, mở rộng Hold và bỏ các frame đang ẩn để bàn giao chuỗi ảnh sạch hơn.</p><div class="spec-chips"><span>NUMBERED</span><span>HOLD-AWARE</span><span>HIDDEN-FRAME FILTER</span><span>POST WORKFLOW</span></div></article>
+        </div>
+        <div class="technical-status motion-reveal">
+          <div><small data-i18n="statusVersion">Phiên bản</small><strong>5.0.0</strong></div>
+          <div><small data-i18n="statusPlatform">Nền tảng</small><strong>Windows</strong></div>
+          <div><small data-i18n="statusProject">Project format</small><strong>.smproj</strong></div>
+          <div><small data-i18n="statusRequirements">Yêu cầu hệ thống</small><strong class="pending" data-i18n="statusPending">Đang xác minh</strong></div>
+        </div>
+        <div class="product-disclosure motion-reveal"><b>VERIFY</b><p data-i18n="technicalDisclosure">Một số chi tiết như minimum CPU/RAM/GPU, ma trận body/firmware và codec matrix cuối cùng chưa được công bố cho đến khi có QA runtime tương ứng.</p></div>
+      </div>
+    </section>
+
     <section class="section identity-section"><div class="container story-grid"><div class="image-slot motion-mask" data-tilt><div><strong>KILN Motion → DA&amp;A</strong><p class="micro">PROJECT IDENTITY / FRAME 000</p></div><span class="image-cross x1"></span><span class="image-cross x2"></span></div><div class="motion-reveal"><span class="eyebrow" data-i18n="former">Tiền thân: KILN Motion</span><h2>KILN Motion → DA&amp;A StopMotion</h2><p class="lead" style="font-size:19px" data-i18n="formerCopy">Dự án bắt đầu với tên KILN Motion và phát triển thành DA&amp;A StopMotion khi workflow, phạm vi và nhận diện trưởng thành hơn.</p></div></div></section>
   </main>
   <footer class="footer"><div class="footer-marquee"><span>DA&amp;A PRODUCT · CAPTURE · ANIMATE · REVIEW · ORGANIZE · EXPORT · DA&amp;A PRODUCT · </span></div><div class="container footer-grid"><div><strong>DA&amp;A StopMotion</strong><span data-i18n="footerTagline">Mỗi khung hình đều có ý nghĩa.</span></div><div><div class="footer-links"><a href="index.html">Home</a><a href="developer.html" data-i18n="navDeveloper">Nhà phát triển</a><a href="index.html#download" data-i18n="navDownload">Tải xuống</a></div><div style="margin-top:12px" data-i18n="footerNote">Tiền thân là KILN Motion</div></div></div></footer>
