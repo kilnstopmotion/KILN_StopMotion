@@ -8,6 +8,11 @@
   <title>DA&A StopMotion — by KILN</title>
   <link rel="icon" type="image/webp" href="assets/images/app/logo.webp" />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    .home-slogan{min-height:82vh}
+    .home-slogan .type-copy{padding:6vh 0}
+    @media(max-width:720px){.home-slogan{min-height:72vh}.home-slogan .type-copy{padding:5vh 0}}
+  </style>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
   <script src="app.js" defer></script>
@@ -58,7 +63,7 @@
       <div class="frame-ribbon" aria-hidden="true"><span>001</span><span>002</span><span>003</span><span>004</span><span>005</span><span>006</span><span>007</span><span>008</span><span>009</span><span>010</span><span>011</span><span>012</span></div>
     </section>
 
-    <section class="type-sequence" data-type-section>
+    <section class="type-sequence home-slogan" data-type-section>
       <div class="container type-stage">
         <div class="type-meta"><span>SCENE / 01</span><span>INPUT / HUMAN</span><span>OUTPUT / MOTION</span></div>
         <div class="type-copy">
