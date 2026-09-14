@@ -1,0 +1,156 @@
+/* Download section — Reactive Furnace / Frame Trigger */
+#download{
+  --heat-x:78%;
+  --heat-y:45%;
+  --heat-alpha:.12;
+  isolation:isolate;
+}
+#download::before{z-index:0}
+#download::after{
+  content:"";
+  position:absolute;
+  inset:-12%;
+  z-index:1;
+  pointer-events:none;
+  background:
+    radial-gradient(circle 330px at var(--heat-x) var(--heat-y),rgba(255,137,78,var(--heat-alpha)) 0%,rgba(230,93,34,.08) 34%,rgba(184,63,18,.035) 52%,transparent 74%);
+  filter:blur(7px);
+  opacity:.58;
+  transition:opacity .45s var(--ease);
+}
+#download.is-heat-active::after{opacity:1}
+#download>.film-strip,#download>.container{position:relative;z-index:2}
+
+#download .release-card{
+  --card-x:72%;
+  --card-y:44%;
+  display:block;
+  padding:0;
+  background:rgba(255,255,255,.022);
+  border-color:rgba(248,245,237,.18);
+  transition:border-color .35s var(--ease),box-shadow .35s var(--ease),background .35s var(--ease);
+}
+#download .release-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:radial-gradient(circle 235px at var(--card-x) var(--card-y),rgba(255,137,78,.16),rgba(230,93,34,.055) 38%,transparent 72%);
+  opacity:.5;
+  transition:opacity .3s var(--ease);
+}
+#download .release-card:hover{
+  border-color:rgba(255,151,104,.34);
+  box-shadow:0 28px 70px rgba(0,0,0,.18),inset 0 0 0 1px rgba(255,137,78,.035);
+}
+#download .release-card:hover::before{opacity:1}
+#download .release-card::after{z-index:4}
+#download .release-card-surface{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:58px;
+  padding:42px;
+  transform-origin:center center;
+  will-change:transform;
+}
+
+#download .download-trigger{
+  --btn-x:50%;
+  --btn-y:50%;
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  min-height:64px;
+  min-width:124px;
+  padding:13px 34px 20px 18px;
+  border-color:rgba(248,245,237,.32);
+  background:rgba(255,255,255,.012);
+  color:var(--cream);
+  cursor:pointer;
+  will-change:transform;
+  transition:border-color .24s var(--ease),box-shadow .24s var(--ease),background .24s var(--ease),opacity .24s var(--ease);
+}
+#download .download-trigger:hover:not(.btn-disabled){
+  border-color:rgba(255,152,105,.68);
+  background:rgba(230,93,34,.035);
+  box-shadow:0 12px 32px rgba(0,0,0,.2),0 0 0 1px rgba(230,93,34,.05) inset;
+}
+#download .download-trigger-fill{
+  position:absolute;
+  inset:-38%;
+  z-index:0;
+  pointer-events:none;
+  background:radial-gradient(circle 105px at var(--btn-x) var(--btn-y),rgba(255,137,78,.7) 0%,rgba(230,93,34,.33) 36%,rgba(184,63,18,.08) 58%,transparent 73%);
+  opacity:0;
+  transform:scale(.64);
+  transition:opacity .3s var(--ease),transform .42s var(--ease);
+}
+#download .download-trigger.is-hot .download-trigger-fill{opacity:.88;transform:scale(1)}
+#download .download-trigger.btn-disabled.is-hot .download-trigger-fill{opacity:.15}
+#download .download-trigger-flash{
+  position:absolute;
+  top:-40%;
+  bottom:-40%;
+  left:-34%;
+  width:32%;
+  z-index:2;
+  pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,246,222,.88),rgba(255,132,74,.72),transparent);
+  transform:translateX(-240%) skewX(-17deg);
+  opacity:0;
+}
+#download .download-trigger-shell{
+  position:relative;
+  z-index:3;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  white-space:nowrap;
+  transform-origin:center center;
+}
+#download .download-trigger-frame{
+  position:absolute;
+  z-index:3;
+  right:8px;
+  bottom:5px;
+  font:7px var(--mono);
+  letter-spacing:.13em;
+  color:rgba(248,245,237,.38);
+  pointer-events:none;
+  transition:color .22s var(--ease);
+}
+#download .download-trigger.is-hot:not(.btn-disabled) .download-trigger-frame{color:#ff9c70}
+#download .download-trigger .arrow{position:relative;z-index:3}
+#download .download-trigger.is-firing .download-trigger-shell{animation:downloadPress .36s var(--ease)}
+#download .download-trigger.is-firing .download-trigger-flash{animation:downloadExposure .36s var(--ease)}
+#download .download-trigger.is-firing .arrow{animation:downloadFrameAdvance .34s steps(3,end)}
+@keyframes downloadPress{0%{transform:scale(1)}22%{transform:scale(.955)}60%{transform:scale(1.025)}100%{transform:scale(1)}}
+@keyframes downloadExposure{0%{transform:translateX(-240%) skewX(-17deg);opacity:0}18%{opacity:1}70%{opacity:.75}100%{transform:translateX(620%) skewX(-17deg);opacity:0}}
+@keyframes downloadFrameAdvance{0%{transform:translateX(0)}33%{transform:translateX(4px)}66%{transform:translateX(8px)}100%{transform:translateX(12px)}}
+
+#download .download-trigger.btn-disabled{
+  opacity:.56;
+  pointer-events:auto;
+  cursor:not-allowed;
+  border-color:rgba(248,245,237,.16);
+}
+#download .download-trigger.btn-disabled:hover{box-shadow:none;background:rgba(255,255,255,.018)}
+
+@media(max-width:980px){
+  #download .release-card-surface{grid-template-columns:1fr;gap:36px}
+}
+@media(max-width:720px){
+  #download::after{background:radial-gradient(circle 260px at 76% 42%,rgba(255,137,78,.12),rgba(230,93,34,.055) 42%,transparent 74%);filter:blur(8px);opacity:.75}
+  #download .release-card-surface{padding:28px;gap:28px}
+  #download .download-trigger{width:100%;min-height:60px}
+}
+@media(prefers-reduced-motion:reduce){
+  #download::after{transition:none}
+  #download .release-card-surface,#download .download-trigger{transform:none!important}
+  #download .download-trigger-fill{transition:none}
+  #download .download-trigger.is-firing .download-trigger-shell,#download .download-trigger.is-firing .download-trigger-flash,#download .download-trigger.is-firing .arrow{animation:none!important}
+}
