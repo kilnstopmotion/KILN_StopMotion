@@ -8,6 +8,7 @@
   <title>Nhà phát triển — DA&A StopMotion</title>
   <link rel="icon" type="image/webp" href="assets/images/app/logo.webp" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="motion.css" />
   <style>
     .creator-contact{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:18px}
     .creator-contact-link{display:inline-flex;align-items:center;gap:9px;min-height:38px;padding:8px 11px;border:1px solid rgba(21,21,18,.18);background:rgba(255,255,255,.18);color:var(--ink-soft);font:700 11px var(--mono);letter-spacing:.015em;transition:transform .22s var(--ease),border-color .22s var(--ease),background .22s var(--ease),color .22s var(--ease)}
@@ -20,8 +21,10 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
   <script src="app.js" defer></script>
+  <script src="js/motion/motion-core.js" defer></script>
+  <script src="js/motion/motion-dev.js" defer></script>
 </head>
-<body>
+<body data-page="developer">
   <div class="scroll-progress" aria-hidden="true"><span></span></div>
   <div class="cursor-frame" aria-hidden="true"><span>FRAME</span><b>K01</b></div>
   <header class="site-header"><div class="container nav"><a class="brand magnetic" href="index.html" style="display:inline-flex;align-items:center;gap:10px"><img src="assets/images/app/logo.webp" alt="" aria-hidden="true" style="width:34px;height:34px;object-fit:contain;border-radius:8px;display:block"><span>DA&amp;A StopMotion</span></a><nav class="nav-links" aria-label="Main navigation"><a href="product.html" data-i18n="navProduct">Sản phẩm</a><a class="active" href="developer.html" data-i18n="navDeveloper">Nhà phát triển</a><div class="lang-switch"><button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button></div><a class="nav-cta magnetic" href="index.html#download"><span data-i18n="navDownload">Tải xuống</span><span class="arrow">↓</span></a></nav></div></header>
