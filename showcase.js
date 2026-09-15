@@ -62,6 +62,228 @@
     ? new Intl.Segmenter(undefined, { granularity: "grapheme" }) : null;
   let timeline;
   let animationContext;
+  let scrollController;
+  let introCompleted = false;
+  try { introCompleted = sessionStorage.getItem("daa-intro-completed") === "1"; } catch (_) { /* Page-lifetime fallback. */ }
+
+  // Owns input and a bounded virtual target, never the typography timeline.
+  // Lenis keeps its normal settings; its filter ignores only events we consumed.
+  class IntroScrollController {
+    constructor({ trigger, desktopFactor = .33, touchFactor = .5, maxDelta = 120, smoothing = .12 }) {
+      Object.assign(this, { trigger, desktopFactor, touchFactor, maxDelta, smoothing });
+      this.consumed = new WeakSet();
+      this.listeners = [];
+      this.current = this.target = this.lastWritten = window.scrollY;
+      this.exitDelta = 0;
+      this.update = this.update.bind(this);
+      this.refresh = this.refresh.bind(this);
+    }
+
+    listen(type, handler, passive = false) {
+      const bound = handler.bind(this);
+      window.addEventListener(type, bound, { capture: true, passive });
+      this.listeners.push(() => window.removeEventListener(type, bound, true));
+    }
+
+    enable() {
+      if (introCompleted || reduceMotion.matches || this.enabled) return;
+      this.enabled = true;
+      this.listen("wheel", this.handleWheel);
+      this.listen("touchstart", this.handleTouchStart, true);
+      this.listen("touchmove", this.handleTouchMove);
+      this.listen("touchend", this.handleTouchEnd, true);
+      this.listen("touchcancel", this.handleTouchEnd, true);
+      this.listen("keydown", this.handleKey);
+      this.listen("click", this.handleClick, true);
+      this.listen("scroll", this.handleNativeScroll, true);
+      window.ScrollTrigger.addEventListener("refresh", this.refresh);
+      this.refresh();
+    }
+
+    connectLenis() {
+      const lenis = window.DAAMotion?.lenis;
+      if (lenis === this.lenis) return lenis;
+      this.disconnectLenis();
+      if (lenis) {
+        this.lenis = lenis;
+        this.previousFilter = lenis.options.virtualScroll;
+        this.filter = data => this.consumed.has(data.event) ? false : this.previousFilter?.(data);
+        lenis.options.virtualScroll = this.filter;
+      }
+      return lenis;
+    }
+
+    disconnectLenis() {
+      if (this.lenis && this.lenis.options.virtualScroll === this.filter) this.lenis.options.virtualScroll = this.previousFilter;
+      this.lenis = null;
+    }
+
+    refresh() {
+      this.stop();
+      this.current = this.target = this.lastWritten = window.scrollY;
+      this.start = this.trigger.start;
+      this.entry = Math.max(0, this.start - window.innerHeight);
+      this.end = this.trigger.end;
+      this.length = this.end - this.start;
+      if (this.length > 0 && window.scrollY >= this.end - this.length * .005) this.complete();
+    }
+
+    // Leave form controls, editable content and nested scrollers to their owners.
+    ownsTarget(event, delta) {
+      for (const node of event.composedPath()) {
+        if (!(node instanceof HTMLElement)) continue;
+        if (node === document.body || node === document.documentElement) break;
+        if (node.isContentEditable || node.matches("input,textarea,select,[role='slider'],[role='spinbutton'],[data-lenis-prevent],[data-lenis-prevent-wheel],[data-lenis-prevent-touch]")) return false;
+        if (node.scrollHeight > node.clientHeight + 1 && /auto|scroll/.test(getComputedStyle(node).overflowY)) {
+          if (delta < 0 ? node.scrollTop > 0 : node.scrollTop + node.clientHeight < node.scrollHeight - 1) return false;
+        }
+      }
+      return true;
+    }
+
+    canControl(event, delta) {
+      if (!this.enabled || reduceMotion.matches || !event.cancelable || event.defaultPrevented || !Number.isFinite(delta) || !delta) return false;
+      const position = window.scrollY;
+      if (position >= this.end - this.length * .005) { this.complete(); return false; }
+      if (position < this.entry - 1 || this.length <= 0 || !this.ownsTarget(event, delta)) return false;
+      const lenis = this.connectLenis();
+      if (lenis?.isStopped || lenis?.isLocked) { this.stop(); return false; }
+      if (position <= this.entry + 1 && delta < 0) { this.stop(); return false; }
+      return true;
+    }
+
+    consume(event, rawDelta, factor, maxDelta = this.maxDelta) {
+      if (!this.canControl(event, rawDelta)) return false;
+      this.consumed.add(event);
+      event.preventDefault();
+      if (!this.ticking) {
+        this.current = this.target = this.lastWritten = window.scrollY;
+        // Cancel only existing scroll inertia, keeping Lenis' public state in sync.
+        this.lenis?.scrollTo(this.current, { immediate: true });
+      }
+      const delta = Math.max(-maxDelta, Math.min(maxDelta, rawDelta)) * factor;
+      if (delta < 0) this.exitDelta = 0;
+      const remaining = this.end - this.target;
+      if (delta > remaining) this.exitDelta += Math.max(0, rawDelta - remaining / factor);
+      // A burst cannot queue multiple scenes of motion after the user stops input.
+      const backlog = this.length * .06;
+      this.target = Math.max(this.entry, this.current - backlog,
+        Math.min(this.end, this.current + backlog, this.target + delta));
+      if (!this.ticking) {
+        this.ticking = true;
+        window.gsap.ticker.add(this.update);
+      }
+      return true;
+    }
+
+    handleWheel(event) {
+      if (event.ctrlKey || event.metaKey || event.altKey || event.shiftKey || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+      const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? window.innerHeight : 1;
+      this.consume(event, event.deltaY * unit, this.desktopFactor);
+    }
+
+    handleTouchStart(event) {
+      this.touch = null;
+      if (event.touches.length !== 1) { this.stop(); return; }
+      const point = event.touches[0];
+      // Browser back/forward edge gestures and pinch zoom always stay native.
+      if (point.clientX < 24 || point.clientX > window.innerWidth - 24) return;
+      this.touch = { id: point.identifier, x: point.clientX, y: point.clientY, axis: null };
+    }
+
+    handleTouchMove(event) {
+      if (!this.touch || event.touches.length !== 1) { this.touch = null; this.stop(); return; }
+      const point = event.touches[0];
+      if (point.identifier !== this.touch.id) return;
+      const dx = this.touch.x - point.clientX;
+      const dy = this.touch.y - point.clientY;
+      if (!this.touch.axis) {
+        if (Math.max(Math.abs(dx), Math.abs(dy)) < 4) return;
+        this.touch.axis = Math.abs(dy) > Math.abs(dx) ? "vertical" : "horizontal";
+      }
+      this.touch.x = point.clientX;
+      this.touch.y = point.clientY;
+      if (this.touch.axis === "vertical" && !this.consume(event, dy, this.touchFactor)) {
+        // Once the browser owns a gesture, do not try to reclaim it mid-swipe.
+        this.touch = null;
+        this.stop();
+      }
+    }
+
+    handleTouchEnd() { this.touch = null; }
+
+    handleKey(event) {
+      if (["Escape", "End", "Home"].includes(event.key)) { this.complete(); return; }
+      const element = event.target;
+      if (element instanceof HTMLElement && (element.isContentEditable || element.closest("input,textarea,select,button,a[href],[role='button'],[role='slider']"))) return;
+      if (event.ctrlKey || event.metaKey || event.altKey) return;
+      const medium = Math.min(360, window.innerHeight * .65);
+      const deltas = { ArrowDown: 48, ArrowUp: -48, PageDown: medium, PageUp: -medium, " ": event.shiftKey ? -medium : medium };
+      if (deltas[event.key]) this.consume(event, deltas[event.key], this.desktopFactor, 360);
+    }
+
+    handleClick(event) {
+      if (event.target instanceof Element && event.target.closest("a[href],[data-download-scroll]")) this.complete();
+    }
+
+    handleNativeScroll() {
+      if (window.ScrollTrigger.isRefreshing) return;
+      const position = window.scrollY;
+      if (position >= this.end - this.length * .005) { this.complete(); return; }
+      // Scrollbar, focus, hash navigation or external scrollTo override queued input.
+      if (Math.abs(position - this.lastWritten) > 2) {
+        this.stop();
+        this.current = this.target = this.lastWritten = position;
+      }
+    }
+
+    write(position) {
+      this.lastWritten = Math.round(position);
+      const lenis = this.connectLenis();
+      if (lenis) lenis.scrollTo(this.lastWritten, { immediate: true });
+      else window.scrollTo({ top: this.lastWritten, left: window.scrollX, behavior: "instant" });
+      window.ScrollTrigger.update();
+    }
+
+    update(_time, deltaTime) {
+      if (!this.enabled || reduceMotion.matches) { this.destroy(); return; }
+      if (this.lenis?.isStopped || this.lenis?.isLocked) { this.stop(); return; }
+      const difference = this.target - this.current;
+      const alpha = 1 - Math.pow(1 - this.smoothing, Math.min(deltaTime, 64) / (1000 / 60));
+      const maxStep = this.length * .012;
+      this.current += Math.max(-maxStep, Math.min(maxStep, difference * alpha));
+      if (Math.abs(this.target - this.current) < .5) this.current = this.target;
+      if (this.current >= this.end - this.length * .005) {
+        const destination = this.end + this.exitDelta;
+        this.write(destination);
+        this.complete();
+        return;
+      }
+      this.write(this.current);
+      if (this.current === this.target) this.stop();
+    }
+
+    stop() {
+      window.gsap.ticker.remove(this.update);
+      this.ticking = false;
+      this.exitDelta = 0;
+    }
+
+    complete() {
+      introCompleted = true;
+      try { sessionStorage.setItem("daa-intro-completed", "1"); } catch (_) { /* Retain in memory. */ }
+      this.destroy();
+    }
+
+    destroy() {
+      this.stop();
+      this.enabled = false;
+      this.touch = null;
+      this.listeners.splice(0).forEach(remove => remove());
+      window.ScrollTrigger.removeEventListener("refresh", this.refresh);
+      this.disconnectLenis();
+    }
+  }
 
   function currentLang() {
     try {
@@ -274,6 +496,8 @@
   }
 
   function cleanupShowcase() {
+    scrollController?.destroy();
+    scrollController = null;
     timeline?.scrollTrigger?.kill();
     timeline?.kill();
     animationContext?.revert();
@@ -389,6 +613,8 @@
     ScrollTrigger.refresh();
     // A rebuild/reload at mid-page must render the current scroll position immediately.
     timeline.progress(timeline.scrollTrigger.progress);
+    scrollController = new IntroScrollController({ trigger: timeline.scrollTrigger });
+    scrollController.enable();
   }
 
   function initShowcase() {
@@ -397,6 +623,7 @@
     reduceMotion.addEventListener("change", buildShowcase);
     compactMotion.addEventListener("change", buildShowcase);
     window.addEventListener("pageshow", event => { if (event.persisted) buildShowcase(); });
+    window.addEventListener("pagehide", () => scrollController?.destroy());
   }
 
   if (document.readyState === "loading") {
