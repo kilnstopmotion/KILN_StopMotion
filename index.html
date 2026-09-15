@@ -10,13 +10,16 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="download-experience.css" />
   <link rel="stylesheet" href="showcase.css" />
+  <link rel="stylesheet" href="motion.css" />
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
   <script src="app.js" defer></script>
   <script src="download-experience.js" defer></script>
   <script src="showcase.js" defer></script>
+  <script src="js/motion/motion-core.js" defer></script>
+  <script src="js/motion/motion-home.js" defer></script>
 </head>
-<body>
+<body data-page="home">
   <div class="scroll-progress" aria-hidden="true"><span></span></div>
   <div class="cursor-frame" aria-hidden="true"><span>FRAME</span><b>001</b></div>
 
@@ -120,6 +123,25 @@
         </div>
 
         <div class="showcase-flash" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="cinema-section preview-chapter" aria-labelledby="preview-title" data-palette="blue">
+      <div class="container"><span class="cinema-kicker">SOFTWARE / FRAME SEQUENCE</span><h2 class="cinema-title" id="preview-title" data-motion-key="previewTitle">Từ frame đến chuyển động.</h2><p class="cinema-lead" data-motion-key="previewCopy">Những công cụ quan trọng xuất hiện cùng nhau trong một không gian làm việc.</p>
+        <div class="preview-stage" aria-label="DA&A StopMotion software preview">
+          <figure class="preview-panel"><img src="assets/images/app/product-frame-1.webp" alt="DA&A StopMotion — software frame 1" loading="lazy"><figcaption>01 / CAPTURE</figcaption></figure>
+          <figure class="preview-panel"><img src="assets/images/app/product-frame-2.webp" alt="DA&A StopMotion — software frame 2" loading="lazy"><figcaption>02 / TIMELINE</figcaption></figure>
+          <figure class="preview-panel"><img src="assets/images/app/product-frame-3.webp" alt="DA&A StopMotion — software frame 3" loading="lazy"><figcaption>03 / REVIEW</figcaption></figure>
+          <figure class="preview-panel"><img src="assets/images/app/product-frame-4.webp" alt="DA&A StopMotion — software frame 4" loading="lazy"><figcaption>04 / MOTION</figcaption></figure>
+        </div><a class="cinema-link" href="product.html" data-motion-key="previewLink">Khám phá phần mềm →</a>
+      </div>
+    </section>
+
+    <section class="cinema-section sequence-chapter" aria-labelledby="sequence-title" data-palette="dark">
+      <div class="container"><span class="cinema-kicker">FRAME / WORKFLOW</span><h2 class="cinema-title" id="sequence-title" data-motion-key="sequenceTitle">Một nhịp làm việc xuyên suốt.</h2><p class="cinema-lead" data-motion-key="sequenceCopy">Capture → Animate → Review → Organize → Export.</p>
+        <div class="sequence-stage"><div class="sequence-visual" aria-hidden="true"><div class="sequence-reticle"></div><span class="sequence-count">01 / 05</span><strong class="sequence-current">CAPTURE</strong><span class="sequence-film">FRAME BY FRAME / DA&amp;A</span></div>
+          <ol class="sequence-steps"><li><span>01 / CAPTURE</span><h3 data-motion-key="capture">Chụp</h3><p data-motion-key="captureCopy">Chụp frame và giữ phản hồi production ngay trong tầm mắt.</p></li><li><span>02 / ANIMATE</span><h3>Animate</h3><p data-motion-key="animateCopy">Kiểm soát timing và spacing từng frame.</p></li><li><span>03 / REVIEW</span><h3>Review</h3><p data-motion-key="reviewCopy">Xem lại chuyển động và continuity.</p></li><li><span>04 / ORGANIZE</span><h3 data-motion-key="organize">Tổ chức</h3><p data-motion-key="organizeCopy">Giữ shot, take và file nguồn rõ ràng.</p></li><li><span>05 / EXPORT</span><h3>Export</h3><p data-motion-key="exportCopy">Chuẩn bị material hoàn thiện cho hậu kỳ.</p></li></ol>
+        </div><a class="cinema-link" href="product.html#workflow" data-motion-key="workflowLink">Xem toàn bộ workflow →</a>
       </div>
     </section>
 
