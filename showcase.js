@@ -110,6 +110,7 @@
     const finale = intro.querySelector(".showcase-finale");
     const logo = intro.querySelector(".showcase-logo-wrap");
     const flash = intro.querySelector(".showcase-flash");
+    const topline = intro.querySelector(".showcase-topline");
     const frameReadout = intro.querySelector("[data-showcase-frame]");
     const header = document.querySelector(".site-header.showcase-header");
     const headerBrand = header?.querySelector("[data-showcase-brand]");
@@ -118,8 +119,10 @@
     if (!stage || scenes.length < 6 || !finale || !logo) return;
 
     header?.setAttribute("data-intro-state", "story");
-    gsap.set(scenes, { opacity: 0, y: 34 });
-    gsap.set(scenes[0], { opacity: 1, y: 0 });
+    gsap.set(stage, { backgroundColor: '#050608' });
+    gsap.set(scenes, { opacity: 0, y: 34, rotationX: 9, transformOrigin: 'center bottom' });
+    gsap.set(scenes.slice(0, 4), { color: '#f3f3f5' });
+    gsap.set(scenes[0], { opacity: 1, y: 0, rotationX: 0 });
     gsap.set(cards, { opacity: 0.08, scale: 0.88, filter: "saturate(.4) contrast(.92)" });
     gsap.set(finale, { opacity: 0 });
     gsap.set(logo, { opacity: 0, scale: 0.24, rotation: -8, filter: "blur(12px)" });
@@ -156,6 +159,10 @@
     });
 
     tl.set(scenes[0], { opacity: 1, y: 0 }, 0)
+      .to(stage, { backgroundColor: '#11152e', duration: 25, ease: 'none' }, 4)
+      .to(stage, { backgroundColor: '#1f2251', duration: 22, ease: 'none' }, 28)
+      .to(stage, { backgroundColor: '#050608', duration: 17, ease: 'none' }, 55)
+      .to(scenes.slice(1), { rotationX: 0, duration: 4, stagger: 14, ease: 'power2.out' }, 11)
       .to(scenes[0], { opacity: 0, y: -24, duration: 2.2, ease: "power2.in" }, 10.5)
 
       .to(cards[0], { opacity: .48, scale: 1, x: 32, y: 16, rotation: -2.2, filter: "saturate(.5) contrast(.95)", duration: 5, ease: "steps(5)" }, 8)
@@ -179,7 +186,6 @@
       .to(cards[5], { opacity: .4, scale: 1, x: -12, y: 34, rotation: 2.1, filter: "saturate(.35) contrast(.94)", duration: 5, ease: "steps(4)" }, 45)
       .to(cards, { opacity: .62, scale: 1.035, duration: 7, stagger: .16, ease: "steps(4)" }, 48)
 
-      .to(stage, { backgroundColor: "#171815", duration: 6, ease: "power2.inOut" }, 55)
       .to(scenes[4], { color: "#f8f5ed", opacity: 1, y: 0, duration: 2.5, ease: "power3.out" }, 57)
       .to(scenes[4].querySelector("p"), { color: "#c6c2b8", duration: 2 }, 57)
       .to(cards, { opacity: .74, scale: 1.08, filter: "saturate(.18) brightness(.72) contrast(1.05)", duration: 8, stagger: .12, ease: "steps(5)" }, 58)
@@ -193,6 +199,8 @@
       .to(cards, { opacity: .16, scale: .78, x: 0, y: 0, rotation: 0, filter: "saturate(.6) brightness(.9)", duration: 5, stagger: .08, ease: "power3.inOut" }, 80)
       .to(flash, { opacity: .18, duration: .55, ease: "power2.out" }, 84)
       .to(stage, { backgroundColor: "#f2efe7", duration: 3.5, ease: "power3.out" }, 84)
+      .to(topline, { color: '#7a756b', duration: 3.5, ease: 'none' }, 84)
+      .to(frameReadout, { color: '#151512', duration: 3.5, ease: 'none' }, 84)
       .to(flash, { opacity: 0, duration: 1.1, ease: "power2.in" }, 84.55)
       .to(finale, { opacity: 1, duration: 2.2, ease: "power3.out" }, 85)
       .to(logo, { opacity: 1, scale: 1.12, rotation: 1.2, filter: "blur(0px)", duration: 4.2, ease: "power4.out" }, 86)

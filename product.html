@@ -9,6 +9,7 @@
   <link rel="icon" type="image/webp" href="assets/images/app/logo.webp" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="product-info.css" />
+  <link rel="stylesheet" href="motion.css" />
   <style>
     .product-motion-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}.product-motion-visual{position:sticky;top:110px;height:70vh;min-height:520px}.product-visual-screen{height:100%;position:relative;overflow:hidden;display:grid;place-items:center;background:var(--dark);color:var(--cream);border:1px solid #30322d}.product-visual-screen:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 55% 40%,rgba(230,93,34,.18),transparent 24%),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:auto,48px 48px}.product-frame-tag{position:absolute;left:16px;top:14px;font:9px var(--mono);letter-spacing:.14em;color:#9b9d94}.product-visual-center{position:relative;z-index:2;text-align:center;font-family:var(--serif);font-size:clamp(38px,5vw,72px);line-height:.88}.product-visual-center em{color:var(--orange);font-weight:500}.product-scan{position:absolute;left:0;right:0;height:1px;background:rgba(230,93,34,.45);top:12%;animation:scan 5s linear infinite}.product-steps{display:grid;gap:18px;padding:8vh 0}.product-step{min-height:250px}.product-step h3{margin-top:42px}
 
@@ -27,8 +28,10 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
   <script src="app.js" defer></script>
   <script src="product-info.js" defer></script>
+  <script src="js/motion/motion-core.js" defer></script>
+  <script src="js/motion/motion-product.js" defer></script>
 </head>
-<body>
+<body data-page="product">
   <div class="scroll-progress" aria-hidden="true"><span></span></div>
   <div class="cursor-frame" aria-hidden="true"><span>FRAME</span><b>021</b></div>
   <header class="site-header"><div class="container nav"><a class="brand magnetic" href="index.html" style="display:inline-flex;align-items:center;gap:10px"><img src="assets/images/app/logo.webp" alt="" aria-hidden="true" style="width:34px;height:34px;object-fit:contain;border-radius:8px;display:block"><span>DA&amp;A StopMotion</span></a><nav class="nav-links" aria-label="Main navigation"><a class="active" href="product.html" data-i18n="navProduct">Sản phẩm</a><a href="developer.html" data-i18n="navDeveloper">Nhà phát triển</a><div class="lang-switch"><button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button></div><a class="nav-cta magnetic" href="index.html#download"><span data-i18n="navDownload">Tải xuống</span><span class="arrow">↓</span></a></nav></div></header>
@@ -112,6 +115,10 @@
           <article class="card product-capability" data-frame="04"><div class="capability-meta"><span>04 / PLAN</span><span>X-SHEET</span></div><h3 data-i18n="toolXsheetTitle">X-Sheet</h3><p data-i18n="toolXsheetCopy">Theo dõi shot ở dạng bảng, làm việc với frame/exposure, ghi chú và thao tác theo hàng để kế hoạch animation dễ đọc hơn khi cảnh dài dần.</p><div class="capability-tags"><span>EXPOSURE</span><span>NOTES</span><span>ROWS</span><span>PLANNING</span></div></article>
           <article class="card product-capability" data-frame="05"><div class="capability-meta"><span>05 / MOTION</span><span>GUIDE</span></div><h3 data-i18n="toolGuideTitle">Motion Guide</h3><p data-i18n="toolGuideCopy">Vẽ đường chuyển động, chia nhịp theo frame và kiểm tra spacing. Luồng Sony có lịch timing/easing riêng; Canon hiện có bộ guide nhiều đường và marker riêng.</p><div class="capability-tags"><span>PATH</span><span>SPACING</span><span>EASING</span><span>FRAME PLAN</span></div></article>
           <article class="card product-capability" data-frame="06"><div class="capability-meta"><span>06 / ANALYZE</span><span>PREVIEW</span></div><h3 data-i18n="toolAnalysisTitle">Preview Tools</h3><p data-i18n="toolAnalysisCopy">Chroma Key phục vụ xem thử ghép nền trên Preview; Flicker Detection phân tích biến động sáng sau khi chụp. Các công cụ này không tự sửa ảnh nguồn.</p><div class="capability-tags"><span>CHROMA</span><span>FLICKER</span><span>ANNOTATION</span><span>NON-DESTRUCTIVE</span></div></article>
+        </div>
+        <div class="guide-scene" aria-labelledby="guide-scene-title">
+          <div class="guide-copy"><span class="cinema-kicker">05 / MOTION GUIDE</span><h3 id="guide-scene-title">Motion Guide</h3><p data-i18n="toolGuideCopy">Vẽ đường chuyển động, chia nhịp theo frame và kiểm tra spacing. Luồng Sony có lịch timing/easing riêng; Canon hiện có bộ guide nhiều đường và marker riêng.</p></div>
+          <svg class="guide-path" viewBox="0 0 720 280" role="img" aria-label="Five frames following a motion path with changing spacing"><path d="M40 220 C160 220 250 70 370 95 S570 230 680 50" fill="none" stroke="currentColor" stroke-width="2"/><g fill="currentColor"><circle cx="40" cy="220" r="7"/><circle cx="118" cy="199" r="7"/><circle cx="205" cy="125" r="7"/><circle cx="370" cy="95" r="7"/><circle cx="680" cy="50" r="7"/></g></svg><div class="guide-frame-labels" aria-hidden="true"><span>F01</span><span>F02</span><span>F03</span><span>F04</span><span>F05</span></div>
         </div>
       </div>
     </section>
