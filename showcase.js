@@ -53,9 +53,13 @@
   };
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const finePointer = window.matchMedia("(hover:hover) and (pointer:fine)");
   const intro = document.querySelector("[data-showcase-intro]");
   if (!intro) return;
+  const finaleTitle = intro.querySelector(".showcase-finale h2");
+  const finaleTitleMarkup = finaleTitle?.innerHTML;
+  const segmenter = typeof Intl.Segmenter === "function"
+    ? new Intl.Segmenter(undefined, { granularity: "grapheme" }) : null;
+  let timeline;
 
   function currentLang() {
     return localStorage.getItem("daa-lang") || document.documentElement.lang || "vi";
@@ -72,41 +76,104 @@
   function bindLanguageSync() {
     applyShowcaseLanguage();
     document.querySelectorAll("[data-lang]").forEach((button) => {
-      button.addEventListener("click", () => requestAnimationFrame(applyShowcaseLanguage));
+      button.addEventListener("click", () => requestAnimationFrame(() => {
+        applyShowcaseLanguage();
+        buildShowcase();
+      }));
     });
   }
 
-  function initCardDepth() {
-    if (!finePointer.matches || reduceMotion.matches) return;
-    const stage = intro.querySelector(".showcase-stage");
-    const cards = [...intro.querySelectorAll(".showcase-frame-card")];
-    if (!stage || !cards.length) return;
-
-    let raf = 0;
-    stage.addEventListener("pointermove", (event) => {
-      if (raf) cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const x = event.clientX / Math.max(1, innerWidth) - 0.5;
-        const y = event.clientY / Math.max(1, innerHeight) - 0.5;
-        cards.forEach((card, index) => {
-          const depth = ((index % 3) + 1) * 1.6;
-          card.style.setProperty("--pointer-x", `${x * depth}px`);
-          card.style.setProperty("--pointer-y", `${y * depth}px`);
-        });
-      });
-    }, { passive: true });
+  // Keep words together when they wrap, and keep Vietnamese accents in one grapheme.
+  function splitText(element) {
+    const accessibleText = element.textContent;
+    const nodes = [];
+    const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    for (const node of nodes) {
+      const fragment = document.createDocumentFragment();
+      for (const part of node.textContent.split(/(\s+)/u)) {
+        if (!part) continue;
+        if (/^\s+$/u.test(part)) {
+          fragment.append(document.createTextNode(part));
+          continue;
+        }
+        const word = document.createElement("span");
+        word.className = "showcase-word";
+        word.setAttribute("aria-hidden", "true");
+        const graphemes = segmenter ? [...segmenter.segment(part)].map(item => item.segment) : Array.from(part);
+        for (const grapheme of graphemes) {
+          const char = document.createElement("span");
+          char.className = "showcase-char";
+          char.textContent = grapheme;
+          word.append(char);
+        }
+        fragment.append(word);
+      }
+      node.replaceWith(fragment);
+    }
+    const accessibleCopy = document.createElement("span");
+    accessibleCopy.className = "showcase-sr-only";
+    accessibleCopy.textContent = accessibleText;
+    element.append(accessibleCopy);
+    return [...element.querySelectorAll(".showcase-char")];
   }
 
-  function initShowcase() {
-    bindLanguageSync();
+  function staggerOver(chars, spread) {
+    return chars.length > 1 ? spread / (chars.length - 1) : 0;
+  }
+
+  function reveal(tl, chars, from, start, spread, duration = .75) {
+    tl.fromTo(chars, { opacity: 0, ...from }, {
+      opacity: 1, x: 0, y: 0, z: 0, scale: 1,
+      rotation: 0, rotationX: 0, rotationY: 0, filter: "blur(0px)",
+      duration, ease: "power3.out", stagger: staggerOver(chars, spread), immediateRender: false
+    }, start);
+  }
+
+  function blink(tl, chars, start, spread) {
+    const stagger = staggerOver(chars, spread);
+    tl.fromTo(chars, { opacity: 0 }, { opacity: 1, duration: .09, ease: "steps(1)", stagger, immediateRender: false }, start)
+      .to(chars, { opacity: .25, duration: .1, ease: "steps(1)", stagger }, start + .11)
+      .to(chars, { opacity: 1, duration: .13, ease: "steps(1)", stagger }, start + .25);
+  }
+
+  function typeIn(tl, chars, start, spread) {
+    tl.fromTo(chars, { opacity: 0 }, {
+      opacity: 1, duration: .02, ease: "steps(1)",
+      stagger: staggerOver(chars, spread), immediateRender: false
+    }, start);
+  }
+
+  function animateSceneText(tl, text) {
+    reveal(tl, text[0].title, { y: 30, z: -90, scale: .15, filter: "blur(12px)" }, .35, 3.6, 1.2);
+    reveal(tl, text[0].paragraph, { y: 14, scale: .8, filter: "blur(6px)" }, 3.25, 1.7, .8);
+
+    blink(tl, text[1].title, 12.35, 3.2);
+    blink(tl, text[1].paragraph, 14.1, 2.1);
+
+    reveal(tl, text[2].title, {
+      x: i => i % 2 ? 48 : -48, y: i => i % 3 ? -14 : 16,
+      rotation: i => i % 2 ? 12 : -12
+    }, 26.35, 3, .75);
+    reveal(tl, text[2].paragraph, { x: 36, y: 12 }, 28.2, 2.2, .6);
+
+    typeIn(tl, text[3].title, 41.4, 3.5);
+    typeIn(tl, text[3].paragraph, 44, 3.4);
+
+    reveal(tl, text[4].title, {
+      x: i => (i % 5 - 2) * 55, y: i => (i % 3 - 1) * 36,
+      rotation: i => (i % 5 - 2) * 9, scale: .66, filter: "blur(9px)"
+    }, 57.35, 3.5, .95);
+    reveal(tl, text[4].paragraph, { y: 30, scale: .85, filter: "blur(5px)" }, 60.3, 2.1, .7);
+
+    reveal(tl, text[5].title, { y: 46, rotationX: -85, scale: .9 }, 70.3, 2.8, .85);
+    reveal(tl, text[5].paragraph, { y: 22, rotationX: -45 }, 73, 1.8, .65);
+  }
+
+  function buildShowcase() {
     if (reduceMotion.matches || !window.gsap || !window.ScrollTrigger) return;
-
-    document.documentElement.classList.add("showcase-enhanced");
-    gsap.registerPlugin(ScrollTrigger);
-
     const stage = intro.querySelector(".showcase-stage");
     const scenes = [...intro.querySelectorAll(".showcase-copy")];
-    const cards = [...intro.querySelectorAll(".showcase-frame-card")];
     const finale = intro.querySelector(".showcase-finale");
     const logo = intro.querySelector(".showcase-logo-wrap");
     const flash = intro.querySelector(".showcase-flash");
@@ -116,26 +183,32 @@
     const headerBrand = header?.querySelector("[data-showcase-brand]");
     const finalActions = intro.querySelector(".showcase-final-actions");
 
-    if (!stage || scenes.length < 6 || !finale || !logo) return;
+    if (!stage || scenes.length < 6 || !finale || !logo || !finalActions || !finaleTitle) return;
+
+    timeline?.scrollTrigger?.kill();
+    timeline?.kill();
+    finaleTitle.innerHTML = finaleTitleMarkup;
+    const text = scenes.map(scene => ({
+      title: splitText(scene.querySelector("h1,h2")),
+      paragraph: splitText(scene.querySelector("p"))
+    }));
+    const finalTitleChars = splitText(finaleTitle);
+
+    document.documentElement.classList.add("showcase-enhanced");
+    gsap.registerPlugin(ScrollTrigger);
 
     header?.setAttribute("data-intro-state", "story");
     gsap.set(stage, { backgroundColor: '#050608' });
     gsap.set(scenes, { opacity: 0, y: 34, rotationX: 9, transformOrigin: 'center bottom' });
     gsap.set(scenes.slice(0, 4), { color: '#f3f3f5' });
     gsap.set(scenes[0], { opacity: 1, y: 0, rotationX: 0 });
-    gsap.set(cards, { opacity: 0.08, scale: 0.88, filter: "saturate(.4) contrast(.92)" });
+    gsap.set([...text.flatMap(scene => [...scene.title, ...scene.paragraph]), ...finalTitleChars], { opacity: 0 });
+    gsap.set(topline, { color: '#b3badb' });
+    gsap.set(frameReadout, { color: '#f3f3f5' });
+    gsap.set(flash, { opacity: 0 });
     gsap.set(finale, { opacity: 0 });
     gsap.set(logo, { opacity: 0, scale: 0.24, rotation: -8, filter: "blur(12px)" });
     if (finalActions) gsap.set(finalActions, { opacity: 0, y: 20 });
-
-    const showScene = (index, start, end) => {
-      const scene = scenes[index];
-      const fadeIn = Math.min(2.4, Math.max(1.2, (end - start) * 0.2));
-      gsap.timeline({ defaults: { ease: "power3.out" } })
-        .to(scene, { opacity: 1, y: 0, duration: fadeIn }, start)
-        .to(scene, { opacity: 1, duration: Math.max(.8, end - start - fadeIn * 2) }, start + fadeIn)
-        .to(scene, { opacity: 0, y: -28, duration: fadeIn }, end - fadeIn);
-    };
 
     const tl = gsap.timeline({
       defaults: { ease: "none" },
@@ -165,38 +238,20 @@
       .to(scenes.slice(1), { rotationX: 0, duration: 4, stagger: 14, ease: 'power2.out' }, 11)
       .to(scenes[0], { opacity: 0, y: -24, duration: 2.2, ease: "power2.in" }, 10.5)
 
-      .to(cards[0], { opacity: .48, scale: 1, x: 32, y: 16, rotation: -2.2, filter: "saturate(.5) contrast(.95)", duration: 5, ease: "steps(5)" }, 8)
-      .to(cards[1], { opacity: .42, scale: .98, x: -24, y: 24, rotation: 2.4, filter: "saturate(.45) contrast(.94)", duration: 5, ease: "steps(5)" }, 10)
-
       .to(scenes[1], { opacity: 1, y: 0, duration: 2.4, ease: "power3.out" }, 12)
       .to(scenes[1], { opacity: 0, y: -26, duration: 2.1, ease: "power2.in" }, 24)
-      .to(cards[0], { x: 54, y: 4, rotation: -1, duration: 6, ease: "steps(4)" }, 17)
-      .to(cards[1], { x: -46, y: 6, rotation: 1.2, duration: 6, ease: "steps(4)" }, 17)
-      .to(cards[2], { opacity: .45, scale: 1, x: 20, y: -18, rotation: 1.6, filter: "saturate(.45) contrast(.95)", duration: 5, ease: "steps(5)" }, 19)
-
       .to(scenes[2], { opacity: 1, y: 0, duration: 2.4, ease: "power3.out" }, 26)
       .to(scenes[2], { opacity: 0, y: -26, duration: 2.1, ease: "power2.in" }, 39)
-      .to(cards[3], { opacity: .48, scale: 1, x: -16, y: -22, rotation: -1.8, filter: "saturate(.42) contrast(.95)", duration: 5, ease: "steps(5)" }, 28)
-      .to(cards[0], { x: 82, y: 32, duration: 7, ease: "steps(5)" }, 31)
-      .to(cards[2], { x: 42, y: -34, duration: 7, ease: "steps(5)" }, 31)
-
       .to(scenes[3], { opacity: 1, y: 0, duration: 2.4, ease: "power3.out" }, 41)
       .to(scenes[3], { opacity: 0, y: -28, duration: 2.2, ease: "power2.in" }, 55)
-      .to(cards[4], { opacity: .43, scale: 1, x: 14, y: 38, rotation: -2.5, filter: "saturate(.35) contrast(.94)", duration: 5, ease: "steps(4)" }, 42)
-      .to(cards[5], { opacity: .4, scale: 1, x: -12, y: 34, rotation: 2.1, filter: "saturate(.35) contrast(.94)", duration: 5, ease: "steps(4)" }, 45)
-      .to(cards, { opacity: .62, scale: 1.035, duration: 7, stagger: .16, ease: "steps(4)" }, 48)
-
       .to(scenes[4], { color: "#f8f5ed", opacity: 1, y: 0, duration: 2.5, ease: "power3.out" }, 57)
       .to(scenes[4].querySelector("p"), { color: "#c6c2b8", duration: 2 }, 57)
-      .to(cards, { opacity: .74, scale: 1.08, filter: "saturate(.18) brightness(.72) contrast(1.05)", duration: 8, stagger: .12, ease: "steps(5)" }, 58)
       .to(scenes[4], { opacity: 0, y: -28, duration: 2.2, ease: "power2.in" }, 70)
 
       .to(scenes[5], { color: "#f8f5ed", opacity: 1, y: 0, duration: 2.6, ease: "power3.out" }, 70)
       .to(scenes[5].querySelector("p"), { color: "#c6c2b8", duration: 2 }, 70)
-      .to(cards, { x: (i) => (i % 2 ? -18 : 18), y: (i) => (i < 2 ? 12 : -10), rotation: (i) => (i % 2 ? 1 : -1), duration: 7, stagger: .1, ease: "steps(4)" }, 72)
       .to(scenes[5], { opacity: 0, y: -24, duration: 2.1, ease: "power2.in" }, 80)
 
-      .to(cards, { opacity: .16, scale: .78, x: 0, y: 0, rotation: 0, filter: "saturate(.6) brightness(.9)", duration: 5, stagger: .08, ease: "power3.inOut" }, 80)
       .to(flash, { opacity: .18, duration: .55, ease: "power2.out" }, 84)
       .to(stage, { backgroundColor: "#f2efe7", duration: 3.5, ease: "power3.out" }, 84)
       .to(topline, { color: '#7a756b', duration: 3.5, ease: 'none' }, 84)
@@ -208,11 +263,17 @@
       .fromTo(finale.querySelector("h2"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 2.6, ease: "power3.out" }, 89)
       .fromTo(finale.querySelector(".showcase-positioning"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 2.1, ease: "power3.out" }, 91)
       .fromTo(finale.querySelector(".showcase-philosophy"), { opacity: 0 }, { opacity: 1, duration: 1.8 }, 93)
-      .to(finalActions, { opacity: 1, y: 0, duration: 2, ease: "power3.out" }, 94)
-      .to(cards, { opacity: .06, duration: 2.5 }, 95);
+      .to(finalActions, { opacity: 1, y: 0, duration: 2, ease: "power3.out" }, 94);
 
+    animateSceneText(tl, text);
+    reveal(tl, finalTitleChars, { y: 34, z: -65, rotationY: -75 }, 89.2, 1.6, .55);
+    timeline = tl;
     ScrollTrigger.refresh();
-    initCardDepth();
+  }
+
+  function initShowcase() {
+    bindLanguageSync();
+    buildShowcase();
   }
 
   if (document.readyState === "loading") {
