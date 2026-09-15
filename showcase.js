@@ -56,35 +56,39 @@
   const intro = document.querySelector("[data-showcase-intro]");
   if (!intro) return;
   const finaleTitle = intro.querySelector(".showcase-finale h2");
-  const finaleTitleMarkup = finaleTitle?.innerHTML;
+  const compactMotion = window.matchMedia("(max-width: 900px), (pointer: coarse)");
+  const originalMarkup = new Map();
   const segmenter = typeof Intl.Segmenter === "function"
     ? new Intl.Segmenter(undefined, { granularity: "grapheme" }) : null;
   let timeline;
+  let animationContext;
 
   function currentLang() {
-    return localStorage.getItem("daa-lang") || document.documentElement.lang || "vi";
+    try {
+      return localStorage.getItem("daa-lang") || document.documentElement.lang || "vi";
+    } catch (_) { return document.documentElement.lang || "vi"; }
   }
 
   function applyShowcaseLanguage() {
     const lang = currentLang() === "en" ? "en" : "vi";
-    document.querySelectorAll("[data-showcase-key]").forEach((el) => {
+    intro.querySelectorAll("[data-showcase-key]").forEach((el) => {
       const value = copy[lang][el.dataset.showcaseKey];
       if (value) el.textContent = value;
     });
   }
 
   function bindLanguageSync() {
-    applyShowcaseLanguage();
     document.querySelectorAll("[data-lang]").forEach((button) => {
-      button.addEventListener("click", () => requestAnimationFrame(() => {
-        applyShowcaseLanguage();
-        buildShowcase();
-      }));
+      // One deferred rebuild after all navigation listeners apply their language.
+      // This schedules setup only; every animation remains on the scroll timeline.
+      button.addEventListener("click", () => requestAnimationFrame(buildShowcase));
     });
   }
 
   // Keep words together when they wrap, and keep Vietnamese accents in one grapheme.
   function splitText(element) {
+    if (originalMarkup.has(element)) element.innerHTML = originalMarkup.get(element);
+    else originalMarkup.set(element, element.innerHTML);
     const accessibleText = element.textContent;
     const nodes = [];
     const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
@@ -100,10 +104,12 @@
         const word = document.createElement("span");
         word.className = "showcase-word";
         word.setAttribute("aria-hidden", "true");
-        const graphemes = segmenter ? [...segmenter.segment(part)].map(item => item.segment) : Array.from(part);
+        const graphemes = segmenter ? [...segmenter.segment(part)].map(item => item.segment)
+          : (part.normalize("NFC").match(/\P{M}\p{M}*|\p{M}+/gu) || []);
         for (const grapheme of graphemes) {
           const char = document.createElement("span");
           char.className = "showcase-char";
+          char.setAttribute("aria-hidden", "true");
           char.textContent = grapheme;
           word.append(char);
         }
@@ -130,150 +136,267 @@
     }, start);
   }
 
-  function blink(tl, chars, start, spread) {
+  function blink(tl, chars, start, spread, compact) {
     const stagger = staggerOver(chars, spread);
-    tl.fromTo(chars, { opacity: 0 }, { opacity: 1, duration: .09, ease: "steps(1)", stagger, immediateRender: false }, start)
-      .to(chars, { opacity: .25, duration: .1, ease: "steps(1)", stagger }, start + .11)
-      .to(chars, { opacity: 1, duration: .13, ease: "steps(1)", stagger }, start + .25);
+    tl.fromTo(chars, {
+      opacity: 0, x: i => i % 4 === 0 ? (i % 2 ? 3 : -3) : 0,
+      z: compact ? 0 : -24, scaleY: i => i % 4 === 0 ? .96 : 1
+    }, {
+      opacity: 1, duration: .08, ease: "steps(1)", stagger, immediateRender: false
+    }, start)
+      .to(chars, { opacity: .25, duration: .1, ease: "steps(1)", stagger }, start + .12)
+      .to(chars, { opacity: 1, x: 0, z: 0, scaleY: 1, duration: .1, ease: "steps(1)", stagger }, start + .28);
   }
 
   function typeIn(tl, chars, start, spread) {
-    tl.fromTo(chars, { opacity: 0 }, {
-      opacity: 1, duration: .02, ease: "steps(1)",
-      stagger: staggerOver(chars, spread), immediateRender: false
-    }, start);
+    // Exposure holds, including punctuation beats, are repeatable in either direction.
+    const pattern = [1, 2, 1, 1, 3, 2, 1, 2];
+    let frame = 0;
+    const frames = chars.map((char, i) => {
+      const at = frame;
+      frame += /[.,!?;:]/u.test(char.textContent) ? 4 : pattern[i % pattern.length];
+      return at;
+    });
+    chars.forEach((char, i) => {
+      const at = start + frames[i] / Math.max(1, frame) * spread;
+      tl.fromTo(char, { opacity: 0 }, {
+        opacity: 1, duration: .025, ease: "steps(1)", immediateRender: false
+      }, at);
+      if (char === char.parentElement.lastElementChild) {
+        tl.fromTo(char.parentElement, { y: 0 }, { y: 1, duration: .025, ease: "steps(1)", immediateRender: false }, at + .025)
+          .to(char.parentElement, { y: 0, duration: .065, ease: "steps(1)" }, at + .08);
+      }
+    });
   }
 
-  function animateSceneText(tl, text) {
-    reveal(tl, text[0].title, { y: 30, z: -90, scale: .15, filter: "blur(12px)" }, .35, 3.6, 1.2);
-    reveal(tl, text[0].paragraph, { y: 14, scale: .8, filter: "blur(6px)" }, 3.25, 1.7, .8);
+  function materialize(tl, chars, at, spread, compact) {
+    chars.forEach((char, i) => {
+      const start = at + i * staggerOver(chars, spread) + (i % 3) * .045;
+      tl.fromTo(char, {
+        opacity: 0, z: compact ? -35 : -150 - (i % 3) * 12,
+        scale: .24, y: compact ? 14 : 28, filter: compact ? "blur(4px)" : "blur(12px)"
+      }, {
+        opacity: 1, z: 0, scale: 1.018, y: -.6, filter: "blur(0px)",
+        duration: 1.05, ease: "power3.out", immediateRender: false
+      }, start)
+        .to(char, { scale: 1, y: 0, duration: .28, ease: "power2.out" }, start + 1.05);
+    });
+  }
 
-    blink(tl, text[1].title, 12.35, 3.2);
-    blink(tl, text[1].paragraph, 14.1, 2.1);
+  function collisionReveal(tl, chars, at, spread, compact) {
+    const strength = compact ? .4 : 1;
+    chars.forEach((char, i) => {
+      const start = at + i * staggerOver(chars, spread);
+      tl.fromTo(char, {
+        opacity: 0, x: (i % 2 ? 55 : -55) * strength,
+        y: (i % 3 - 1) * 18 * strength, z: -(40 + i % 3 * 20) * strength,
+        rotation: (i % 2 ? 10 : -10) * strength
+      }, {
+        opacity: 1, x: i % 2 ? -.8 : .8, y: 0, z: 0, rotation: 0,
+        duration: .85, ease: "power3.out", immediateRender: false
+      }, start)
+        .to(char, { x: 0, duration: .25, ease: "power2.out" }, start + .85);
+    });
+  }
 
-    reveal(tl, text[2].title, {
-      x: i => i % 2 ? 48 : -48, y: i => i % 3 ? -14 : 16,
-      rotation: i => i % 2 ? 12 : -12
-    }, 26.35, 3, .75);
-    reveal(tl, text[2].paragraph, { x: 36, y: 12 }, 28.2, 2.2, .6);
+  function chaosToOrder(tl, chars, at, spread, compact) {
+    const strength = compact ? .35 : 1;
+    chars.forEach((char, i) => {
+      const start = at + i * staggerOver(chars, spread);
+      const x = (i % 5 - 2) * 55 * strength;
+      const y = (i % 3 - 1) * 38 * strength;
+      tl.fromTo(char, {
+        opacity: 0, x, y, z: -(i % 4 + 1) * 24 * strength,
+        rotation: (i % 5 - 2) * 12 * strength,
+        rotationY: (i % 3 - 1) * 35 * strength, scale: .7,
+        filter: compact ? "blur(3px)" : "blur(8px)"
+      }, {
+        opacity: .8, x: x * .3 - y * .45, y: y * .25 + x * .2,
+        z: -12 * strength, rotation: (i % 2 ? -4 : 4) * strength,
+        rotationY: 0, scale: .94, filter: compact ? "blur(1px)" : "blur(2px)",
+        duration: .5, ease: "power1.in", immediateRender: false
+      }, start)
+        .to(char, {
+          opacity: 1, x: 0, y: 0, z: 0, rotation: 0, scale: 1, filter: "blur(0px)",
+          duration: .85, ease: "power3.out"
+        }, start + .5);
+    });
+  }
 
-    typeIn(tl, text[3].title, 41.4, 3.5);
-    typeIn(tl, text[3].paragraph, 44, 3.4);
+  function flipCascade(tl, chars, at, spread, compact) {
+    reveal(tl, chars, {
+      y: compact ? 18 : 42, rotationX: compact ? -35 : -85,
+      rotationY: i => (i % 2 ? 1 : -1) * (compact ? 2 : 6), scale: .9
+    }, at, spread, .9);
+  }
 
-    reveal(tl, text[4].title, {
-      x: i => (i % 5 - 2) * 55, y: i => (i % 3 - 1) * 36,
-      rotation: i => (i % 5 - 2) * 9, scale: .66, filter: "blur(9px)"
-    }, 57.35, 3.5, .95);
-    reveal(tl, text[4].paragraph, { y: 30, scale: .85, filter: "blur(5px)" }, 60.3, 2.1, .7);
+  function animateSceneText(tl, text, compact) {
+    const spread = compact ? .78 : 1;
+    materialize(tl, text[0].title, .35, 3.4 * spread, compact);
+    materialize(tl, text[0].paragraph, 3.3, 1.6 * spread, compact);
+    blink(tl, text[1].title, 14.35, 3.2 * spread, compact);
+    blink(tl, text[1].paragraph, 16.4, 2.1 * spread, compact);
+    collisionReveal(tl, text[2].title, 28.35, 3 * spread, compact);
+    collisionReveal(tl, text[2].paragraph, 30.5, 2.1 * spread, compact);
+    typeIn(tl, text[3].title, 42.35, 3.5 * spread);
+    typeIn(tl, text[3].paragraph, 45, 3.3 * spread);
+    chaosToOrder(tl, text[4].title, 56.35, 3.5 * spread, compact);
+    chaosToOrder(tl, text[4].paragraph, 59.4, 2.1 * spread, compact);
+    flipCascade(tl, text[5].title, 70.35, 2.8 * spread, compact);
+    flipCascade(tl, text[5].paragraph, 73.1, 1.8 * spread, compact);
+    // Tiny camera approach on the type itself, then freeze before micro silence.
+    tl.to([...text[5].title, ...text[5].paragraph], {
+      scale: 1.025, duration: .65, ease: "sine.inOut"
+    }, 76)
+      .to([...text[5].title, ...text[5].paragraph], { scale: 1, duration: .65, ease: "sine.inOut" }, 76.65);
+  }
 
-    reveal(tl, text[5].title, { y: 46, rotationX: -85, scale: .9 }, 70.3, 2.8, .85);
-    reveal(tl, text[5].paragraph, { y: 22, rotationX: -45 }, 73, 1.8, .65);
+  function brandReveal(tl, finale, logo, finalActions, chars, compact) {
+    const stopMotion = [...finaleTitle.querySelector("span:not(.showcase-word):not(.showcase-sr-only)").querySelectorAll(".showcase-char")];
+    const brand = chars.filter(char => !stopMotion.includes(char));
+    tl.fromTo(finale.querySelector(".showcase-finale-pre"), {
+      opacity: 0, y: 5, letterSpacing: ".38em"
+    }, { opacity: 1, y: 0, letterSpacing: ".18em", duration: 1.4, ease: "power2.out", immediateRender: false }, 87.6)
+      .fromTo(logo, { opacity: 0, scale: .55, z: compact ? -30 : -120, filter: compact ? "blur(3px)" : "blur(7px)" }, {
+        opacity: 1, scale: 1, z: 0, filter: "blur(0px)", duration: 3.4, ease: "power3.out", immediateRender: false
+      }, 88);
+    reveal(tl, brand, { y: 12, z: compact ? -10 : -30 }, 89.5, .45, .85);
+    reveal(tl, stopMotion, { y: compact ? 12 : 25, z: compact ? -15 : -50, rotationY: compact ? -25 : -60 }, 91.2, 1.25, .85);
+    tl.fromTo(finale.querySelector(".showcase-positioning"), { opacity: 0, y: 12 }, {
+      opacity: 1, y: 0, duration: 1.5, ease: "power2.out", immediateRender: false
+    }, 93)
+      .fromTo(finale.querySelector(".showcase-philosophy"), { opacity: 0, y: 8 }, {
+        opacity: 1, y: 0, duration: 1.4, ease: "power2.out", immediateRender: false
+      }, 94)
+      .fromTo(finalActions, { opacity: 0, y: 18 }, {
+        opacity: 1, y: 0, duration: 1.5, ease: "power2.out", immediateRender: false
+      }, 95.5);
+  }
+
+  function cleanupShowcase() {
+    timeline?.scrollTrigger?.kill();
+    timeline?.kill();
+    animationContext?.revert();
+    timeline = animationContext = null;
+    for (const [element, markup] of originalMarkup) element.innerHTML = markup;
+    originalMarkup.clear();
+    document.documentElement.classList.remove("showcase-enhanced");
+    intro.querySelector(".showcase-copy-stack")?.style.removeProperty("--showcase-velocity");
+    intro.querySelector(".showcase-finale")?.classList.remove("is-interactive");
+    intro.querySelector(".showcase-final-actions")?.removeAttribute("inert");
+    const header = document.querySelector(".site-header.showcase-header");
+    header?.setAttribute("data-intro-state", "final");
+    const brand = header?.querySelector("[data-showcase-brand]");
+    if (brand) brand.textContent = "DA&A StopMotion";
   }
 
   function buildShowcase() {
+    // Restore before translation/splitting, even when enhancement is unavailable.
+    cleanupShowcase();
+    applyShowcaseLanguage();
     if (reduceMotion.matches || !window.gsap || !window.ScrollTrigger) return;
     const stage = intro.querySelector(".showcase-stage");
     const scenes = [...intro.querySelectorAll(".showcase-copy")];
     const finale = intro.querySelector(".showcase-finale");
     const logo = intro.querySelector(".showcase-logo-wrap");
-    const flash = intro.querySelector(".showcase-flash");
     const topline = intro.querySelector(".showcase-topline");
     const frameReadout = intro.querySelector("[data-showcase-frame]");
     const header = document.querySelector(".site-header.showcase-header");
     const headerBrand = header?.querySelector("[data-showcase-brand]");
     const finalActions = intro.querySelector(".showcase-final-actions");
-
-    if (!stage || scenes.length < 6 || !finale || !logo || !finalActions || !finaleTitle) return;
-
-    timeline?.scrollTrigger?.kill();
-    timeline?.kill();
-    finaleTitle.innerHTML = finaleTitleMarkup;
-    const text = scenes.map(scene => ({
-      title: splitText(scene.querySelector("h1,h2")),
-      paragraph: splitText(scene.querySelector("p"))
-    }));
-    const finalTitleChars = splitText(finaleTitle);
-
-    document.documentElement.classList.add("showcase-enhanced");
+    if (!stage || scenes.length !== 6 || !finale || !logo || !finalActions || !finaleTitle) return;
+    const compact = compactMotion.matches;
+    const gsap = window.gsap;
+    const ScrollTrigger = window.ScrollTrigger;
     gsap.registerPlugin(ScrollTrigger);
+    document.documentElement.classList.add("showcase-enhanced");
 
-    header?.setAttribute("data-intro-state", "story");
-    gsap.set(stage, { backgroundColor: '#050608' });
-    gsap.set(scenes, { opacity: 0, y: 34, rotationX: 9, transformOrigin: 'center bottom' });
-    gsap.set(scenes.slice(0, 4), { color: '#f3f3f5' });
-    gsap.set(scenes[0], { opacity: 1, y: 0, rotationX: 0 });
-    gsap.set([...text.flatMap(scene => [...scene.title, ...scene.paragraph]), ...finalTitleChars], { opacity: 0 });
-    gsap.set(topline, { color: '#b3badb' });
-    gsap.set(frameReadout, { color: '#f3f3f5' });
-    gsap.set(flash, { opacity: 0 });
-    gsap.set(finale, { opacity: 0 });
-    gsap.set(logo, { opacity: 0, scale: 0.24, rotation: -8, filter: "blur(12px)" });
-    if (finalActions) gsap.set(finalActions, { opacity: 0, y: 20 });
+    // Context owns only this intro's inline styles/tweens; other sections keep their triggers.
+    animationContext = gsap.context(() => {
+      const text = scenes.map(scene => ({
+        title: splitText(scene.querySelector("h1,h2")),
+        paragraph: splitText(scene.querySelector("p"))
+      }));
+      const finalTitleChars = splitText(finaleTitle);
+      gsap.set(stage, { backgroundColor: "#050608" });
+      gsap.set(scenes, { opacity: 0, color: "#f3f3f5" });
+      gsap.set(scenes[0], { opacity: 1 });
+      gsap.set(text.flatMap(scene => [...scene.title, ...scene.paragraph]).concat(finalTitleChars), { opacity: 0 });
+      gsap.set(topline, { color: "#b3badb" });
+      gsap.set(frameReadout, { color: "#f3f3f5" });
+      gsap.set(finale, { opacity: 0 });
+      gsap.set([logo, finalActions, finale.querySelector(".showcase-finale-pre"),
+        finale.querySelector(".showcase-positioning"), finale.querySelector(".showcase-philosophy")], { opacity: 0 });
 
-    const tl = gsap.timeline({
-      defaults: { ease: "none" },
-      scrollTrigger: {
-        trigger: intro,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 0.75,
-        invalidateOnRefresh: true,
-        onUpdate(self) {
-          const frame = Math.max(1, Math.min(144, 1 + Math.round(self.progress * 143)));
-          const label = String(frame).padStart(3, "0");
-          if (frameReadout) frameReadout.textContent = label;
-          if (headerBrand && self.progress < .87) headerBrand.textContent = `FRAME / ${label}`;
-          if (header && self.progress < .87) header.setAttribute("data-intro-state", "story");
-          if (headerBrand && self.progress >= .87) headerBrand.textContent = "DA&A StopMotion";
-          if (header && self.progress >= .87) header.setAttribute("data-intro-state", "final");
-          finale.classList.toggle("is-interactive", self.progress > .94);
-        }
+      // Velocity belongs to a separate, tiny CSS transform on the type, never timeline time.
+      const reaction = intro.querySelector(".showcase-copy-stack");
+      const setReaction = gsap.quickSetter(reaction, "--showcase-velocity");
+      const envelope = { amount: 0 };
+      let influence = 0;
+      const paintReaction = () => setReaction(influence * envelope.amount);
+      function syncPresentation(tl) {
+        const progress = tl.progress();
+        const label = String(1 + Math.round(progress * 143)).padStart(3, "0");
+        if (frameReadout) frameReadout.textContent = label;
+        if (headerBrand) headerBrand.textContent = progress < .87 ? "FRAME / " + label : "DA&A StopMotion";
+        header?.setAttribute("data-intro-state", progress < .87 ? "story" : "final");
+        const interactive = progress >= .97;
+        finale.classList.toggle("is-interactive", interactive);
+        finalActions.toggleAttribute("inert", !interactive);
+        paintReaction();
       }
-    });
-
-    tl.set(scenes[0], { opacity: 1, y: 0 }, 0)
-      .to(stage, { backgroundColor: '#11152e', duration: 25, ease: 'none' }, 4)
-      .to(stage, { backgroundColor: '#1f2251', duration: 22, ease: 'none' }, 28)
-      .to(stage, { backgroundColor: '#050608', duration: 17, ease: 'none' }, 55)
-      .to(scenes.slice(1), { rotationX: 0, duration: 4, stagger: 14, ease: 'power2.out' }, 11)
-      .to(scenes[0], { opacity: 0, y: -24, duration: 2.2, ease: "power2.in" }, 10.5)
-
-      .to(scenes[1], { opacity: 1, y: 0, duration: 2.4, ease: "power3.out" }, 12)
-      .to(scenes[1], { opacity: 0, y: -26, duration: 2.1, ease: "power2.in" }, 24)
-      .to(scenes[2], { opacity: 1, y: 0, duration: 2.4, ease: "power3.out" }, 26)
-      .to(scenes[2], { opacity: 0, y: -26, duration: 2.1, ease: "power2.in" }, 39)
-      .to(scenes[3], { opacity: 1, y: 0, duration: 2.4, ease: "power3.out" }, 41)
-      .to(scenes[3], { opacity: 0, y: -28, duration: 2.2, ease: "power2.in" }, 55)
-      .to(scenes[4], { color: "#f8f5ed", opacity: 1, y: 0, duration: 2.5, ease: "power3.out" }, 57)
-      .to(scenes[4].querySelector("p"), { color: "#c6c2b8", duration: 2 }, 57)
-      .to(scenes[4], { opacity: 0, y: -28, duration: 2.2, ease: "power2.in" }, 70)
-
-      .to(scenes[5], { color: "#f8f5ed", opacity: 1, y: 0, duration: 2.6, ease: "power3.out" }, 70)
-      .to(scenes[5].querySelector("p"), { color: "#c6c2b8", duration: 2 }, 70)
-      .to(scenes[5], { opacity: 0, y: -24, duration: 2.1, ease: "power2.in" }, 80)
-
-      .to(flash, { opacity: .18, duration: .55, ease: "power2.out" }, 84)
-      .to(stage, { backgroundColor: "#f2efe7", duration: 3.5, ease: "power3.out" }, 84)
-      .to(topline, { color: '#7a756b', duration: 3.5, ease: 'none' }, 84)
-      .to(frameReadout, { color: '#151512', duration: 3.5, ease: 'none' }, 84)
-      .to(flash, { opacity: 0, duration: 1.1, ease: "power2.in" }, 84.55)
-      .to(finale, { opacity: 1, duration: 2.2, ease: "power3.out" }, 85)
-      .to(logo, { opacity: 1, scale: 1.12, rotation: 1.2, filter: "blur(0px)", duration: 4.2, ease: "power4.out" }, 86)
-      .to(logo, { scale: 1, rotation: 0, duration: 1.8, ease: "steps(3)" }, 90.2)
-      .fromTo(finale.querySelector("h2"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 2.6, ease: "power3.out" }, 89)
-      .fromTo(finale.querySelector(".showcase-positioning"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 2.1, ease: "power3.out" }, 91)
-      .fromTo(finale.querySelector(".showcase-philosophy"), { opacity: 0 }, { opacity: 1, duration: 1.8 }, 93)
-      .to(finalActions, { opacity: 1, y: 0, duration: 2, ease: "power3.out" }, 94);
-
-    animateSceneText(tl, text);
-    reveal(tl, finalTitleChars, { y: 34, z: -65, rotationY: -75 }, 89.2, 1.6, .55);
-    timeline = tl;
+      const tl = gsap.timeline({
+        defaults: { ease: "none" },
+        onUpdate() { syncPresentation(this); },
+        scrollTrigger: {
+          id: "homepage-typography",
+          trigger: intro, start: "top top", end: "bottom bottom",
+          scrub: .7, invalidateOnRefresh: true,
+          onUpdate(self) {
+            influence = compact ? 0 : gsap.utils.clamp(-1, 1, self.getVelocity() / 2500);
+            paintReaction();
+          },
+          onScrubComplete() { influence = 0; paintReaction(); }
+        }
+      });
+      timeline = tl;
+      const regions = [0, 14, 28, 42, 56, 70];
+      const labels = ["birth", "signal", "collision", "frame-rhythm", "chaos", "resolution"];
+      regions.forEach((at, i) => {
+        tl.addLabel(labels[i], at);
+        if (i) tl.to(scenes[i], { opacity: 1, duration: .3 }, at);
+        tl.to(scenes[i], { opacity: 0, duration: .65 }, i === 5 ? 87 : regions[i + 1] - .65);
+        if (i !== 3) {
+          tl.to(envelope, { amount: 1, duration: .5 }, at + .3)
+            .to(envelope, { amount: 0, duration: .6 }, at + 6.4);
+        }
+      });
+      tl.to(stage, { backgroundColor: "#11152e", duration: 22 }, 4)
+        .to(stage, { backgroundColor: "#1f2251", duration: 20 }, 30)
+        .to(stage, { backgroundColor: "#050608", duration: 17 }, 56)
+        .addLabel("micro-silence", 81)
+        .addLabel("brand-reveal", 87)
+        .to(stage, { backgroundColor: "#f2efe7", duration: 2, ease: "power2.inOut" }, 87)
+        .to(topline, { color: "#7a756b", duration: 2 }, 87)
+        .to(frameReadout, { color: "#151512", duration: 2 }, 87)
+        .to(finale, { opacity: 1, duration: .45 }, 87.5);
+      animateSceneText(tl, text, compact);
+      brandReveal(tl, finale, logo, finalActions, finalTitleChars, compact);
+      // Fixed 0–100 extent includes a fully readable final hold.
+      tl.to({}, { duration: 3 }, 97);
+      syncPresentation(tl);
+    }, intro);
     ScrollTrigger.refresh();
+    // A rebuild/reload at mid-page must render the current scroll position immediately.
+    timeline.progress(timeline.scrollTrigger.progress);
   }
 
   function initShowcase() {
     bindLanguageSync();
     buildShowcase();
+    reduceMotion.addEventListener("change", buildShowcase);
+    compactMotion.addEventListener("change", buildShowcase);
+    window.addEventListener("pageshow", event => { if (event.persisted) buildShowcase(); });
   }
 
   if (document.readyState === "loading") {

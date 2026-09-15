@@ -3,7 +3,7 @@
 .showcase-copy{backface-visibility:hidden;transform-style:preserve-3d}
 .showcase-enhanced .showcase-topline{color:#b3badb;border-color:rgba(233,237,255,.22)}
 .showcase-enhanced .showcase-frame-readout b{color:#f3f3f5}
-.showcase-enhanced .showcase-copy:nth-child(-n+4) p{color:#c9cee6}
+.showcase-enhanced .showcase-copy p{color:#c9cee6}
 .showcase-enhanced .showcase-copy .showcase-kicker{color:#e86c7d}
 .showcase-enhanced .site-header.showcase-header[data-intro-state="story"]{background:rgba(5,6,8,.88);color:#f3f3f5;border-color:rgba(255,255,255,.1)}
 .showcase-enhanced .site-header.showcase-header[data-intro-state="story"] .nav-links>a:not(.nav-cta),
@@ -84,7 +84,7 @@
   margin:0;
   font-family:var(--serif);
   font-size:clamp(46px,7.4vw,104px);
-  line-height:.94;
+  line-height:1.02;
   letter-spacing:-.052em;
   font-weight:700;
 }
@@ -97,8 +97,18 @@
 }
 .showcase-intro .showcase-word,
 .showcase-intro .showcase-char{display:inline-block}
-.showcase-intro .showcase-word{white-space:nowrap}
+.showcase-intro .showcase-word{white-space:nowrap;transform-style:preserve-3d}
 .showcase-intro .showcase-char{backface-visibility:hidden;transform-style:preserve-3d}
+.showcase-enhanced .showcase-copy h1,
+.showcase-enhanced .showcase-copy h2,
+.showcase-enhanced .showcase-copy p,
+.showcase-enhanced .showcase-finale h2{perspective:1000px}
+.showcase-enhanced .showcase-copy h1,
+.showcase-enhanced .showcase-copy h2,
+.showcase-enhanced .showcase-copy p{
+  rotate:calc(var(--showcase-velocity,0) * .65deg);
+  translate:0 calc(var(--showcase-velocity,0) * 1.5px);
+}
 .showcase-intro .showcase-sr-only{
   position:absolute;
   width:1px;
@@ -231,7 +241,7 @@
   pointer-events:none;
 }
 .showcase-enhanced .showcase-finale.is-interactive{pointer-events:auto}
-.showcase-enhanced .showcase-logo-wrap{will-change:transform,opacity,filter}
+.showcase-enhanced .showcase-finale{perspective:1200px}
 .showcase-enhanced .site-header.showcase-header .brand img{transition:opacity .35s var(--ease),transform .35s var(--ease)}
 .showcase-enhanced .site-header.showcase-header[data-intro-state="story"] .brand img{opacity:.12;transform:scale(.82)}
 .showcase-enhanced .site-header.showcase-header[data-intro-state="story"] .brand span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--muted)}
@@ -255,6 +265,7 @@
   .showcase-topline{gap:10px}.showcase-topline>span:nth-child(2){display:none}
   .showcase-copy-stack{width:calc(100% - 32px)}
   .showcase-copy p{font-size:16px}
+  .showcase-enhanced .showcase-copy h1,.showcase-enhanced .showcase-copy h2{font-size:clamp(28px,8vw,48px);line-height:1.02}
   .showcase-finale,.showcase-enhanced .showcase-finale{
     width:calc(100% - 32px);
     display:flex;
@@ -270,6 +281,35 @@
   .showcase-finale .showcase-positioning{margin:22px auto 0}
   .showcase-final-actions{width:100%;justify-content:center}.showcase-final-actions .btn{flex:1 1 160px}
   .showcase-enhanced .showcase-intro{height:540vh}
+  .showcase-enhanced .showcase-logo-wrap{width:min(140px,23vh);margin-bottom:12px}
+  .showcase-enhanced .showcase-finale-pre{margin-bottom:12px}
+  .showcase-enhanced .showcase-finale h2{font-size:clamp(40px,10vw,56px)}
+  .showcase-enhanced .showcase-finale .showcase-positioning{margin-top:14px;font-size:15px}
+  .showcase-enhanced .showcase-finale .showcase-philosophy{margin-top:12px;font-size:18px}
+  .showcase-enhanced .showcase-final-actions{margin-top:18px;gap:8px}
+  .showcase-enhanced .showcase-final-actions .btn{flex:1 1 130px;padding:12px 10px;font-size:11px}
+}
+
+/* Short viewports retain the existing left-logo composition with compact type. */
+@media(max-width:640px) and (max-height:700px){
+  .showcase-enhanced .showcase-finale{padding-top:94px;padding-bottom:12px}
+  .showcase-enhanced .showcase-logo-wrap{width:80px;margin-bottom:8px}
+  .showcase-enhanced .showcase-finale-pre{margin-bottom:8px}
+  .showcase-enhanced .showcase-finale h2{font-size:38px}
+  .showcase-enhanced .showcase-finale .showcase-positioning{font-size:14px;line-height:1.4;margin-top:10px}
+  .showcase-enhanced .showcase-finale .showcase-philosophy{font-size:16px;line-height:1.3;margin-top:8px}
+  .showcase-enhanced .showcase-final-actions{margin-top:12px}
+}
+@media(min-width:641px) and (max-height:600px){
+  .showcase-enhanced .showcase-copy h1,.showcase-enhanced .showcase-copy h2{font-size:clamp(32px,7vh,54px);line-height:1.02}
+  .showcase-enhanced .showcase-copy p{font-size:16px;margin-top:14px}
+  .showcase-enhanced .showcase-finale{padding-top:72px;column-gap:28px}
+  .showcase-enhanced .showcase-finale h2{font-size:44px}
+  .showcase-enhanced .showcase-logo-wrap{width:150px}
+  .showcase-enhanced .showcase-finale-pre{margin-bottom:8px}
+  .showcase-enhanced .showcase-finale .showcase-positioning{margin-top:12px;font-size:14px}
+  .showcase-enhanced .showcase-finale .showcase-philosophy{margin-top:10px;font-size:18px}
+  .showcase-enhanced .showcase-final-actions{margin-top:14px}
 }
 
 @media(prefers-reduced-motion:reduce){
