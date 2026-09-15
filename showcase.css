@@ -167,48 +167,66 @@
 .showcase-finale{
   position:relative;
   z-index:15;
-  width:min(920px,calc(100% - 48px));
+  width:min(1120px,calc(100% - 64px));
   margin:0 auto;
   padding:15vh 0 12vh;
-  text-align:center;
+  display:grid;
+  grid-template-columns:minmax(220px,.78fr) minmax(0,1.22fr);
+  grid-template-areas:
+    "logo pre"
+    "logo title"
+    "logo copy"
+    "logo philosophy"
+    "logo actions";
+  column-gap:clamp(48px,7vw,112px);
+  align-items:center;
+  align-content:center;
+  text-align:left;
 }
 .showcase-finale-pre{
-  margin:0 0 22px;
+  grid-area:pre;
+  margin:0 0 16px;
   color:var(--muted);
   font:800 10px var(--mono);
   letter-spacing:.18em;
   text-transform:uppercase;
 }
 .showcase-logo-wrap{
-  width:min(210px,42vw);
+  grid-area:logo;
+  width:min(320px,28vw);
   aspect-ratio:1;
-  margin:0 auto 22px;
+  margin:0;
   display:grid;
   place-items:center;
+  justify-self:center;
+  align-self:center;
 }
-.showcase-logo-wrap img{width:100%;height:100%;object-fit:contain;display:block;border-radius:24px}
+.showcase-logo-wrap img{width:100%;height:100%;object-fit:contain;display:block;border-radius:30px}
 .showcase-finale h2{
+  grid-area:title;
   margin:0;
   font-family:var(--serif);
-  font-size:clamp(52px,8vw,104px);
+  font-size:clamp(52px,6.6vw,96px);
   line-height:.88;
   letter-spacing:-.055em;
 }
 .showcase-finale h2 span{display:block;color:var(--orange);font-style:italic;font-weight:600}
 .showcase-finale .showcase-positioning{
-  max-width:640px;
-  margin:24px auto 0;
+  grid-area:copy;
+  max-width:650px;
+  margin:24px 0 0;
   color:var(--ink-soft);
   font-size:clamp(16px,1.8vw,20px);
 }
 .showcase-finale .showcase-philosophy{
+  grid-area:philosophy;
   margin:22px 0 0;
   color:var(--olive);
   font-family:var(--serif);
   font-size:clamp(18px,2vw,26px);
   font-style:italic;
 }
-.showcase-final-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:32px}
+.showcase-final-actions{grid-area:actions;display:flex;justify-content:flex-start;gap:12px;flex-wrap:wrap;margin-top:32px}
 .showcase-flash{position:absolute;inset:0;z-index:14;pointer-events:none;background:rgba(255,248,228,.95);opacity:0}
 
 /* Progressive enhancement: only the homepage intro becomes theatrical when JS is ready. */
@@ -261,13 +279,22 @@
   position:absolute;
   inset:0;
   z-index:16;
-  width:100%;
-  margin:0;
-  padding:0 24px;
-  display:flex;
-  flex-direction:column;
+  width:min(1180px,calc(100% - 72px));
+  margin:auto;
+  padding:0;
+  display:grid;
+  grid-template-columns:minmax(240px,.78fr) minmax(0,1.22fr);
+  grid-template-areas:
+    "logo pre"
+    "logo title"
+    "logo copy"
+    "logo philosophy"
+    "logo actions";
+  column-gap:clamp(52px,7vw,120px);
   align-items:center;
+  align-content:center;
   justify-content:center;
+  text-align:left;
   opacity:0;
   pointer-events:none;
 }
@@ -283,6 +310,9 @@
   .showcase-copy{margin-bottom:30vh}
   .showcase-image-field{grid-template-columns:1fr}
   .showcase-frame-card{min-height:190px}
+  .showcase-finale,.showcase-enhanced .showcase-finale{width:calc(100% - 40px);grid-template-columns:minmax(170px,.68fr) minmax(0,1.32fr);column-gap:32px}
+  .showcase-logo-wrap{width:min(230px,28vw)}
+  .showcase-finale h2{font-size:clamp(46px,7.4vw,72px)}
   .showcase-enhanced .showcase-intro{height:590vh}
   .showcase-enhanced .showcase-stage{padding-top:86px}
   .showcase-enhanced .showcase-copy{width:min(680px,calc(100% - 32px))}
@@ -303,8 +333,20 @@
   .showcase-copy-stack{width:calc(100% - 32px)}
   .showcase-copy p{font-size:16px}
   .showcase-image-field{width:calc(100% - 32px)}
-  .showcase-finale{width:calc(100% - 32px)}
-  .showcase-final-actions{width:100%}.showcase-final-actions .btn{flex:1 1 160px}
+  .showcase-finale,.showcase-enhanced .showcase-finale{
+    width:calc(100% - 32px);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding-left:0;
+    padding-right:0;
+    text-align:center;
+  }
+  .showcase-finale-pre{margin-bottom:18px}
+  .showcase-logo-wrap{width:min(180px,44vw);margin:0 auto 20px}
+  .showcase-finale .showcase-positioning{margin:22px auto 0}
+  .showcase-final-actions{width:100%;justify-content:center}.showcase-final-actions .btn{flex:1 1 160px}
   .showcase-enhanced .showcase-intro{height:540vh}
   .showcase-enhanced .showcase-frame-card{width:49vw;opacity:.08}
   .showcase-enhanced .showcase-card-e,.showcase-enhanced .showcase-card-f{display:none}
@@ -317,5 +359,9 @@
   .showcase-copy{position:relative!important;left:auto!important;top:auto!important;transform:none!important;opacity:1!important;margin-bottom:28vh!important}
   .showcase-image-field{display:grid!important;width:min(1120px,calc(100% - 48px))!important;margin:0 auto 12vh!important}
   .showcase-frame-card{position:relative!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;width:auto!important;opacity:1!important;transform:none!important}
-  .showcase-finale{display:block!important;width:min(920px,calc(100% - 48px))!important;margin:0 auto!important;padding:10vh 0!important}
+  .showcase-finale{display:grid!important;width:min(1120px,calc(100% - 48px))!important;margin:0 auto!important;padding:10vh 0!important}
+}
+
+@media(max-width:640px) and (prefers-reduced-motion:reduce){
+  .showcase-finale{display:flex!important;width:calc(100% - 32px)!important}
 }
