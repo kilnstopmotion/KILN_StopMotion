@@ -9,7 +9,7 @@ const RELEASES=[{
 
 const I18N={
   en:{
-    navProduct:"Product",navFeatured:"Featured work",navDeveloper:"Developer",navDownload:"Download",
+    navProduct:"Software",navFeatured:"Featured work",navDeveloper:"Developer",navDownload:"Download",
     heroEyebrow:"Developed by KILN",heroLead:"Stop-motion production software shaped around every frame, every take and the small decisions that make movement feel alive.",heroDownload:"Download DA&A v5.0.0",heroExplore:"Explore the product",heroMicro:"Windows · Installer & Portable · system requirements pending confirmation",heroNote:"Small things move big stories.",
     preview:"APP SCREENSHOT",previewHint:"Your DA&A StopMotion screenshot will live here",frameCaption:"A frame-by-frame production workspace",
     featKicker:"From small frames to bigger stories",featTitle:"Everything you need for stop-motion.",featCopy:"Capture, animate, review and organize without losing the rhythm of the shot.",
@@ -21,7 +21,7 @@ const I18N={
     coffeeTitle:"Support DA&A StopMotion",coffeeCopy:"If DA&A helps your work, you can support its continued development.",coffeeBtn:"Buy me a coffee",footerNote:"Formerly KILN Motion",footerTagline:"Make every frame count."
   },
   vi:{
-    navProduct:"Sản phẩm",navFeatured:"Tác phẩm tiêu biểu",navDeveloper:"Nhà phát triển",navDownload:"Tải xuống",
+    navProduct:"Phần mềm",navFeatured:"Tác phẩm tiêu biểu",navDeveloper:"Nhà phát triển",navDownload:"Tải xuống",
     heroEyebrow:"Phát triển bởi KILN",heroLead:"Công cụ sản xuất stop-motion được xây quanh từng khung hình, từng take và những quyết định nhỏ khiến chuyển động trở nên có hồn.",heroDownload:"Tải DA&A v5.0.0",heroExplore:"Khám phá phần mềm",heroMicro:"Windows · Installer & Portable · yêu cầu hệ thống đang chờ xác nhận",heroNote:"Những điều nhỏ tạo nên câu chuyện lớn.",
     preview:"ẢNH GIAO DIỆN ỨNG DỤNG",previewHint:"Sau này chỉ cần thay bằng screenshot DA&A StopMotion",frameCaption:"Không gian sản xuất frame-by-frame",
     featKicker:"Từ những khung hình nhỏ đến những câu chuyện lớn",featTitle:"Mọi thứ bạn cần cho stop-motion.",featCopy:"Chụp, animate, review và tổ chức mà không làm đứt nhịp của cảnh quay.",
@@ -80,9 +80,9 @@ function syncFeaturedMainNav(){
   if(!nav)return;
   const featured=nav.querySelector("[data-featured-main-nav]");
   const product=nav.querySelector('[data-i18n="navProduct"]');
-  const onFeatured=document.body?.dataset.page==="product"&&location.hash==="#featured-work";
-  featured?.classList.toggle("active",onFeatured);
-  if(document.body?.dataset.page==="product"&&product)product.classList.toggle("active",!onFeatured);
+  const page=document.body?.dataset.page;
+  featured?.classList.toggle("active",page==="featured");
+  if(product)product.classList.toggle("active",page==="product");
 }
 
 function ensureFeaturedMainNav(){
@@ -91,13 +91,12 @@ function ensureFeaturedMainNav(){
   const link=document.createElement("a");
   link.dataset.featuredMainNav="";
   link.dataset.i18n="navFeatured";
-  link.href=document.body?.dataset.page==="product"?"#featured-work":"product.html#featured-work";
+  link.href="featured.html";
   link.textContent=t("navFeatured");
   const developer=nav.querySelector('[data-i18n="navDeveloper"]');
   const fallback=nav.querySelector(".lang-switch")||nav.querySelector(".nav-cta");
   nav.insertBefore(link,developer||fallback||null);
   syncFeaturedMainNav();
-  window.addEventListener("hashchange",syncFeaturedMainNav);
 }
 
 function initNavigation(){
@@ -156,7 +155,7 @@ function setStoryStep(step){
   const ring=document.querySelector(".focus-ring");
   if(ring&&window.gsap&&!reduceMotion.matches){
     const index=[...document.querySelectorAll("[data-story-step]")].indexOf(step);
-    const positions=[[-12,-8,1], [12,-4,.82], [-6,10,1.18], [11,12,.94]][Math.max(0,index)]||[0,0,1];
+    const positions=[[-12,-8,1],[12,-4,.82],[-6,10,1.18],[11,12,.94]][Math.max(0,index)]||[0,0,1];
     gsap.to(ring,{xPercent:positions[0],yPercent:positions[1],scale:positions[2],duration:.55,ease:"power3.out"});
   }
 }
@@ -217,6 +216,7 @@ function initGSAP(){
 function init(){
   ensureFeaturedMainNav();
   applyI18n();
+  syncFeaturedMainNav();
   initNavigation();
   initScrollProgress();
   initPointer();
