@@ -14,7 +14,6 @@
 
   const featuredCopy = {
     vi: {
-      nav: 'Tác phẩm tiêu biểu',
       kicker: 'FEATURED / WORK',
       title: 'Tác phẩm tiêu biểu',
       lead: 'Một không gian dành cho những tác phẩm được chọn lọc, kèm still frame, đoạn loop ngắn và thông tin tác phẩm.',
@@ -36,7 +35,6 @@
       comingSoon: 'COMING SOON'
     },
     en: {
-      nav: 'Featured work',
       kicker: 'FEATURED / WORK',
       title: 'Featured work',
       lead: 'A curated space for selected work, with still frames, a short loop excerpt, and production information.',
@@ -68,7 +66,7 @@
     const style = document.createElement('style');
     style.id = 'featured-work-styles';
     style.textContent = `
-      .featured-work-section{background:linear-gradient(180deg,#0a0c18,#111634 56%,#090b18);color:var(--motion-white);overflow:hidden}
+      .featured-work-section{scroll-margin-top:92px;background:linear-gradient(180deg,#0a0c18,#111634 56%,#090b18);color:var(--motion-white);overflow:hidden}
       .featured-work-section .section-kicker{color:#ff7b8d}
       .featured-work-section .section-head{align-items:start;margin-bottom:54px}
       .featured-work-section .section-head h2{color:#fff}
@@ -153,21 +151,10 @@
 
     injectFeaturedWorkStyles();
     const workflow = document.getElementById('workflow');
-    const subnav = document.querySelector('.product-subnav');
-    if (!workflow || !subnav) return null;
+    if (!workflow) return null;
 
     const lang = getLang();
     const t = featuredCopy[lang];
-
-    if (!subnav.querySelector('a[href="#featured-work"]')) {
-      const link = document.createElement('a');
-      link.href = '#featured-work';
-      link.dataset.featuredWorkNav = '';
-      link.textContent = t.nav;
-      const workflowLink = subnav.querySelector('a[href="#workflow"]');
-      if (workflowLink?.nextSibling) subnav.insertBefore(link, workflowLink.nextSibling);
-      else subnav.appendChild(link);
-    }
 
     const section = document.createElement('section');
     section.className = 'section featured-work-section';
@@ -235,6 +222,10 @@
       if (action) action.textContent = lang === 'en' ? 'WATCH FULL ↗' : 'XEM FULL ↗';
     }
 
+    if (location.hash === '#featured-work') {
+      requestAnimationFrame(() => section.scrollIntoView({ behavior: 'auto', block: 'start' }));
+    }
+
     return section;
   }
 
@@ -242,8 +233,6 @@
     const section = document.getElementById('featured-work');
     if (!section) return;
     const t = featuredCopy[getLang()];
-    const nav = document.querySelector('[data-featured-work-nav]');
-    if (nav) nav.textContent = t.nav;
     section.querySelectorAll('[data-featured-copy]').forEach(el => {
       const key = el.dataset.featuredCopy;
       if (t[key]) el.textContent = t[key];
