@@ -99,12 +99,6 @@
       onEnter: () => setStep(i),
       onEnterBack: () => setStep(i)
     }));
-
-    if (desktop && sequenceVisual) {
-      gsap.fromTo(sequenceVisual,
-        { y: 18 },
-        { y: -18, ease: 'none', scrollTrigger: { trigger: '.sequence-chapter', start: 'top 72%', end: 'bottom 28%', scrub: true } });
-    }
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true }); else init();
