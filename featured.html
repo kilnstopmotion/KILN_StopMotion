@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#090b18" />
+  <meta name="description" content="Tác phẩm tiêu biểu được thực hiện cùng DA&A StopMotion." />
+  <title>Tác phẩm tiêu biểu — DA&A StopMotion</title>
+  <link rel="icon" type="image/webp" href="assets/images/app/logo.webp" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="motion.css" />
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="js/motion/motion-core.js" defer></script>
+  <script src="featured-work.js" defer></script>
+</head>
+<body data-page="featured">
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+  <div class="cursor-frame" aria-hidden="true"><span>FRAME</span><b>001</b></div>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand magnetic" href="index.html" style="display:inline-flex;align-items:center;gap:10px">
+        <img src="assets/images/app/logo.webp" alt="" aria-hidden="true" style="width:34px;height:34px;object-fit:contain;border-radius:8px;display:block">
+        <span>DA&amp;A StopMotion</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="product.html" data-i18n="navProduct">Phần mềm</a>
+        <a class="active" href="featured.html" data-featured-main-nav data-i18n="navFeatured">Tác phẩm tiêu biểu</a>
+        <a href="developer.html" data-i18n="navDeveloper">Nhà phát triển</a>
+        <div class="lang-switch"><button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button></div>
+        <a class="nav-cta magnetic" href="index.html#download"><span data-i18n="navDownload">Tải xuống</span><span class="arrow">↓</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="featured-page-main" id="featured-work-root"></main>
+
+  <footer class="footer">
+    <div class="footer-marquee" aria-hidden="true"><span>DA&amp;A STOPMOTION · FEATURED WORK · KILN · DA&amp;A STOPMOTION · FEATURED WORK · KILN · </span></div>
+    <div class="container footer-grid">
+      <div><strong>DA&amp;A StopMotion</strong><span data-i18n="footerTagline">Mỗi khung hình đều có ý nghĩa.</span></div>
+      <div><span>FEATURED / WORK</span><span>© KILN</span></div>
+    </div>
+  </footer>
+</body>
+</html>
