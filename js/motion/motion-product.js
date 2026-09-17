@@ -268,14 +268,14 @@
       updateProgress(Number(slider.value) / 1000, true);
     });
 
-    // Only the visual Motion Guide frame captures the mouse wheel.
-    // The easing/control column and the rest of the page keep native scrolling.
+    // While the pointer is inside the visual Motion Guide frame, wheel input belongs
+    // exclusively to the guide. The document must not scroll, even at F01/F08.
+    // Moving the pointer outside this frame restores native page scrolling immediately.
     zone.addEventListener('wheel', event => {
-      if (reduced.matches || !finePointer.matches || Math.abs(event.deltaY) < .1) return;
-      const direction = Math.sign(event.deltaY);
-      const canConsume = direction > 0 ? progress < .9995 : progress > .0005;
-      if (!canConsume) return; // release page scroll at F01/F08 boundaries
+      if (reduced.matches || !finePointer.matches) return;
       event.preventDefault();
+      event.stopPropagation();
+      if (Math.abs(event.deltaY) < .1) return;
       markInteracted();
       const delta = Math.max(-.12, Math.min(.12, event.deltaY * .00065));
       updateProgress(progress + delta);
