@@ -46,25 +46,23 @@ Object.assign(I18N.en,{
 
 Object.assign(I18N.vi,{
   onionKicker:"ONION SKIN / TRỰC QUAN",
-  onionTitle:"Xem chuyển động trước khi chụp frame tiếp theo.",
-  onionCopy:"Onion Skin chồng ảnh trước và ảnh sau lên frame hiện tại với độ trong suốt thấp, giúp bạn so vị trí, khoảng cách và hướng chuyển động ngay trên Preview.",
+  onionTitle:"So sánh frame trước với frame hiện tại.",
+  onionCopy:"Onion Skin chồng ảnh trước và ảnh hiện tại để bạn nhìn trực tiếp độ lệch vị trí và khoảng cách chuyển động giữa hai frame.",
   onionPrev:"Ảnh trước",
   onionCurrent:"Hiện tại",
-  onionNext:"Ảnh sau",
-  onionOpacity:"Độ mờ Onion Skin",
-  onionHint:"Bật / tắt Previous và Next, rồi kéo thanh opacity để xem cách Onion Skin hỗ trợ căn chuyển động giữa các frame.",
+  onionBlend:"Tỷ lệ hiển thị",
+  onionHint:"Kéo thanh sang trái để xem ảnh trước rõ hơn, sang phải để xem ảnh hiện tại rõ hơn. Ở giữa, cả hai ảnh cùng hiển thị 50% opacity.",
   onionAwaiting:"Ảnh mẫu sẽ được thêm sau"
 });
 
 Object.assign(I18N.en,{
   onionKicker:"ONION SKIN / VISUAL GUIDE",
-  onionTitle:"Preview motion before capturing the next frame.",
-  onionCopy:"Onion Skin overlays the previous and next images on the current frame at lower opacity so you can compare position, spacing and motion direction directly in Preview.",
+  onionTitle:"Compare the previous frame with the current frame.",
+  onionCopy:"Onion Skin overlays the previous image and the current image so you can directly compare position and spacing between two frames.",
   onionPrev:"Previous",
   onionCurrent:"Current",
-  onionNext:"Next",
-  onionOpacity:"Onion Skin opacity",
-  onionHint:"Toggle Previous and Next, then drag the opacity slider to see how Onion Skin helps align motion between frames.",
+  onionBlend:"Frame blend",
+  onionHint:"Drag left to reveal more of the previous frame and right to reveal more of the current frame. At the midpoint, both images are shown at 50% opacity.",
   onionAwaiting:"Sample image will be added later"
 });
 
@@ -79,13 +77,12 @@ document.addEventListener('DOMContentLoaded',()=>{
     <div class="onion-demo-head">
       <div>
         <span class="cinema-kicker" data-i18n="onionKicker">ONION SKIN / TRỰC QUAN</span>
-        <h4 data-i18n="onionTitle">Xem chuyển động trước khi chụp frame tiếp theo.</h4>
-        <p data-i18n="onionCopy">Onion Skin chồng ảnh trước và ảnh sau lên frame hiện tại với độ trong suốt thấp, giúp bạn so vị trí, khoảng cách và hướng chuyển động ngay trên Preview.</p>
+        <h4 data-i18n="onionTitle">So sánh frame trước với frame hiện tại.</h4>
+        <p data-i18n="onionCopy">Onion Skin chồng ảnh trước và ảnh hiện tại để bạn nhìn trực tiếp độ lệch vị trí và khoảng cách chuyển động giữa hai frame.</p>
       </div>
       <div class="onion-legend" aria-label="Onion Skin frame legend">
         <span class="is-prev"><i></i><b data-i18n="onionPrev">Ảnh trước</b><small>F-01</small></span>
         <span class="is-current"><i></i><b data-i18n="onionCurrent">Hiện tại</b><small>F00</small></span>
-        <span class="is-next"><i></i><b data-i18n="onionNext">Ảnh sau</b><small>F+01</small></span>
       </div>
     </div>
 
@@ -99,22 +96,18 @@ document.addEventListener('DOMContentLoaded',()=>{
           <div class="onion-placeholder"><span>F00</span><small data-i18n="onionAwaiting">Ảnh mẫu sẽ được thêm sau</small></div>
           <img src="assets/images/app/onion-current.webp" alt="Current frame" onerror="this.style.display='none'">
         </div>
-        <div class="onion-layer onion-layer-next" data-onion-layer="next">
-          <div class="onion-placeholder"><span>F+01</span><small data-i18n="onionAwaiting">Ảnh mẫu sẽ được thêm sau</small></div>
-          <img src="assets/images/app/onion-next.webp" alt="Next Onion Skin frame" onerror="this.style.display='none'">
-        </div>
         <span class="onion-stage-label">PREVIEW / ONION SKIN</span>
       </div>
 
       <div class="onion-controls">
-        <div class="onion-toggle-row">
-          <button type="button" class="onion-toggle is-active" data-onion-toggle="prev" aria-pressed="true"><span class="onion-dot prev"></span><span data-i18n="onionPrev">Ảnh trước</span><small>F-01</small></button>
-          <button type="button" class="onion-toggle is-current" disabled><span class="onion-dot current"></span><span data-i18n="onionCurrent">Hiện tại</span><small>F00</small></button>
-          <button type="button" class="onion-toggle is-active" data-onion-toggle="next" aria-pressed="true"><span class="onion-dot next"></span><span data-i18n="onionNext">Ảnh sau</span><small>F+01</small></button>
+        <div class="onion-balance">
+          <span><i class="onion-dot prev"></i><b data-i18n="onionPrev">Ảnh trước</b><output data-onion-prev-output>50%</output></span>
+          <span><i class="onion-dot current"></i><b data-i18n="onionCurrent">Hiện tại</b><output data-onion-current-output>50%</output></span>
         </div>
-        <label class="onion-opacity-label"><span data-i18n="onionOpacity">Độ mờ Onion Skin</span><output data-onion-output>38%</output></label>
-        <input class="onion-range" type="range" min="0" max="80" value="38" step="1" data-onion-opacity aria-label="Onion Skin opacity">
-        <p class="onion-hint" data-i18n="onionHint">Bật / tắt Previous và Next, rồi kéo thanh opacity để xem cách Onion Skin hỗ trợ căn chuyển động giữa các frame.</p>
+        <label class="onion-opacity-label"><span data-i18n="onionBlend">Tỷ lệ hiển thị</span><output data-onion-balance-output>50 / 50</output></label>
+        <input class="onion-range" type="range" min="0" max="100" value="50" step="1" data-onion-balance aria-label="Onion Skin frame blend">
+        <div class="onion-range-ends" aria-hidden="true"><span>PREVIOUS 100%</span><span>CURRENT 100%</span></div>
+        <p class="onion-hint" data-i18n="onionHint">Kéo thanh sang trái để xem ảnh trước rõ hơn, sang phải để xem ảnh hiện tại rõ hơn. Ở giữa, cả hai ảnh cùng hiển thị 50% opacity.</p>
       </div>
     </div>`;
 
@@ -123,49 +116,41 @@ document.addEventListener('DOMContentLoaded',()=>{
   const style=document.createElement('style');
   style.textContent=`
     .onion-demo{margin-top:58px;padding-top:42px;border-top:1px solid rgba(226,231,255,.18)}
-    .onion-demo-head{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr);gap:34px;align-items:end}
+    .onion-demo-head{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(240px,.75fr);gap:34px;align-items:end}
     .onion-demo-head h4{max-width:760px;margin:12px 0 10px;font:700 clamp(30px,4vw,50px)/1.03 var(--serif);letter-spacing:-.035em;color:#fff}
     .onion-demo-head p{max-width:760px;margin:0;color:#c9cee6;line-height:1.65}
-    .onion-legend{display:grid;gap:8px}.onion-legend>span{display:grid;grid-template-columns:12px 1fr auto;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid rgba(226,231,255,.11);font:700 9px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:#d7dcef}.onion-legend i{width:9px;height:9px;border-radius:50%;box-shadow:0 0 14px currentColor}.onion-legend small{color:#8d96b7}.onion-legend .is-prev{color:#62c8ff}.onion-legend .is-current{color:#fff}.onion-legend .is-next{color:#ff6677}
+    .onion-legend{display:grid;gap:8px}.onion-legend>span{display:grid;grid-template-columns:12px 1fr auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(226,231,255,.11);font:700 9px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:#d7dcef}.onion-legend i{width:9px;height:9px;border-radius:50%;box-shadow:0 0 14px currentColor}.onion-legend small{color:#8d96b7}.onion-legend .is-prev{color:#62c8ff}.onion-legend .is-current{color:#fff}
     .onion-workbench{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:24px;margin-top:28px;align-items:stretch}
     .onion-stage{position:relative;min-height:360px;aspect-ratio:16/9;overflow:hidden;border:1px solid #4b527a;background:radial-gradient(circle at 50% 44%,#20275b,#090b18 70%);box-shadow:0 28px 70px rgba(0,0,0,.28);isolation:isolate}
     .onion-stage::after{content:"";position:absolute;inset:0;z-index:8;pointer-events:none;background:linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px);background-size:42px 42px;box-shadow:inset 0 0 80px rgba(0,0,0,.28)}
     .onion-stage-label{position:absolute;z-index:10;left:14px;top:13px;padding:6px 8px;background:rgba(5,6,8,.64);border:1px solid rgba(255,255,255,.12);font:800 8px var(--mono);letter-spacing:.13em;color:#dfe4f7}
-    .onion-layer{position:absolute;inset:0;display:grid;place-items:center;transition:opacity .22s var(--ease),visibility .22s var(--ease)}
-    .onion-layer img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}.onion-layer-prev{z-index:2;opacity:.38}.onion-layer-current{z-index:3;opacity:1}.onion-layer-next{z-index:4;opacity:.38}.onion-layer-prev img{mix-blend-mode:screen}.onion-layer-next img{mix-blend-mode:screen}.onion-layer.is-off{opacity:0!important;visibility:hidden}
-    .onion-placeholder{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:9px;text-align:center;color:#aab3d2}.onion-placeholder::before{content:"";width:74px;height:74px;border-radius:28% 52% 42% 58%;border:2px solid currentColor;box-shadow:0 0 28px currentColor;opacity:.75}.onion-placeholder span{font:900 11px var(--mono);letter-spacing:.14em}.onion-placeholder small{font:700 8px var(--mono);letter-spacing:.08em;color:#7f88aa}.onion-layer-prev .onion-placeholder{color:#52bfff;transform:translateX(-12%)}.onion-layer-current .onion-placeholder{color:#f4f5fa}.onion-layer-next .onion-placeholder{color:#ff5f73;transform:translateX(12%)}
-    .onion-controls{padding:20px;border:1px solid #3e456d;background:rgba(8,11,27,.76);display:flex;flex-direction:column;justify-content:center}.onion-toggle-row{display:grid;gap:9px}.onion-toggle{appearance:none;width:100%;display:grid;grid-template-columns:14px 1fr auto;gap:10px;align-items:center;padding:12px 13px;border:1px solid rgba(226,231,255,.15);background:#10142c;color:#cfd5eb;text-align:left;font:800 9px var(--mono);letter-spacing:.09em;text-transform:uppercase;cursor:pointer;transition:border-color .2s var(--ease),background .2s var(--ease),transform .2s var(--ease)}.onion-toggle:hover:not(:disabled),.onion-toggle:focus-visible:not(:disabled){border-color:#707aa8;background:#151a39;transform:translateY(-1px);outline:none}.onion-toggle.is-active{border-color:rgba(236,100,118,.58)}.onion-toggle.is-current{cursor:default;opacity:.78}.onion-toggle small{color:#7e87aa}.onion-dot{width:9px;height:9px;border-radius:50%;box-shadow:0 0 12px currentColor}.onion-dot.prev{color:#52bfff;background:currentColor}.onion-dot.current{color:#fff;background:currentColor}.onion-dot.next{color:#ff5f73;background:currentColor}
-    .onion-opacity-label{display:flex;justify-content:space-between;gap:18px;margin-top:24px;font:800 9px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:#cfd5eb}.onion-opacity-label output{color:#ff7b8a}.onion-range{width:100%;margin:13px 0 0;accent-color:#d42238}.onion-hint{margin:18px 0 0;color:#959dbb;font-size:13px;line-height:1.55}
-    @media(max-width:900px){.onion-demo-head,.onion-workbench{grid-template-columns:1fr}.onion-legend{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.onion-legend>span{grid-template-columns:10px 1fr;align-content:start}.onion-legend small{grid-column:2}.onion-stage{min-height:300px}.onion-controls{min-height:0}}
-    @media(max-width:620px){.onion-demo{margin-top:42px;padding-top:30px}.onion-legend{grid-template-columns:1fr}.onion-stage{min-height:230px}.onion-toggle-row{grid-template-columns:1fr}.onion-controls{padding:16px}}
-    @media(prefers-reduced-motion:reduce){.onion-layer,.onion-toggle{transition:none}}
+    .onion-layer{position:absolute;inset:0;display:grid;place-items:center;transition:opacity .12s linear}.onion-layer img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}.onion-layer-prev{z-index:2;opacity:.5}.onion-layer-current{z-index:3;opacity:.5}
+    .onion-placeholder{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:9px;text-align:center;color:#aab3d2}.onion-placeholder::before{content:"";width:74px;height:74px;border-radius:28% 52% 42% 58%;border:2px solid currentColor;box-shadow:0 0 28px currentColor;opacity:.75}.onion-placeholder span{font:900 11px var(--mono);letter-spacing:.14em}.onion-placeholder small{font:700 8px var(--mono);letter-spacing:.08em;color:#7f88aa}.onion-layer-prev .onion-placeholder{color:#52bfff;transform:translateX(-10%)}.onion-layer-current .onion-placeholder{color:#f4f5fa;transform:translateX(10%)}
+    .onion-controls{padding:22px;border:1px solid #3e456d;background:rgba(8,11,27,.76);display:flex;flex-direction:column;justify-content:center}.onion-balance{display:grid;grid-template-columns:1fr 1fr;gap:10px}.onion-balance>span{display:grid;grid-template-columns:12px 1fr;gap:8px;align-items:center;padding:12px;border:1px solid rgba(226,231,255,.13);background:#10142c;font:800 9px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#cfd5eb}.onion-balance output{grid-column:2;font-size:16px;color:#fff;letter-spacing:0}.onion-dot{width:9px;height:9px;border-radius:50%;box-shadow:0 0 12px currentColor}.onion-dot.prev{color:#52bfff;background:currentColor}.onion-dot.current{color:#fff;background:currentColor}
+    .onion-opacity-label{display:flex;justify-content:space-between;gap:18px;margin-top:28px;font:800 9px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:#cfd5eb}.onion-opacity-label output{color:#ff7b8a}.onion-range{width:100%;margin:14px 0 0;accent-color:#d42238}.onion-range-ends{display:flex;justify-content:space-between;gap:12px;margin-top:7px;color:#747d9e;font:700 7px var(--mono);letter-spacing:.08em}.onion-hint{margin:20px 0 0;color:#959dbb;font-size:13px;line-height:1.55}
+    @media(max-width:900px){.onion-demo-head,.onion-workbench{grid-template-columns:1fr}.onion-legend{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.onion-stage{min-height:300px}.onion-controls{min-height:0}}
+    @media(max-width:620px){.onion-demo{margin-top:42px;padding-top:30px}.onion-legend,.onion-balance{grid-template-columns:1fr}.onion-stage{min-height:230px}.onion-controls{padding:16px}}
+    @media(prefers-reduced-motion:reduce){.onion-layer{transition:none}}
   `;
   document.head.appendChild(style);
 
-  const range=demo.querySelector('[data-onion-opacity]');
-  const output=demo.querySelector('[data-onion-output]');
+  const range=demo.querySelector('[data-onion-balance]');
   const prevLayer=demo.querySelector('[data-onion-layer="prev"]');
-  const nextLayer=demo.querySelector('[data-onion-layer="next"]');
-  const setOpacity=()=>{
-    const value=Math.max(0,Math.min(80,Number(range?.value||38)));
-    const opacity=value/100;
-    if(prevLayer&&!prevLayer.classList.contains('is-off'))prevLayer.style.opacity=String(opacity);
-    if(nextLayer&&!nextLayer.classList.contains('is-off'))nextLayer.style.opacity=String(opacity);
-    if(output)output.value=`${value}%`;
+  const currentLayer=demo.querySelector('[data-onion-layer="current"]');
+  const prevOutput=demo.querySelector('[data-onion-prev-output]');
+  const currentOutput=demo.querySelector('[data-onion-current-output]');
+  const balanceOutput=demo.querySelector('[data-onion-balance-output]');
+
+  const setBlend=()=>{
+    const current=Math.max(0,Math.min(100,Number(range?.value||50)));
+    const previous=100-current;
+    if(prevLayer)prevLayer.style.opacity=String(previous/100);
+    if(currentLayer)currentLayer.style.opacity=String(current/100);
+    if(prevOutput)prevOutput.value=`${previous}%`;
+    if(currentOutput)currentOutput.value=`${current}%`;
+    if(balanceOutput)balanceOutput.value=`${previous} / ${current}`;
   };
 
-  demo.querySelectorAll('[data-onion-toggle]').forEach(button=>{
-    button.addEventListener('click',()=>{
-      const key=button.getAttribute('data-onion-toggle');
-      const layer=demo.querySelector(`[data-onion-layer="${key}"]`);
-      if(!layer)return;
-      const off=layer.classList.toggle('is-off');
-      button.classList.toggle('is-active',!off);
-      button.setAttribute('aria-pressed',String(!off));
-      if(!off)setOpacity();
-    });
-  });
-
-  range?.addEventListener('input',setOpacity);
-  setOpacity();
+  range?.addEventListener('input',setBlend);
+  setBlend();
 });
