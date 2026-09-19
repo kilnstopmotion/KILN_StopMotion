@@ -21,7 +21,7 @@
       s5p: "Một không gian để chụp, animate, review và tổ chức mà không làm đứt mạch sáng tạo.",
       cue: "SCROLL / ADVANCE FRAME",
       finalePre: "Xin hân hạnh giới thiệu",
-      finaleCopy: "Công cụ sản xuất stop-motion được xây quanh từng khung hình, từng take và những quyết định nhỏ khiến chuyển động trở nên có hồn.",
+      finaleCopy: "Phần mềm giúp bạn chụp, xem trước và quản lý từng khung hình một cách dễ dàng và trực quan nhất.",
       explore: "Khám phá phần mềm",
       download: "Tải xuống"
     },
@@ -46,7 +46,7 @@
       s5p: "One space to capture, animate, review and organize without breaking the creative flow.",
       cue: "SCROLL / ADVANCE FRAME",
       finalePre: "Proudly introducing",
-      finaleCopy: "Stop-motion production software shaped around every frame, every take and the small decisions that make movement feel alive.",
+      finaleCopy: "Software that helps you capture, preview and manage every frame with ease and intuitive control.",
       explore: "Explore the product",
       download: "Download"
     }
@@ -511,7 +511,7 @@
     const header = document.querySelector(".site-header.showcase-header");
     header?.setAttribute("data-intro-state", "final");
     const brand = header?.querySelector("[data-showcase-brand]");
-    if (brand) brand.textContent = "DA&A StopMotion";
+    if (brand) brand.textContent = "DA&D StopMotion";
   }
 
   function buildShowcase() {
@@ -562,7 +562,7 @@
         const progress = tl.progress();
         const label = String(1 + Math.round(progress * 143)).padStart(3, "0");
         if (frameReadout) frameReadout.textContent = label;
-        if (headerBrand) headerBrand.textContent = progress < .87 ? "FRAME / " + label : "DA&A StopMotion";
+        if (headerBrand) headerBrand.textContent = progress < .87 ? "FRAME / " + label : "DA&D StopMotion";
         header?.setAttribute("data-intro-state", progress < .87 ? "story" : "final");
         const interactive = progress >= .97;
         finale.classList.toggle("is-interactive", interactive);

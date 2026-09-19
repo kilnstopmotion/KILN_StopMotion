@@ -306,7 +306,7 @@
 
     if (visual && center && tag) {
       const setStep = i => {
-        center.innerHTML = `DA&amp;A<br><em>${names[i]}</em>`;
+        center.innerHTML = `DA&amp;D<br><em>${names[i]}</em>`;
         tag.textContent = `${String(i + 1).padStart(2,'0')} / 05 · FRAME BY FRAME`;
         steps.forEach((step, index) => step.classList.toggle('is-current', index === i));
       };

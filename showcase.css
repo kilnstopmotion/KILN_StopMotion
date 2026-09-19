@@ -1,4 +1,4 @@
-/* DA&A homepage intro showcase — isolated to index.html only */
+/* DA&D homepage intro showcase — isolated to index.html only */
 .showcase-stage{perspective:1200px}
 .showcase-copy{backface-visibility:hidden;transform-style:preserve-3d}
 .showcase-enhanced .showcase-topline{color:#b3badb;border-color:rgba(233,237,255,.22)}

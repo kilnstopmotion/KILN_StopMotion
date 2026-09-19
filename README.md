@@ -1,6 +1,6 @@
-# DA&A StopMotion Website
+# DA&D StopMotion Website
 
-Official GitHub Pages site for **DA&A StopMotion**, developed by **KILN** (formerly KILN Motion).
+Official GitHub Pages site for **DA&D StopMotion**, developed by **KILN** (formerly KILN Motion).
 
 ## Pages
 - `index.html` — homepage, latest release and version history
