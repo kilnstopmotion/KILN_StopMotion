@@ -148,3 +148,51 @@
   #download .download-trigger-fill{transition:none}
   #download .download-trigger.is-firing .download-trigger-shell,#download .download-trigger.is-firing .download-trigger-flash,#download .download-trigger.is-firing .arrow{animation:none!important}
 }
+
+/* One compact download composition; the film remains behind the copy's visual plane. */
+#download{padding:46px 0 30px;scroll-margin-top:76px}
+#download>.film-strip{position:absolute;height:16px;opacity:.18}
+#download .download-studio{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:48px;padding:32px;background:linear-gradient(110deg,rgba(255,255,255,.035),rgba(16,28,48,.18));border:1px solid rgba(248,245,237,.16);position:relative;overflow:hidden}
+#download .download-copy{position:relative;z-index:2;min-width:0}
+#download .section-head{display:block;margin-bottom:24px}
+#download .section-head h2{font-size:clamp(32px,3.5vw,50px);line-height:1.02;max-width:520px;margin:14px 0 16px;letter-spacing:-.035em}
+#download .section-copy{font-size:14px;line-height:1.65;max-width:440px;color:#bbbcbf}
+#download .release-card{border:0;border-top:1px solid rgba(255,255,255,.16);background:transparent;overflow:visible}
+#download .release-card:hover{box-shadow:none;background:transparent}
+#download .release-card::after{display:none}
+#download .release-card-surface{display:flex;flex-direction:column;gap:22px;padding:22px 0 0;transform:none!important;will-change:auto}
+#download .release-title{gap:10px}
+#download .release-title h3{font-family:var(--sans);font-size:19px;line-height:1.35;letter-spacing:-.025em}
+#download .release-meta{font-size:10px;line-height:1.7;margin-top:10px}
+#download .release-note{font-size:13px;line-height:1.65;margin-top:12px;color:#aaaeb7}
+#download .download-actions{align-self:flex-start;width:100%}
+#download .download-trigger{background:var(--orange);border-color:var(--orange);min-height:56px;padding:16px 30px;color:#fff;min-width:210px;font-size:14px;box-shadow:0 8px 28px #e65d221c;will-change:auto}
+#download .download-trigger:hover:not(.btn-disabled){background:#ee6c32;border-color:#ffac80;box-shadow:0 8px 30px #e65d222d}
+#download .download-trigger-frame{display:none}
+#download .download-trigger.btn-disabled{background:transparent}
+#download .download-cinema{margin:0;min-width:0;position:relative;z-index:2}
+#download .download-cinema-top,#download .download-cinema figcaption{display:flex;justify-content:space-between;gap:12px;font:9px var(--mono);letter-spacing:.1em;color:#9ea7b7}
+#download .download-cinema-top{padding:0 0 14px}
+#download .download-cinema figcaption{padding-top:14px;font-size:8px}
+#download .download-video-stage{position:relative;aspect-ratio:4/3;overflow:hidden;background:#080b11;border:1px solid #ffffff20;border-radius:3px;box-shadow:0 22px 70px #0005}
+#download .download-poster{position:absolute;width:155%;max-width:none;height:auto;left:-3%;top:-27%;opacity:.8}
+#download .download-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s}
+#download .download-cinema.has-video .download-video{opacity:1}
+#download .download-video-shade{position:absolute;inset:0;background:linear-gradient(180deg,#080b1110 35%,#080b11e8 100%);pointer-events:none}
+#download .download-viewfinder{position:absolute;inset:16px;border:1px solid #ffffff20;pointer-events:none;clip-path:polygon(0 0,20px 0,20px 1px,1px 1px,1px 20px,0 20px,0 0,100% 0,100% 20px,calc(100% - 1px) 20px,calc(100% - 1px) 1px,calc(100% - 20px) 1px,calc(100% - 20px) 0,100% 0,100% 100%,calc(100% - 20px) 100%,calc(100% - 20px) calc(100% - 1px),calc(100% - 1px) calc(100% - 1px),calc(100% - 1px) calc(100% - 20px),100% calc(100% - 20px),100% 100%,0 100%,0 calc(100% - 20px),1px calc(100% - 20px),1px calc(100% - 1px),20px calc(100% - 1px),20px 100%,0 100%)}
+#download .download-video-caption{position:absolute;bottom:25px;left:26px;right:20px;pointer-events:none}
+#download .download-video-caption>span{font:8px var(--mono);letter-spacing:.14em;color:#b7bcc8}
+#download .download-video-caption strong{display:block;font:normal clamp(25px,2.7vw,39px)/1.04 var(--serif);letter-spacing:-.02em;margin-top:10px;color:#f8f5ed}
+#download .download-video-caption em{color:#f39467}
+#download .download-video-toggle{position:absolute;right:16px;top:16px;z-index:2;border:1px solid #ffffff40;border-radius:30px;background:#080b11bb;color:#fff;padding:9px 14px;font-size:12px;cursor:pointer}
+#download .download-archive{margin-top:18px;border-bottom:1px solid #ffffff15}
+#download .download-archive summary{display:flex;justify-content:space-between;align-items:center;cursor:pointer;padding:12px 0 16px;color:#b5b8c2;font-size:12px;list-style:none}
+#download .download-archive summary::-webkit-details-marker{display:none}
+#download .download-archive summary>span:last-child{font-size:20px;transition:transform .2s}
+#download .download-archive[open] summary>span:last-child{transform:rotate(45deg)}
+#download .archive-wrap{margin:0 0 20px}
+#download .archive-wrap>.section-copy{max-width:none;margin-bottom:16px}
+#download .download-video-toggle:focus-visible,#download summary:focus-visible{outline:2px solid #ff995e;outline-offset:4px}
+@media(max-width:980px){#download .download-studio{gap:28px;padding:26px;grid-template-columns:1.05fr .95fr}#download .section-head h2{font-size:34px}#download .release-title h3{font-size:17px}}
+@media(max-width:640px){#download{padding:24px 0 18px;scroll-margin-top:66px}#download .download-studio{grid-template-columns:1fr;gap:22px;padding:22px}#download .section-head{margin-bottom:16px}#download .section-head h2{font-size:32px;margin:10px 0 12px}#download .section-copy{font-size:12px;line-height:1.5}#download .release-card-surface{padding-top:16px;gap:16px}#download .release-title h3{font-size:16px}#download .release-meta{font-size:9px;margin-top:7px}#download .release-note{font-size:11px;margin-top:7px}#download .download-trigger{min-height:48px;padding:12px 20px}#download .download-video-stage{aspect-ratio:2.2/1}#download .download-poster{width:125%;top:-50%;left:0}#download .download-cinema-top{display:none}#download .download-video-caption{left:16px;bottom:14px}#download .download-video-caption>span{display:none}#download .download-video-caption strong{font-size:25px;margin:0}#download .download-cinema figcaption{padding-top:9px;font-size:7px;letter-spacing:.02em}#download .download-archive{margin-top:8px}}
+@media(prefers-reduced-motion:reduce){#download .download-video{transition:none}}

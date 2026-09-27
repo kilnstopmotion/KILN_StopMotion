@@ -8,13 +8,13 @@
   <title>DA&D StopMotion — by KILN</title>
   <link rel="icon" type="image/webp" href="assets/images/app/logo.webp" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="download-experience.css" />
+  <link rel="stylesheet" href="download-experience.css?v=20260927-cinema" />
   <link rel="stylesheet" href="showcase.css?v=20260927-blue-intro" />
   <link rel="stylesheet" href="motion.css?v=20260916-film" />
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
   <script src="app.js" defer></script>
-  <script src="download-experience.js" defer></script>
+  <script src="download-experience.js?v=20260927-cinema" defer></script>
   <script src="showcase.js?v=20260927-blue-intro" defer></script>
   <script src="js/motion/motion-core.js" defer></script>
   <script src="js/motion/motion-home.js?v=20260916-film" defer></script>
@@ -90,19 +90,35 @@
     <section class="section dark-section" id="download">
       <div class="film-strip film-strip-top" aria-hidden="true"></div>
       <div class="container">
-        <div class="section-head motion-reveal">
-          <div><span class="section-kicker" data-i18n="releaseEyebrow">Bản phát hành mới nhất</span><h2 data-i18n="releaseTitle">Tải DA&amp;D StopMotion bản Beta</h2></div>
-          <p class="section-copy" data-i18n="releaseCopy">Tải bản Beta từ Google Drive để trải nghiệm DA&D StopMotion.</p>
-        </div>
-        <div class="release-card motion-release" data-release-latest></div>
-
-        <div class="archive-wrap motion-reveal">
-          <div class="archive-head">
-            <div><span class="section-kicker">FRAME ARCHIVE</span><h3 data-i18n="previous">Các phiên bản trước</h3></div>
-            <p class="section-copy" data-i18n="oldWarn">Các bản cũ vẫn được giữ để tương thích. Với đa số người dùng, nên dùng bản stable mới nhất.</p>
+        <div class="download-studio">
+          <div class="download-copy">
+            <div class="section-head">
+              <div><span class="section-kicker" data-i18n="releaseEyebrow">Bản phát hành mới nhất</span><h2 data-i18n="releaseTitle">Tải DA&amp;D StopMotion bản Beta</h2></div>
+              <p class="section-copy" data-i18n="releaseCopy">Tải bản Beta từ Google Drive để trải nghiệm DA&amp;D StopMotion.</p>
+            </div>
+            <div class="release-card" data-release-latest></div>
           </div>
-          <div class="release-list" data-release-list></div>
+          <figure class="download-cinema" data-download-cinema>
+            <div class="download-cinema-top"><span>DA&amp;D / FRAME BY FRAME</span><span>01 — ∞</span></div>
+            <div class="download-video-stage">
+              <img class="download-poster" src="assets/images/app/hero-main.webp.webp" alt="Một cảnh stop-motion trong giao diện DA&amp;D" loading="lazy" data-download-poster />
+              <!-- Add a local MP4/WebM URL to data-video-src; keep the poster as the loading/error fallback. -->
+              <video class="download-video" data-video-src="" muted loop playsinline preload="none" aria-label="Stop-motion preview"></video>
+              <div class="download-video-shade" aria-hidden="true"></div>
+              <span class="download-viewfinder" aria-hidden="true"></span>
+              <div class="download-video-caption"><span data-download-copy="preview">GÓC NHÌN TỪ MỘT KHUNG HÌNH</span><strong>Small things.<br><em>Moving stories.</em></strong></div>
+              <button class="download-video-toggle" type="button" hidden data-download-copy="play">Phát video</button>
+            </div>
+            <figcaption><span data-download-copy="still">Ảnh xem trước</span><span>CAPTURE / ANIMATE / CREATE</span></figcaption>
+          </figure>
         </div>
+        <details class="download-archive">
+          <summary><span data-i18n="previous">Các phiên bản trước</span><span aria-hidden="true">+</span></summary>
+          <div class="archive-wrap">
+            <p class="section-copy" data-i18n="oldWarn">Các bản cũ vẫn được giữ để tương thích. Phiên bản hiện tại là bản Beta.</p>
+            <div class="release-list" data-release-list></div>
+          </div>
+        </details>
       </div>
     </section>
 

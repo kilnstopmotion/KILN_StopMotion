@@ -94,11 +94,58 @@
     mover?.x(0);mover?.y(0);
   }
 
+  function initCinema(section){
+    const cinema=section.querySelector('[data-download-cinema]');
+    if(!cinema)return;
+    const video=cinema.querySelector('video');
+    const toggle=cinema.querySelector('.download-video-toggle');
+    const caption=cinema.querySelector('figcaption [data-download-copy]');
+    const words={
+      vi:{preview:'GÓC NHÌN TỪ MỘT KHUNG HÌNH',still:'Ảnh xem trước',film:'STOP-MOTION / VIDEO',play:'Phát video',pause:'Tạm dừng',poster:'Một cảnh stop-motion trong giao diện DA&D'},
+      en:{preview:'A WORLD INSIDE A FRAME',still:'Preview image',film:'STOP-MOTION / VIDEO',play:'Play video',pause:'Pause video',poster:'A stop-motion scene in the DA&D workspace'}
+    };
+    let visible=false,loaded=false,userPaused=false,failed=false;
+    const source=video.dataset.videoSrc.trim();
+    function translateCinema(){
+      const lang=document.documentElement.lang==='en'?'en':'vi';
+      cinema.querySelectorAll('[data-download-copy]').forEach(el=>{
+        const key=el===toggle?(video.paused?'play':'pause'):el===caption?(cinema.classList.contains('has-video')?'film':'still'):el.dataset.downloadCopy;
+        el.textContent=words[lang][key];
+      });
+      cinema.querySelector('[data-download-poster]').alt=words[lang].poster;
+    }
+    translateCinema();
+    document.querySelectorAll('[data-lang]').forEach(btn=>btn.addEventListener('click',()=>requestAnimationFrame(translateCinema)));
+    requestAnimationFrame(translateCinema);
+    if(!source)return; // Keep the poster without an empty media request or pretend play control.
+    toggle.hidden=false;
+    function load(){if(!loaded){loaded=true;video.src=source;video.load();}}
+    function sync(){
+      if(!visible||document.hidden||reduce.matches||userPaused||failed){video.pause();return;}
+      load();
+      video.play().catch(translateCinema);
+    }
+    video.addEventListener('playing',()=>{cinema.classList.add('has-video');translateCinema();});
+    video.addEventListener('pause',translateCinema);
+    video.addEventListener('error',()=>{failed=true;cinema.classList.remove('has-video');toggle.hidden=true;translateCinema();});
+    toggle.addEventListener('click',()=>{
+      if(video.paused){userPaused=false;load();video.play().catch(translateCinema);}
+      else{userPaused=true;video.pause();}
+    });
+    if('IntersectionObserver' in window){
+      const observer=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync();},{threshold:.15});
+      observer.observe(cinema);
+    }
+    reduce.addEventListener('change',sync);
+    document.addEventListener('visibilitychange',sync);
+  }
+
   function init(){
     const section=document.querySelector('#download');
     const latest=section?.querySelector('[data-release-latest]');
     if(!section||!latest)return;
 
+    initCinema(section);
     decorateRelease(section,latest);
     const observer=new MutationObserver(()=>decorateRelease(section,latest));
     observer.observe(section,{childList:true,subtree:true});
