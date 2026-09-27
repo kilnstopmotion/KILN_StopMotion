@@ -9,13 +9,13 @@
   <link rel="icon" type="image/webp" href="assets/images/app/logo.webp" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="download-experience.css" />
-  <link rel="stylesheet" href="showcase.css" />
+  <link rel="stylesheet" href="showcase.css?v=20260927-blue-intro" />
   <link rel="stylesheet" href="motion.css?v=20260916-film" />
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
   <script src="app.js" defer></script>
   <script src="download-experience.js" defer></script>
-  <script src="showcase.js" defer></script>
+  <script src="showcase.js?v=20260927-blue-intro" defer></script>
   <script src="js/motion/motion-core.js" defer></script>
   <script src="js/motion/motion-home.js?v=20260916-film" defer></script>
 </head>
@@ -24,9 +24,9 @@
   <div class="scroll-progress" aria-hidden="true"><span></span></div>
   <div class="cursor-frame" aria-hidden="true"><span>FRAME</span><b>001</b></div>
 
-  <header class="site-header showcase-header" data-intro-state="story">
+  <header class="site-header showcase-header" data-intro-state="finale">
     <div class="container nav">
-      <a class="brand magnetic" href="index.html" style="display:inline-flex;align-items:center;gap:10px"><img src="assets/images/app/logo.webp" alt="" aria-hidden="true" style="width:34px;height:34px;object-fit:contain;border-radius:8px;display:block"><span data-showcase-brand>FRAME / 001</span></a>
+      <a class="brand magnetic" href="index.html" style="display:inline-flex;align-items:center;gap:10px"><img src="assets/images/app/logo.webp" alt="" aria-hidden="true" style="width:34px;height:34px;object-fit:contain;border-radius:8px;display:block"><span data-showcase-brand>DA&amp;D StopMotion</span></a>
       <nav class="nav-links" aria-label="Main navigation">
         <a href="product.html" data-i18n="navProduct">Sản phẩm</a>
         <a href="developer.html" data-i18n="navDeveloper">Nhà phát triển</a>
@@ -41,53 +41,14 @@
       <div class="showcase-stage">
         <div class="showcase-topline" aria-hidden="true">
           <span>KILN / FRAME-BY-FRAME STUDY</span>
-          <span>SCROLL-DRIVEN INTRO</span>
+          <span>A LITTLE MOTION. A NEW WORLD.</span>
           <span class="showcase-frame-readout">FRAME <b data-showcase-frame>001</b></span>
-        </div>
-
-        <div class="showcase-copy-stack">
-          <article class="showcase-copy" data-scene="0">
-            <span class="showcase-kicker" data-showcase-key="s0k">FRAME / 001</span>
-            <h1 data-showcase-key="s0h">Stop-motion bắt đầu bằng một frame.</h1>
-            <p data-showcase-key="s0p">Nhưng một cảnh quay không dừng ở đó.</p>
-            <div class="showcase-scroll-cue" data-showcase-key="cue">SCROLL / ADVANCE FRAME</div>
-          </article>
-
-          <article class="showcase-copy" data-scene="1">
-            <span class="showcase-kicker" data-showcase-key="s1k">FRAME / FRAME / FRAME</span>
-            <h2 data-showcase-key="s1h">Rồi thêm một frame. Và thêm một quyết định.</h2>
-            <p data-showcase-key="s1p">Chụp. Kiểm tra. Dịch chuyển. Chụp lại. Mỗi thao tác nhỏ đều cần đúng nhịp.</p>
-          </article>
-
-          <article class="showcase-copy" data-scene="2">
-            <span class="showcase-kicker" data-showcase-key="s2k">TIMING / CONTINUITY</span>
-            <h2 data-showcase-key="s2h">Chỉ lệch một nhịp, chuyển động đã khác.</h2>
-            <p data-showcase-key="s2p">Timing, onion skin, playback và continuity phải luôn ở đúng chỗ khi người làm cần tới.</p>
-          </article>
-
-          <article class="showcase-copy" data-scene="3">
-            <span class="showcase-kicker" data-showcase-key="s3k">PRODUCTION / NOISE</span>
-            <h2 data-showcase-key="s3h">Frame. Take. Ghi chú. Phiên bản.</h2>
-            <p data-showcase-key="s3p">Càng đi xa, càng dễ để những chi tiết của cảnh quay rơi vào nhiều nơi khác nhau.</p>
-          </article>
-
-          <article class="showcase-copy" data-scene="4">
-            <span class="showcase-kicker" data-showcase-key="s4k">THE FRICTION</span>
-            <h2 data-showcase-key="s4h">Khi công cụ làm bạn rời khỏi chuyển động, nó trở thành một phần của vấn đề.</h2>
-            <p data-showcase-key="s4p">Stop-motion vốn đã đủ tỉ mỉ. Phần mềm không nên khiến quá trình đó nặng hơn.</p>
-          </article>
-
-          <article class="showcase-copy" data-scene="5">
-            <span class="showcase-kicker" data-showcase-key="s5k">THE TURN</span>
-            <h2 data-showcase-key="s5h">Vậy nếu mọi thứ cùng đi theo nhịp frame-by-frame?</h2>
-            <p data-showcase-key="s5p">Một không gian để chụp, animate, review và tổ chức mà không làm đứt mạch sáng tạo.</p>
-          </article>
         </div>
 
         <div class="showcase-finale">
           <p class="showcase-finale-pre" data-showcase-key="finalePre">Xin hân hạnh giới thiệu</p>
           <div class="showcase-logo-wrap"><img src="assets/images/app/logo.webp" alt="DA&D StopMotion logo" /></div>
-          <h2>DA&amp;D <span>StopMotion</span></h2>
+          <h1><span class="intro-title-line">DA&amp;D</span><span class="intro-title-line showcase-em">StopMotion</span></h1>
           <p class="showcase-positioning" data-showcase-key="finaleCopy">Phần mềm giúp bạn chụp, xem trước và quản lý từng khung hình một cách dễ dàng và trực quan nhất.</p>
           <p class="showcase-philosophy">Keep your Identity. Liberate your Nature.</p>
           <div class="showcase-final-actions">
@@ -96,7 +57,7 @@
           </div>
         </div>
 
-        <div class="showcase-flash" aria-hidden="true"></div>
+        <div class="intro-color-field" aria-hidden="true"><div class="intro-ribbon"></div><div class="intro-ribbon intro-ribbon-secondary"></div></div><div class="intro-halo" aria-hidden="true"></div>
       </div>
     </section>
 
