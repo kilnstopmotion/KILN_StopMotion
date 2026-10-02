@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="download-experience.css?v=20260927-cinema" />
   <link rel="stylesheet" href="showcase.css?v=20260927-blue-intro" />
   <link rel="stylesheet" href="motion.css?v=20260916-film" />
+  <link rel="stylesheet" href="reviews.css?v=20261002" />
+  <script src="reviews.js?v=20261002" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
   <script src="app.js" defer></script>
@@ -85,6 +87,26 @@
           <ol class="sequence-steps"><li><span>01 / CAPTURE</span><h3 data-motion-key="capture">Chụp</h3><p data-motion-key="captureCopy">Chụp frame và giữ phản hồi production ngay trong tầm mắt.</p></li><li><span>02 / ANIMATE</span><h3>Animate</h3><p data-motion-key="animateCopy">Kiểm soát timing và spacing từng frame.</p></li><li><span>03 / REVIEW</span><h3>Review</h3><p data-motion-key="reviewCopy">Xem lại chuyển động và continuity.</p></li><li><span>04 / ORGANIZE</span><h3 data-motion-key="organize">Tổ chức</h3><p data-motion-key="organizeCopy">Giữ shot, take và file nguồn rõ ràng.</p></li><li><span>05 / EXPORT</span><h3>Export</h3><p data-motion-key="exportCopy">Chuẩn bị material hoàn thiện cho hậu kỳ.</p></li></ol>
         </div><a class="cinema-link" href="product.html#workflow" data-motion-key="workflowLink">Xem toàn bộ workflow →</a>
       </div>
+    </section>
+
+    <section class="reviews-section" id="reviews" aria-labelledby="reviews-title">
+      <div class="container reviews-heading">
+        <span class="reviews-kicker">COMMUNITY / FRAME BY FRAME</span>
+        <h2 id="reviews-title" data-review-copy="title">Một công cụ.<br><em>Nhiều góc nhìn.</em></h2>
+        <p data-review-copy="lead">Những lời chia sẻ từ người làm chuyển động.</p>
+        <span class="reviews-sample" data-review-copy="sample">BẢN MẪU · 5 hồ sơ và nhận xét minh họa, chưa phải đánh giá thực tế.</span>
+      </div>
+      <div class="reviews-carousel" role="region" aria-roledescription="carousel" aria-label="Review của người dùng">
+        <div class="reviews-stage" tabindex="0" aria-label="Dùng phím mũi tên trái hoặc phải để chọn review"></div>
+        <div class="reviews-controls">
+          <button class="reviews-arrow" type="button" data-review-prev aria-label="Review trước">←</button>
+          <div class="reviews-pagination" aria-label="Chọn review"></div>
+          <button class="reviews-arrow" type="button" data-review-next aria-label="Review tiếp theo">→</button>
+        </div>
+        <p class="reviews-hint" data-review-copy="hint">Kéo hoặc vuốt để khám phá · Chọn một góc nhìn</p>
+        <p class="reviews-status" aria-live="polite" aria-atomic="true"></p>
+      </div>
+      <noscript><p class="container">Bật JavaScript để xem 5 review mẫu và sử dụng thao tác vuốt.</p></noscript>
     </section>
 
     <section class="section dark-section" id="download">
