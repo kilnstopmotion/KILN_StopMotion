@@ -29,6 +29,7 @@ Object.assign(I18N.en, {
   donateCheck: 'Please check the recipient name and account number in your banking app before confirming.'
 });
 document.addEventListener('DOMContentLoaded', () => {
+  initSupportCelebration();
   const button = document.querySelector('.copy-account');
   if (!button) return;
   const status = document.querySelector('.copy-status');
@@ -42,3 +43,67 @@ document.addEventListener('DOMContentLoaded', () => {
     status.textContent = translateSite(status.dataset.i18n);
   });
 });
+
+// Keep the real link usable without JavaScript and for modified/new-tab clicks.
+function initSupportCelebration() {
+  const links = document.querySelectorAll('a.support-cta');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let overlay = null;
+  let navigationTimer = null;
+  let activeLink = null;
+
+  function resetCelebration() {
+    window.clearTimeout(navigationTimer);
+    navigationTimer = null;
+    overlay?.remove();
+    overlay = null;
+    activeLink?.removeAttribute('aria-busy');
+    activeLink = null;
+  }
+
+  links.forEach(link => link.addEventListener('click', event => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || link.target === '_blank' || link.hasAttribute('download')) return;
+    if (activeLink) { event.preventDefault(); return; }
+    if (reducedMotion.matches || !Element.prototype.animate) return;
+    event.preventDefault();
+    activeLink = link;
+    link.setAttribute('aria-busy', 'true');
+    const destination = link.href;
+    const navigate = () => { resetCelebration(); window.location.assign(destination); };
+    // Navigation never depends on animation completion or third-party libraries.
+    navigationTimer = window.setTimeout(navigate, 1000);
+
+    try {
+      overlay = document.createElement('div');
+      overlay.className = 'support-celebration';
+      overlay.setAttribute('aria-hidden', 'true');
+      overlay.innerHTML = '<div class="support-celebration-copy"><strong>THANK YOU!</strong><span>You keep KILN moving.</span></div>';
+      document.body.appendChild(overlay);
+      const colors = ['#ffcc66', '#ff69bf', '#a78bff', '#67dcff', '#71f0b6', '#ffffff'];
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      for (let i = 0; i < 90; i++) {
+        const piece = document.createElement('i');
+        piece.className = 'support-confetti';
+        piece.style.backgroundColor = colors[i % colors.length];
+        overlay.appendChild(piece);
+        const fromLeft = i % 2 === 0;
+        const originX = width * (fromLeft ? .08 : .92);
+        const endX = width * (fromLeft ? .1 + Math.random() * .85 : .05 + Math.random() * .85);
+        const peakY = height * (Math.random() * .6 - .12);
+        const spin = (Math.random() - .5) * 1000;
+        piece.animate([
+          { transform: `translate3d(${originX}px,${height * .9}px,0) rotate(0deg)`, opacity: 0 },
+          { opacity: 1, offset: .08 },
+          { transform: `translate3d(${endX}px,${peakY}px,0) rotate(${spin * .55}deg)`, opacity: 1, offset: .6 },
+          { transform: `translate3d(${endX + (fromLeft ? 40 : -40)}px,${peakY + height * .25}px,0) rotate(${spin}deg)`, opacity: 0 }
+        ], { duration: 920, delay: Math.random() * 60, easing: 'cubic-bezier(.15,.6,.35,1)', fill: 'both' });
+      }
+    } catch (_) {
+      navigate();
+    }
+  }));
+  // A restored history entry must not retain the overlay or a pending redirect.
+  window.addEventListener('pagehide', resetCelebration);
+  window.addEventListener('pageshow', resetCelebration);
+}
