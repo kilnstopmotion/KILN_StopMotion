@@ -1,11 +1,11 @@
 Object.assign(I18N.vi, {
   downloadTagline:'Câu chuyện của bạn. Từng khung hình.',
-  downloadAction:'Tải DAAD StopMotion', downloadSource:'Tải xuống qua Google Drive',
+  downloadAction:'Tải phần mềm', downloadSource:'Tải xuống qua Google Drive',
   downloadDirect:'Tải xuống cho Windows', downloadPlay:'Phát video nền', downloadPause:'Tạm dừng video nền'
 });
 Object.assign(I18N.en, {
   downloadTagline:'Your story. One frame at a time.',
-  downloadAction:'Download DAAD StopMotion', downloadSource:'Download via Google Drive',
+  downloadAction:'Download software', downloadSource:'Download via Google Drive',
   downloadDirect:'Download for Windows', downloadPlay:'Play background video', downloadPause:'Pause background video'
 });
 
