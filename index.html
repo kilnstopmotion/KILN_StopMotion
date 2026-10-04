@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="vi">
 <head>
+  <script>if(location.hash === "#download") location.replace("download.html" + location.search);</script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#f2efe7" />
@@ -8,15 +9,13 @@
   <title>DA&D StopMotion — by KILN</title>
   <link rel="icon" type="image/webp" href="assets/images/app/logo.webp" />
   <link rel="stylesheet" href="styles.css?v=20261004-support" />
-  <link rel="stylesheet" href="download-experience.css?v=20260927-cinema" />
   <link rel="stylesheet" href="showcase.css?v=20260927-blue-intro" />
   <link rel="stylesheet" href="motion.css?v=20260916-film" />
   <link rel="stylesheet" href="reviews.css?v=20261002" />
   <script src="reviews.js?v=20261002" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
-  <script src="app.js?v=20261004-support" defer></script>
-  <script src="download-experience.js?v=20260927-cinema" defer></script>
+  <script src="app.js?v=20261005-download" defer></script>
   <script src="showcase.js?v=20260927-blue-intro" defer></script>
   <script src="js/motion/motion-core.js" defer></script>
   <script src="js/motion/motion-home.js?v=20260916-film" defer></script>
@@ -35,7 +34,7 @@
         <a href="product.html" data-i18n="navProduct">Sản phẩm</a>
         <a href="developer.html" data-i18n="navDeveloper">Nhà phát triển</a>
         <div class="lang-switch" aria-label="Language"><button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button></div>
-        <a class="nav-cta magnetic" href="#download" data-download-scroll><span data-i18n="navDownload">Tải xuống</span><span class="arrow">↓</span></a>
+        <a class="nav-cta magnetic" href="download.html"><span data-i18n="navDownload">Tải xuống</span><span class="arrow">↓</span></a>
       </nav>
     </div>
   </header>
@@ -57,7 +56,7 @@
           <p class="showcase-philosophy">Keep your Identity. Liberate your Nature.</p>
           <div class="showcase-final-actions">
             <a class="btn btn-primary magnetic" href="product.html"><span data-showcase-key="explore">Khám phá phần mềm</span><span class="arrow">→</span></a>
-            <a class="btn btn-secondary magnetic" href="#download" data-download-scroll><span data-showcase-key="download">Tải xuống</span><span class="arrow">↓</span></a>
+            <a class="btn btn-secondary magnetic" href="download.html"><span data-showcase-key="download">Tải xuống</span><span class="arrow">↓</span></a>
           </div>
         </div>
 
@@ -111,42 +110,7 @@
       <noscript><p class="container">Bật JavaScript để xem 5 review mẫu và sử dụng thao tác vuốt.</p></noscript>
     </section>
 
-    <section class="section dark-section" id="download">
-      <div class="film-strip film-strip-top" aria-hidden="true"></div>
-      <div class="container">
-        <div class="download-studio">
-          <div class="download-copy">
-            <div class="section-head">
-              <div><span class="section-kicker" data-i18n="releaseEyebrow">Bản phát hành mới nhất</span><h2 data-i18n="releaseTitle">Tải DA&amp;D StopMotion bản Beta</h2></div>
-              <p class="section-copy" data-i18n="releaseCopy">Tải bản Beta từ Google Drive để trải nghiệm DA&amp;D StopMotion.</p>
-            </div>
-            <div class="release-card" data-release-latest></div>
-          </div>
-          <figure class="download-cinema" data-download-cinema>
-            <div class="download-cinema-top"><span>DA&amp;D / FRAME BY FRAME</span><span>01 — ∞</span></div>
-            <div class="download-video-stage">
-              <img class="download-poster" src="assets/images/app/hero-main.webp.webp" alt="Một cảnh stop-motion trong giao diện DA&amp;D" loading="lazy" data-download-poster />
-              <!-- Add a local MP4/WebM URL to data-video-src; keep the poster as the loading/error fallback. -->
-              <video class="download-video" data-video-src="" muted loop playsinline preload="none" aria-label="Stop-motion preview"></video>
-              <div class="download-video-shade" aria-hidden="true"></div>
-              <span class="download-viewfinder" aria-hidden="true"></span>
-              <div class="download-video-caption"><span data-download-copy="preview">GÓC NHÌN TỪ MỘT KHUNG HÌNH</span><strong>Small things.<br><em>Moving stories.</em></strong></div>
-              <button class="download-video-toggle" type="button" hidden data-download-copy="play">Phát video</button>
-            </div>
-            <figcaption><span data-download-copy="still">Ảnh xem trước</span><span>CAPTURE / ANIMATE / CREATE</span></figcaption>
-          </figure>
-        </div>
-        <details class="download-archive">
-          <summary><span data-i18n="previous">Các phiên bản trước</span><span aria-hidden="true">+</span></summary>
-          <div class="archive-wrap">
-            <p class="section-copy" data-i18n="oldWarn">Các bản cũ vẫn được giữ để tương thích. Phiên bản hiện tại là bản Beta.</p>
-            <div class="release-list" data-release-list></div>
-          </div>
-        </details>
-      </div>
-    </section>
-
-    <section class="section kiln-section">
+<section class="section kiln-section">
       <div class="container story-grid">
         <div class="motion-reveal">
           <span class="eyebrow no-line">DEVELOPED BY</span>

@@ -100,7 +100,6 @@ function ensureFeaturedMainNav(){
 
 function initNavigation(){
   document.querySelectorAll("[data-lang]").forEach(btn=>btn.addEventListener("click",()=>{lang=btn.dataset.lang;localStorage.setItem("daa-lang",lang);applyI18n();}));
-  document.querySelectorAll("[data-download-scroll]").forEach(a=>a.addEventListener("click",e=>{const target=document.querySelector("#download");if(target){e.preventDefault();target.scrollIntoView({behavior:reduceMotion.matches?"auto":"smooth"});}}));
 }
 
 function initPointer(){

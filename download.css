@@ -1,0 +1,45 @@
+body[data-page="download"]{background:#0b1220;color:#fff}
+body[data-page="download"]::before{display:none}
+[data-page="download"] .site-header{position:relative;background:#101827;border-bottom:1px solid #ffffff12;color:#fff;backdrop-filter:none}
+[data-page="download"] .brand{font-family:var(--sans);font-size:19px;font-weight:750;letter-spacing:-.04em}
+[data-page="download"] .nav-links>a{color:#dce3ed}
+[data-page="download"] .nav-cta{background:#263b58;color:#fff;border-color:#ffffff20}
+[data-page="download"] .lang-switch{border-color:#ffffff30}
+[data-page="download"] .lang-switch button{color:#cad4e2}
+[data-page="download"] .lang-switch button.active{background:#e5ecf7;color:#111c2d}
+.download-hero{position:relative;isolation:isolate;min-height:680px;min-height:calc(100svh - 84px);display:grid;place-items:center;overflow:hidden;text-align:center;padding:100px 24px 130px}
+.download-backdrop{position:absolute;inset:0;z-index:-2;overflow:hidden;background:#18283e}
+.download-still{position:absolute;width:190%;height:190%;max-width:none;left:-30%;top:-50%;object-fit:cover;object-position:44% 50%}
+.download-film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s}
+.download-backdrop.has-video .download-film{opacity:1}
+.download-hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(6,18,35,.50),rgba(7,19,39,.34) 45%,rgba(5,14,28,.86)),linear-gradient(90deg,rgba(9,23,42,.25),rgba(9,23,42,.08))}
+.download-content{width:min(100%,1080px);text-shadow:0 2px 25px #0005}
+.download-eyebrow{margin:0 0 24px;font-size:11px;font-weight:650;letter-spacing:.27em;color:#d6e2f1}
+.download-content h1{font-family:var(--sans);font-size:clamp(45px,6.5vw,92px);font-weight:800;line-height:1.05;letter-spacing:-.055em;margin:0;text-wrap:balance}
+.download-tagline{font-size:clamp(17px,2vw,23px);line-height:1.5;color:#e0e8f3;margin:22px 0 38px}
+.download-primary{display:inline-flex;align-items:center;justify-content:center;gap:13px;max-width:100%;min-height:66px;padding:16px 34px;border-radius:9px;background:linear-gradient(105deg,#176ddd,#3455da);box-shadow:0 9px 32px #071d6555,inset 0 1px #ffffff35;color:#fff;font-size:clamp(18px,2vw,23px);font-weight:700;text-decoration:none;text-shadow:none;transition:background .2s,box-shadow .2s,transform .2s}
+.download-primary svg{width:25px;height:25px;flex:none}
+.download-primary:hover{background:linear-gradient(105deg,#125fc9,#2846c1);box-shadow:0 12px 40px #071d6580;transform:translateY(-2px)}
+.download-primary:focus-visible,.download-playback:focus-visible{outline:3px solid #fff;outline-offset:6px}
+.download-platform{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;margin:25px 0 0;font-size:18px;color:#f4f7fc}
+.download-platform svg{width:21px;height:21px}
+.download-source{margin:10px 0 0;font-size:14px;color:#d4deec}
+.download-playback{position:absolute;bottom:24px;right:28px;border:1px solid #ffffff55;border-radius:24px;padding:10px 17px;background:#102039bf;color:#fff;font:500 13px var(--sans);cursor:pointer}
+.download-playback[hidden]{display:none}
+[data-page="download"] .support-bar{background:#0b1220;color:#c9d3e1;border-color:#ffffff15}
+[data-page="download"] .support-bar p{font-size:15px}
+@media(max-width:720px){
+  [data-page="download"] .nav{height:auto;min-height:74px;gap:12px;flex-wrap:wrap;padding-block:14px}
+  [data-page="download"] .brand{font-size:17px}
+  [data-page="download"] .nav-links{gap:10px}
+  [data-page="download"] .nav-links>.lang-switch{display:flex}
+  [data-page="download"] .nav-cta{display:none}
+  .download-hero{min-height:calc(100svh - 74px);padding:90px 20px 110px}
+  .download-eyebrow{font-size:10px;margin-bottom:22px}
+  .download-tagline{max-width:280px;margin:22px auto 30px}
+  .download-primary{padding:16px 20px;min-height:60px;gap:10px}
+  .download-platform{font-size:16px;gap:10px}
+  .download-source{font-size:13px}
+  .download-still{left:-45%}
+}
+@media(prefers-reduced-motion:reduce){.download-film,.download-primary{transition:none}.download-primary:hover{transform:none}}
