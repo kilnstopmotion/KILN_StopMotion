@@ -1,16 +1,16 @@
 Object.assign(I18N.vi, {
-  downloadAction:'Tải phần mềm', downloadHistoryEmpty:'Chưa có phiên bản trước.',
+  downloadOfficial:'Bản chính thức đầu tiên', downloadAction:'Tải phần mềm', downloadHistoryEmpty:'Chưa có phiên bản trước.',
   downloadPlay:'Phát video nền', downloadPause:'Tạm dừng video nền'
 });
 Object.assign(I18N.en, {
-  downloadAction:'Download software', downloadHistoryEmpty:'No previous versions yet.',
+  downloadOfficial:'First official release', downloadAction:'Download software', downloadHistoryEmpty:'No previous versions yet.',
   downloadPlay:'Play background video', downloadPause:'Pause background video'
 });
 
 document.addEventListener('DOMContentLoaded',()=>{
   const release=RELEASES[0];
   const button=document.querySelector('[data-download-primary]');
-  const url=release?.betaUrl||release?.installerUrl||release?.portableUrl;
+  const url=release?.installerUrl||release?.portableUrl||release?.betaUrl;
   if(url)button.href=url;
   if(release)document.querySelector('[data-download-version]').textContent=release.version;
   function renderHistory(){
