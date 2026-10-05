@@ -11,7 +11,7 @@ Object.assign(I18N.vi, {
   donateThanks: 'Dù là một ly cà phê, một góp ý hay một lần chia sẻ phần mềm với bạn bè, tất cả đều có ý nghĩa với tụi mình. Cảm ơn bạn đã giúp hành trình này tiếp tục, từng khung hình một.',
   donateTransfer: 'CHUYỂN KHOẢN NGÂN HÀNG', donatePayment: 'Thông tin ủng hộ', donateBank: 'Ngân hàng', donateOwner: 'Chủ tài khoản', donateAccount: 'Số tài khoản', donateCopy: 'Sao chép số tài khoản',
   donateCopied: 'Đã sao chép số tài khoản.', donateCopyError: 'Chưa sao chép được. Bạn có thể chọn và sao chép số tài khoản phía trên.',
-  donateQrTitle: 'Mã QR sẽ được bổ sung', donateQrCopy: 'Bạn có thể chuyển khoản bằng thông tin tài khoản phía trên.',
+  donateQrTitle: 'Quét mã QR để chuyển khoản', donateQrCopy: 'Mở ứng dụng ngân hàng và quét mã để ủng hộ KILN nhanh hơn.',
   donateCheck: 'Vui lòng kiểm tra tên người nhận và số tài khoản trong ứng dụng ngân hàng trước khi xác nhận.'
 });
 Object.assign(I18N.en, {
@@ -25,7 +25,7 @@ Object.assign(I18N.en, {
   donateThanks: 'A coffee, a suggestion or sharing the software with a friend — it all means a lot to us. Thank you for helping this journey continue, one frame at a time.',
   donateTransfer: 'BANK TRANSFER', donatePayment: 'Support details', donateBank: 'Bank', donateOwner: 'Account holder', donateAccount: 'Account number', donateCopy: 'Copy account number',
   donateCopied: 'Account number copied.', donateCopyError: 'Could not copy. Please select and copy the account number above.',
-  donateQrTitle: 'QR code coming soon', donateQrCopy: 'You can transfer using the account details above.',
+  donateQrTitle: 'Scan the QR code to transfer', donateQrCopy: 'Open your banking app and scan the code to support KILN more quickly.',
   donateCheck: 'Please check the recipient name and account number in your banking app before confirming.'
 });
 document.addEventListener('DOMContentLoaded', () => {
