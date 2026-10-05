@@ -65,9 +65,10 @@ body[data-page="donate"] .donate-main{animation:support-arrival .3s ease-out bot
 .donate-payment dd.donate-account{font:700 clamp(23px,3vw,30px) var(--mono);letter-spacing:.035em;user-select:all}
 .copy-account{width:100%}
 .copy-status{min-height:24px;font-size:13px;margin:10px 0;color:var(--orange-dark)}
-.donate-qr{display:flex;gap:15px;align-items:center;padding:20px;border:1px dashed var(--line);border-radius:9px;background:var(--paper)}
-.donate-qr>span{font-size:32px;color:var(--muted)}
-.donate-qr strong{font-size:14px}.donate-qr p,.donate-payment-note{font-size:13px;line-height:1.65;color:var(--ink-soft);margin:7px 0 0}
+.donate-qr{display:grid;grid-template-columns:minmax(150px,190px) 1fr;gap:20px;align-items:center;padding:20px;border:1px dashed var(--line);border-radius:9px;background:var(--paper)}
+.donate-qr-image{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;overflow:hidden}
+.donate-qr-image img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:contain}
+.donate-qr-copy{min-width:0}.donate-qr strong{display:block;font-size:14px}.donate-qr p,.donate-payment-note{font-size:13px;line-height:1.65;color:var(--ink-soft);margin:7px 0 0}
 .donate-payment-note{margin-top:20px}
 @media(max-width:720px){.support-bar-inner{flex-direction:column;align-items:stretch;text-align:center}.donate-main{padding-top:35px;padding-bottom:55px}.donate-heading{margin-top:28px;margin-bottom:35px}.donate-grid{grid-template-columns:1fr}.donate-payment{grid-row:1}.donate-heading h1{font-size:43px}.donate-payment dd.donate-account{font-size:25px}}
 @media(prefers-reduced-motion:reduce){.support-button{transition:none}.support-button:hover{transform:none}}
