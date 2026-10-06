@@ -8,14 +8,32 @@
   <title>Ủng hộ phát triển phần mềm — DAAD StopMotion</title>
   <link rel="icon" type="image/webp" href="assets/images/app/logo.webp">
   <link rel="stylesheet" href="styles.css?v=20261006-brand">
-  <script src="app.js?v=20261006-brand" defer></script>
+  <script src="app.js?v=20261007-mobile" defer></script>
   <link rel="stylesheet" href="support.css?v=20261005-qr">
   <script src="support.js?v=20261006-brand" defer></script>
+  <link rel="stylesheet" href="responsive.css?v=20261007-mobile">
 </head>
 <body data-page="donate">
-<header class="site-header"><div class="container nav"><a class="brand magnetic" href="index.html" style="display:inline-flex;align-items:center;gap:10px"><img src="assets/images/app/logo.webp" alt="" aria-hidden="true" style="width:34px;height:34px;object-fit:contain;border-radius:8px;display:block"><span>DAAD StopMotion</span></a><nav class="nav-links" aria-label="Main navigation"><a href="product.html" data-i18n="navProduct">Sản phẩm</a><a href="developer.html" data-i18n="navDeveloper">Nhà phát triển</a><div class="lang-switch"><button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button></div><a class="nav-cta magnetic" href="download.html"><span data-i18n="navDownload">Tải xuống</span><span class="arrow">↓</span></a></nav></div></header>
+<header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="DAAD StopMotion — Home"><img src="assets/images/app/logo.webp" alt="DAAD StopMotion" width="36" height="36"></a>
+      <div class="nav-actions">
+        <a class="nav-cta" href="download.html"><span data-i18n="navDownload">Tải xuống</span><span class="arrow" aria-hidden="true">↓</span></a>
+        <details class="site-menu">
+          <summary class="menu-toggle" aria-controls="site-navigation"><span class="menu-icon" aria-hidden="true"><i></i><i></i><i></i></span><span class="visually-hidden" data-i18n="navMenu">Menu website</span></summary>
+          <nav class="nav-links" id="site-navigation" aria-label="Menu website">
+            <a href="product.html" data-i18n="navProduct">Phần mềm</a>
+            <a href="featured.html" data-i18n="navFeatured" data-featured-main-nav>Tác phẩm tiêu biểu</a>
+            <a href="developer.html" data-i18n="navDeveloper">Nhà phát triển</a>
+            <a href="donate.html" data-i18n="navSupport" class="active" aria-current="page">Ủng hộ</a>
+            <div class="menu-language"><span data-i18n="navLanguage">Ngôn ngữ</span><div class="lang-switch"><button type="button" data-lang="vi" lang="vi" aria-label="Tiếng Việt">VI</button><button type="button" data-lang="en" lang="en" aria-label="English">EN</button></div></div>
+          </nav>
+        </details>
+      </div>
+    </div>
+  </header>
 <main class="donate-main container">
-  <div class="lang-switch mobile-lang"><button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button></div>
+
   <div class="donate-heading"><span class="section-kicker">KILN / WITH YOUR SUPPORT</span><h1 data-i18n="donateTitle">Một ly cà phê.<br>Thêm nhiều khung hình.</h1><p class="lead" data-i18n="donateLead">Cảm ơn bạn đã đồng hành cùng DAAD StopMotion — từ những khung hình đầu tiên đến những câu chuyện đang thành hình.</p></div>
   <div class="donate-grid">
     <section class="donate-story"><div class="donate-cup"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h12v7a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5V8Z"/><path d="M17 9h1a3 3 0 1 1 0 6h-1M8 2v3m4-3v3m4-3v3M3 22h17"/></svg></div><h2 data-i18n="donateStoryTitle">Một chút chia sẻ từ KILN</h2><p data-i18n="donateStory">DAAD StopMotion bắt đầu từ mong muốn có một công cụ gần gũi với những người làm stop-motion. Đằng sau mỗi tính năng là thời gian thử nghiệm, sửa lỗi và lắng nghe trải nghiệm của bạn.</p><p data-i18n="donatePurpose">Nếu phần mềm giúp công việc của bạn thuận tiện hơn, bạn có thể mời tụi mình một ly cà phê. Sự ủng hộ của bạn tiếp thêm động lực để KILN tiếp tục cải thiện phần mềm và chăm chút cho từng trải nghiệm nhỏ.</p><p class="donate-voluntary" data-i18n="donateVoluntary">Ủng hộ hoàn toàn tự nguyện, với số tiền tùy bạn. Việc sử dụng phần mềm không yêu cầu đóng góp.</p><div class="donate-thanks"><h2 data-i18n="donateThanksTitle">Cảm ơn vì đã ở đây.</h2><p data-i18n="donateThanks">Dù là một ly cà phê, một góp ý hay một lần chia sẻ phần mềm với bạn bè, tất cả đều có ý nghĩa với tụi mình. Cảm ơn bạn đã giúp hành trình này tiếp tục, từng khung hình một.</p><span>— KILN</span></div></section>

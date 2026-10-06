@@ -14,7 +14,7 @@ const RELEASES=[{
 
 const I18N={
   en:{
-    navProduct:"Software",navFeatured:"Featured work",navDeveloper:"Developer",navDownload:"Download",
+    navMenu:"Website menu",navSupport:"Support",navLanguage:"Language",navProduct:"Software",navFeatured:"Featured work",navDeveloper:"Developer",navDownload:"Download",
     heroEyebrow:"Developed by KILN",heroLead:"Software that helps you capture, preview and manage every frame with ease and intuitive control.",heroDownload:"Download DAAD StopMotion",heroExplore:"Explore the product",heroMicro:"Windows x64 · Official release",heroNote:"Small things move big stories.",
     preview:"APP SCREENSHOT",previewHint:"Your DAAD StopMotion screenshot will live here",frameCaption:"A frame-by-frame production workspace",
     featKicker:"From small frames to bigger stories",featTitle:"Everything you need for stop-motion.",featCopy:"Capture, animate, review and organize without losing the rhythm of the shot.",
@@ -26,7 +26,7 @@ const I18N={
     coffeeTitle:"Support DAAD StopMotion",coffeeCopy:"If DAAD StopMotion helps your work, you can support its continued development.",coffeeBtn:"Buy me a coffee",footerNote:"Formerly KILN Motion",footerTagline:"Make every frame count."
   },
   vi:{
-    navProduct:"Phần mềm",navFeatured:"Tác phẩm tiêu biểu",navDeveloper:"Nhà phát triển",navDownload:"Tải xuống",
+    navMenu:"Menu website",navSupport:"Ủng hộ",navLanguage:"Ngôn ngữ",navProduct:"Phần mềm",navFeatured:"Tác phẩm tiêu biểu",navDeveloper:"Nhà phát triển",navDownload:"Tải xuống",
     heroEyebrow:"Phát triển bởi KILN",heroLead:"Phần mềm giúp bạn chụp, xem trước và quản lý từng khung hình một cách dễ dàng và trực quan nhất.",heroDownload:"Tải DAAD StopMotion",heroExplore:"Khám phá phần mềm",heroMicro:"Windows x64 · Bản chính thức",heroNote:"Những điều nhỏ tạo nên câu chuyện lớn.",
     preview:"ẢNH GIAO DIỆN ỨNG DỤNG",previewHint:"Sau này chỉ cần thay bằng screenshot DAAD StopMotion",frameCaption:"Không gian sản xuất frame-by-frame",
     featKicker:"Từ những khung hình nhỏ đến những câu chuyện lớn",featTitle:"Mọi thứ bạn cần cho stop-motion.",featCopy:"Chụp, animate, review và tổ chức mà không làm đứt nhịp của cảnh quay.",
@@ -48,7 +48,7 @@ function translateSite(key){return I18N[lang]?.[key]??key}
 function applyI18n(){
   document.documentElement.lang=lang;
   document.querySelectorAll("[data-i18n]").forEach(el=>{el.textContent=translateSite(el.dataset.i18n)});
-  document.querySelectorAll("[data-lang]").forEach(btn=>btn.classList.toggle("active",btn.dataset.lang===lang));
+  document.querySelectorAll("[data-lang]").forEach(btn=>{btn.classList.toggle("active",btn.dataset.lang===lang);btn.setAttribute("aria-pressed",String(btn.dataset.lang===lang));});
   document.querySelectorAll("[data-type-key]").forEach(el=>el.dataset.fullText=translateSite(el.dataset.typeKey));
   renderReleases();
   typewriterRefresh();
@@ -105,6 +105,15 @@ function ensureFeaturedMainNav(){
 }
 
 function initNavigation(){
+  const menu=document.querySelector('.site-menu');
+  const toggle=menu?.querySelector('summary');
+  if(menu&&toggle){
+    menu.addEventListener('keydown',event=>{if(event.key==='Escape'&&menu.open){menu.open=false;toggle.focus();}});
+    document.addEventListener('pointerdown',event=>{if(menu.open&&!menu.contains(event.target))menu.open=false;});
+    document.addEventListener('focusin',event=>{if(menu.open&&!menu.contains(event.target))menu.open=false;});
+    menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{menu.open=false;}));
+    window.addEventListener('pageshow',()=>{menu.open=false;});
+  }
   document.querySelectorAll("[data-lang]").forEach(btn=>btn.addEventListener("click",()=>{lang=btn.dataset.lang;localStorage.setItem("daa-lang",lang);applyI18n();}));
 }
 

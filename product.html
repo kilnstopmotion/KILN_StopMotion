@@ -26,19 +26,37 @@
   <link rel="stylesheet" href="product-workflow.css?v=20261007-output">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
-  <script src="app.js?v=20261006-brand" defer></script>
+  <script src="app.js?v=20261007-mobile" defer></script>
   <script src="product-info.js?v=20261006-workflow2" defer></script>
   <script src="js/motion/motion-core.js" defer></script>
   <script src="js/motion/motion-product.js?v=20261006-brand" defer></script>
   <link rel="stylesheet" href="support.css?v=20261005-credit">
   <script src="support.js?v=20261006-brand" defer></script>
+  <link rel="stylesheet" href="responsive.css?v=20261007-mobile">
 </head>
 <body data-page="product">
   <div class="scroll-progress" aria-hidden="true"><span></span></div>
   <div class="cursor-frame" aria-hidden="true"><span>FRAME</span><b>021</b></div>
-  <header class="site-header"><div class="container nav"><a class="brand magnetic" href="index.html" style="display:inline-flex;align-items:center;gap:10px"><img src="assets/images/app/logo.webp" alt="" aria-hidden="true" style="width:34px;height:34px;object-fit:contain;border-radius:8px;display:block"><span>DAAD StopMotion</span></a><nav class="nav-links" aria-label="Main navigation"><a class="active" href="product.html" data-i18n="navProduct">Sản phẩm</a><a href="developer.html" data-i18n="navDeveloper">Nhà phát triển</a><div class="lang-switch"><button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button></div><a class="nav-cta magnetic" href="download.html"><span data-i18n="navDownload">Tải xuống</span><span class="arrow">↓</span></a></nav></div></header>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="DAAD StopMotion — Home"><img src="assets/images/app/logo.webp" alt="DAAD StopMotion" width="36" height="36"></a>
+      <div class="nav-actions">
+        <a class="nav-cta" href="download.html"><span data-i18n="navDownload">Tải xuống</span><span class="arrow" aria-hidden="true">↓</span></a>
+        <details class="site-menu">
+          <summary class="menu-toggle" aria-controls="site-navigation"><span class="menu-icon" aria-hidden="true"><i></i><i></i><i></i></span><span class="visually-hidden" data-i18n="navMenu">Menu website</span></summary>
+          <nav class="nav-links" id="site-navigation" aria-label="Menu website">
+            <a href="product.html" data-i18n="navProduct" class="active" aria-current="page">Phần mềm</a>
+            <a href="featured.html" data-i18n="navFeatured" data-featured-main-nav>Tác phẩm tiêu biểu</a>
+            <a href="developer.html" data-i18n="navDeveloper">Nhà phát triển</a>
+            <a href="donate.html" data-i18n="navSupport">Ủng hộ</a>
+            <div class="menu-language"><span data-i18n="navLanguage">Ngôn ngữ</span><div class="lang-switch"><button type="button" data-lang="vi" lang="vi" aria-label="Tiếng Việt">VI</button><button type="button" data-lang="en" lang="en" aria-label="English">EN</button></div></div>
+          </nav>
+        </details>
+      </div>
+    </div>
+  </header>
   <main>
-    <section class="motion-hero product-hero"><div class="container story-grid"><div class="hero-copy"><span class="eyebrow">DAAD StopMotion / PRODUCT</span><h1 class="editorial-title" style="font-size:clamp(58px,7vw,98px)"><span class="title-line" data-i18n="productHero">Workflow từng khung hình, nhưng không rối mắt.</span></h1><p class="lead" data-i18n="productLead">DAAD StopMotion đồng hành từ chụp ảnh, tạo chuyển động, xem lại, chụp lại / chỉnh sửa đến xuất thành phẩm.</p><div class="hero-actions"><a class="btn btn-primary magnetic" href="download.html"><span data-i18n="heroDownload">Tải DAAD StopMotion bản Beta</span><span class="arrow">→</span></a></div><div class="lang-switch mobile-lang"><button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button></div></div>
+    <section class="motion-hero product-hero"><div class="container story-grid"><div class="hero-copy"><span class="eyebrow">DAAD StopMotion / PRODUCT</span><h1 class="editorial-title" style="font-size:clamp(58px,7vw,98px)"><span class="title-line" data-i18n="productHero">Workflow từng khung hình, nhưng không rối mắt.</span></h1><p class="lead" data-i18n="productLead">DAAD StopMotion đồng hành từ chụp ảnh, tạo chuyển động, xem lại, chụp lại / chỉnh sửa đến xuất thành phẩm.</p><div class="hero-actions"><a class="btn btn-primary magnetic" href="download.html"><span data-i18n="heroDownload">Tải DAAD StopMotion bản Beta</span><span class="arrow">→</span></a></div></div>
 
       <div class="product-carousel-root" data-product-carousel role="region" aria-roledescription="carousel" aria-label="DAAD StopMotion product frames" tabindex="0">
         <div class="product-carousel-motion motion-photo">

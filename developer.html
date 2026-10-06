@@ -22,18 +22,36 @@
   </style>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
-  <script src="app.js?v=20261006-brand" defer></script>
+  <script src="app.js?v=20261007-mobile" defer></script>
   <script src="js/motion/motion-core.js" defer></script>
   <script src="js/motion/motion-dev.js" defer></script>
   <link rel="stylesheet" href="support.css?v=20261005-credit">
   <script src="support.js?v=20261006-brand" defer></script>
+  <link rel="stylesheet" href="responsive.css?v=20261007-mobile">
 </head>
 <body data-page="developer">
   <div class="scroll-progress" aria-hidden="true"><span></span></div>
   <div class="cursor-frame" aria-hidden="true"><span>FRAME</span><b>K01</b></div>
-  <header class="site-header"><div class="container nav"><a class="brand magnetic" href="index.html" style="display:inline-flex;align-items:center;gap:10px"><img src="assets/images/app/logo.webp" alt="" aria-hidden="true" style="width:34px;height:34px;object-fit:contain;border-radius:8px;display:block"><span>DAAD StopMotion</span></a><nav class="nav-links" aria-label="Main navigation"><a href="product.html" data-i18n="navProduct">Sản phẩm</a><a class="active" href="developer.html" data-i18n="navDeveloper">Nhà phát triển</a><div class="lang-switch"><button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button></div><a class="nav-cta magnetic" href="download.html"><span data-i18n="navDownload">Tải xuống</span><span class="arrow">↓</span></a></nav></div></header>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="DAAD StopMotion — Home"><img src="assets/images/app/logo.webp" alt="DAAD StopMotion" width="36" height="36"></a>
+      <div class="nav-actions">
+        <a class="nav-cta" href="download.html"><span data-i18n="navDownload">Tải xuống</span><span class="arrow" aria-hidden="true">↓</span></a>
+        <details class="site-menu">
+          <summary class="menu-toggle" aria-controls="site-navigation"><span class="menu-icon" aria-hidden="true"><i></i><i></i><i></i></span><span class="visually-hidden" data-i18n="navMenu">Menu website</span></summary>
+          <nav class="nav-links" id="site-navigation" aria-label="Menu website">
+            <a href="product.html" data-i18n="navProduct">Phần mềm</a>
+            <a href="featured.html" data-i18n="navFeatured" data-featured-main-nav>Tác phẩm tiêu biểu</a>
+            <a href="developer.html" data-i18n="navDeveloper" class="active" aria-current="page">Nhà phát triển</a>
+            <a href="donate.html" data-i18n="navSupport">Ủng hộ</a>
+            <div class="menu-language"><span data-i18n="navLanguage">Ngôn ngữ</span><div class="lang-switch"><button type="button" data-lang="vi" lang="vi" aria-label="Tiếng Việt">VI</button><button type="button" data-lang="en" lang="en" aria-label="English">EN</button></div></div>
+          </nav>
+        </details>
+      </div>
+    </div>
+  </header>
   <main>
-    <section class="motion-hero developer-hero"><div class="container story-grid"><div class="hero-copy"><span class="eyebrow">KILN / DEVELOPER</span><h1 class="editorial-title" style="font-size:clamp(58px,7vw,98px)"><span class="title-line" data-i18n="devHero">Được làm bởi chính những người cần công cụ này.</span></h1><p class="lead" data-i18n="devLead">DAAD StopMotion được phát triển bởi KILN — một nhóm sáng tạo nhỏ tập trung vào những công cụ thực tế cho sản xuất frame-by-frame.</p><div class="lang-switch mobile-lang"><button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button></div></div><div class="photo-frame motion-photo" data-tilt><div class="frame-meta" data-depth=".35"><span>FRAME K001</span><span>KILN</span><span>TAKE 01</span></div><div class="preview-screen" data-depth="1" style="min-height:460px"><img src="assets/images/team/hinhteam.webp" alt="Ảnh nhóm KILN" loading="eager" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block"><span style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.03),rgba(0,0,0,.22));pointer-events:none"></span><span class="scan-line"></span></div><div class="photo-caption" data-depth=".45"><span>KILN / TEAM PHOTO</span><span>FORMERLY KILN MOTION</span></div></div></div></section>
+    <section class="motion-hero developer-hero"><div class="container story-grid"><div class="hero-copy"><span class="eyebrow">KILN / DEVELOPER</span><h1 class="editorial-title" style="font-size:clamp(58px,7vw,98px)"><span class="title-line" data-i18n="devHero">Được làm bởi chính những người cần công cụ này.</span></h1><p class="lead" data-i18n="devLead">DAAD StopMotion được phát triển bởi KILN — một nhóm sáng tạo nhỏ tập trung vào những công cụ thực tế cho sản xuất frame-by-frame.</p></div><div class="photo-frame motion-photo" data-tilt><div class="frame-meta" data-depth=".35"><span>FRAME K001</span><span>KILN</span><span>TAKE 01</span></div><div class="preview-screen team-photo-screen" data-depth="1" style="min-height:460px"><img src="assets/images/team/hinhteam.webp" width="1000" height="792" alt="Ảnh nhóm KILN" loading="eager" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block"><span style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.03),rgba(0,0,0,.22));pointer-events:none"></span><span class="scan-line"></span></div><div class="photo-caption" data-depth=".45"><span>KILN / TEAM PHOTO</span><span>FORMERLY KILN MOTION</span></div></div></div></section>
 
     <section class="section"><div class="container story-grid"><div class="motion-reveal"><span class="eyebrow" data-i18n="behind">Đằng sau DAAD StopMotion</span><h2>KILN</h2><p class="lead" style="font-size:19px" data-i18n="kilnCopy">KILN là nhóm phát triển đứng sau DAAD StopMotion. Phần mềm được xây từ trải nghiệm stop-motion, làm phim và mỹ thuật số thực tế thay vì từ một mẫu productivity chung chung.</p></div><div class="motion-reveal"><span class="section-kicker" data-i18n="history">Lịch sử dự án</span><div class="timeline" style="margin-top:16px"><div class="timeline-item"><strong>KILN Motion</strong><span class="release-date">Origin / Early development</span></div><div class="timeline-item"><strong>DAAD StopMotion</strong><span class="release-date">Current product identity</span></div><div class="timeline-item"><strong>5.0.0</strong><span class="release-date">Current release track</span></div></div></div></div></section>
 
