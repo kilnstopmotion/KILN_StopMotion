@@ -1,15 +1,16 @@
 Object.assign(I18N.vi,{
-  productNavWorkflow:"Workflow",productNavWorkspace:"Công cụ",productNavProject:"Dự án & tệp",productNavCamera:"Camera",productNavOutput:"Xuất thành phẩm",
+  toolGuideTitle:"Motion Guide",toolGuideCopy:"Vẽ đường chuyển động, chia vị trí theo frame và điều chỉnh nhịp nhanh–chậm. Xem thử quỹ đạo và đặt frame đích trước khi chụp.",
+  productNavWorkflow:"Workflow",productNavWorkspace:"Công cụ",productNavCamera:"Camera",productNavOutput:"Xuất thành phẩm",
   insideKicker:"Bên trong workflow",insideTitle:"Bộ công cụ sản xuất stop-motion.",insideCopy:"Chụp, chỉnh sửa, xem lại và hoàn thiện từng khung hình trong cùng một không gian làm việc.",
   toolCameraTitle:"Camera Capture",toolCameraCopy:"Kết nối máy ảnh, theo dõi Live View và đưa ảnh chụp trực tiếp vào timeline.",
   toolTimelineTitle:"Timeline & Frame",toolTimelineCopy:"Sắp xếp, nhân bản, điều chỉnh Hold và chỉnh sửa từng frame ngay trên timeline.",
-  toolPreviewTitle:"Preview & Playback",toolPreviewCopy:"Xem lại theo FPS, lặp vùng A–B và kiểm tra chuyển động ở chế độ toàn màn hình.",
+
   toolXsheetTitle:"X-Sheet",toolXsheetCopy:"Theo dõi frame, exposure và ghi chú để kiểm soát nhịp chuyển động của từng shot.",
 
   toolAnalysisTitle:"Preview Tools",toolAnalysisCopy:"Xem thử ghép nền bằng Chroma Key và kiểm tra độ sáng với Flicker Detection.",
-  projectKicker:"Dự án & media",projectTitle:"Giữ project rõ ràng mà không giấu file của bạn.",projectCopy:"Project DAAD StopMotion lưu cấu trúc và trạng thái làm việc, trong khi media nguồn vẫn là file thật trên ổ đĩa. Điều này giúp workflow dễ kiểm tra, sao lưu và chuyển tiếp sang hậu kỳ.",
-  factProject:"Project",factProjectCopy:"File .smproj lưu timeline và cài đặt; ảnh nguồn vẫn phải còn trên ổ đĩa.",factLabels:"Shot labels",factLabelsCopy:"Production / Scene / Take dùng để định danh shot và liên kết một số dữ liệu kế hoạch theo take.",factImport:"Import",factImportCopy:"Open Folder và Watch Folder nhận ảnh mới vào timeline; luồng import hiện nhận JPG, JPEG, PNG, TIF và TIFF.",factRecovery:"Recovery",factRecoveryCopy:"Có snapshot phục hồi dự án, khay frame đã xóa và Undo/Redo cho các chỉnh sửa timeline trong phiên.",
-  process1:"Nhập hoặc chụp",process1c:"Chụp trực tiếp từ Camera Capture hoặc theo dõi một thư mục ảnh đang nhận file mới.",process2:"Tổ chức shot",process2c:"Gắn Production / Scene / Take, sắp xếp frame, Hold, nhóm hoặc di chuyển media theo nhu cầu.",process3:"Kiểm tra chuyển động",process3c:"Playback, Onion Skin, X-Sheet và các công cụ Preview hỗ trợ kiểm tra từng frame.",process4:"Đóng gói / xuất",process4c:"Có thể đóng gói project cùng media liên quan hoặc xuất sequence được đánh số để chuyển tiếp sang hậu kỳ.",
+
+
+
   cameraKicker:"Kết nối camera",cameraTitle:"Các dòng Camera được hỗ trợ",cameraCopy:"Kết nối máy ảnh và bắt đầu chụp ngay trong DAAD StopMotion.",
 
   outputKicker:"Xuất thành phẩm",outputTitle:"Từ preview tới material hậu kỳ.",outputCopy:"DAAD StopMotion tách rõ trải nghiệm Preview và dữ liệu nguồn. Các lớp hỗ trợ như Onion Skin, grid hay Chroma Preview không được ghi đè vào ảnh gốc.",
@@ -17,7 +18,7 @@ Object.assign(I18N.vi,{
 
   productLead:"DAAD StopMotion đồng hành từ chụp ảnh, tạo chuyển động, xem lại, chụp lại / chỉnh sửa đến xuất thành phẩm.",
   toolOnionCopy:"Chồng các frame để so sánh vị trí và điều chỉnh chuyển động giữa từng lần chụp.",
-  sequenceRaw:"Hỗ trợ xuất folder RAW tương ứng nếu bạn chụp RAW.",
+
   workflowTitle:"Từ khung hình đầu tiên đến thước phim hoàn chỉnh.",
   workflowIntro:"Năm bước liền mạch trong cùng một không gian làm việc.",
   shotClose:"Đóng ảnh",
@@ -30,17 +31,18 @@ Object.assign(I18N.vi,{
 });
 
 Object.assign(I18N.en,{
-  productNavWorkflow:"Workflow",productNavWorkspace:"Tools",productNavProject:"Projects & files",productNavCamera:"Camera",productNavOutput:"Export",
+  toolGuideTitle:"Motion Guide",toolGuideCopy:"Draw a motion path, space positions across frames and shape the speed. Preview the movement and set a target frame before capturing.",
+  productNavWorkflow:"Workflow",productNavWorkspace:"Tools",productNavCamera:"Camera",productNavOutput:"Export",
   insideKicker:"Inside the workflow",insideTitle:"Tools for stop-motion production.",insideCopy:"Capture, edit, review and refine each frame in one workspace.",
   toolCameraTitle:"Camera Capture",toolCameraCopy:"Connect your camera, monitor Live View and bring captured images directly into the timeline.",
   toolTimelineTitle:"Timeline & Frames",toolTimelineCopy:"Reorder, duplicate, adjust Holds and edit individual frames on the timeline.",
-  toolPreviewTitle:"Preview & Playback",toolPreviewCopy:"Play back at your chosen FPS, loop an A–B range and inspect motion in fullscreen.",
+
   toolXsheetTitle:"X-Sheet",toolXsheetCopy:"Track frames, exposures and notes to shape the timing of each shot.",
 
   toolAnalysisTitle:"Preview Tools",toolAnalysisCopy:"Preview backgrounds with Chroma Key and inspect brightness with Flicker Detection.",
-  projectKicker:"Projects & media",projectTitle:"Keep the project structured without hiding your files.",projectCopy:"DAAD StopMotion stores project structure and working state while source media remains as real files on disk, making the workflow easier to inspect, back up and hand off.",
-  factProject:"Project",factProjectCopy:"The .smproj file stores timeline data and settings; source images still need to remain available on disk.",factLabels:"Shot labels",factLabelsCopy:"Production / Scene / Take identify a shot and are also used by some per-take planning data.",factImport:"Import",factImportCopy:"Open Folder and Watch Folder can bring new media into the timeline; the current import path accepts JPG, JPEG, PNG, TIF and TIFF.",factRecovery:"Recovery",factRecoveryCopy:"Project recovery snapshots, a deleted-frame tray and session Undo/Redo are available for timeline edits.",
-  process1:"Import or capture",process1c:"Capture directly from Camera Capture or watch a folder that receives new image files.",process2:"Organize the shot",process2c:"Set Production / Scene / Take, reorder frames, use Holds, group or move media as needed.",process3:"Review motion",process3c:"Playback, Onion Skin, X-Sheet and Preview tools help you inspect individual frames.",process4:"Package or export",process4c:"Package the project with related media or export a numbered sequence for post-production handoff.",
+
+
+
   cameraKicker:"Camera connection",cameraTitle:"Supported camera brands",cameraCopy:"Connect your camera and start capturing in DAAD StopMotion.",
 
   outputKicker:"Export",outputTitle:"From preview to post-production material.",outputCopy:"DAAD StopMotion keeps preview assistance separate from source data. Onion Skin, grids and Chroma Preview do not overwrite the original captured image.",
@@ -48,7 +50,7 @@ Object.assign(I18N.en,{
 
   productLead:"DAAD StopMotion takes you from capture and animation through review, retakes and editing to final export.",
   toolOnionCopy:"Overlay frames to compare positions and adjust motion between captures.",
-  sequenceRaw:"Matching RAW folder export is supported when you shoot RAW.",
+
   workflowTitle:"From the first frame to the finished film.",
   workflowIntro:"Five connected steps in a single workspace.",
   shotClose:"Close image",

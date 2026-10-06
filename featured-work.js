@@ -13,7 +13,6 @@
     vi: {
       kicker: 'FEATURED / WORK',
       title: 'Tác phẩm tiêu biểu',
-      lead: 'Một không gian dành cho những tác phẩm được chọn lọc, kèm still frame, đoạn loop ngắn và thông tin tác phẩm.',
       workLabel: 'TÁC PHẨM / 001',
       info: 'Thông tin tác phẩm',
       name: 'Tên tác phẩm',
@@ -34,7 +33,6 @@
     en: {
       kicker: 'FEATURED / WORK',
       title: 'Featured work',
-      lead: 'A curated space for selected work, with still frames, a short loop excerpt, and production information.',
       workLabel: 'WORK / 001',
       info: 'Work information',
       name: 'Title',
@@ -145,7 +143,6 @@
         <div class="container">
           <div class="section-head featured-work-heading">
             <div><span class="section-kicker" data-featured-key="kicker">${t.kicker}</span><h1 data-featured-key="title">${t.title}</h1></div>
-            <p class="section-copy" data-featured-key="lead">${t.lead}</p>
           </div>
           <div class="featured-work-shell">
             <div class="featured-work-hero">

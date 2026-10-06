@@ -1,16 +1,36 @@
 (() => {
   const copy = {
-    vi: { previewTitle:'Từ frame đến chuyển động.',previewCopy:'Những công cụ quan trọng xuất hiện cùng nhau trong một không gian làm việc.',previewLink:'Khám phá phần mềm →',sequenceTitle:'Một nhịp làm việc xuyên suốt.',sequenceCopy:'Capture → Animate → Review → Organize → Export.',capture:'Chụp',captureCopy:'Chụp frame và giữ phản hồi production ngay trong tầm mắt.',animateCopy:'Kiểm soát timing và spacing từng frame.',reviewCopy:'Xem lại chuyển động và continuity.',organize:'Tổ chức',organizeCopy:'Giữ shot, take và file nguồn rõ ràng.',exportCopy:'Chuẩn bị material hoàn thiện cho hậu kỳ.',workflowLink:'Xem toàn bộ workflow →' },
-    en: { previewTitle:'From frames to motion.',previewCopy:'The essential tools come together in one workspace.',previewLink:'Explore the software →',sequenceTitle:'One continuous production rhythm.',sequenceCopy:'Capture → Animate → Review → Organize → Export.',capture:'Capture',captureCopy:'Capture frames with production feedback close at hand.',animateCopy:'Control timing and spacing frame by frame.',reviewCopy:'Review motion and continuity.',organize:'Organize',organizeCopy:'Keep shots, takes and source files clear.',exportCopy:'Prepare finished material for post-production.',workflowLink:'See the full workflow →' }
+    vi: { previewTitle:'Từ frame đến chuyển động.',previewCopy:'Những công cụ quan trọng xuất hiện cùng nhau trong một không gian làm việc.',previewLink:'Khám phá phần mềm →',sequenceTitle:'Một nhịp làm việc xuyên suốt.',sequenceCopy:'Organize → Capture → Animate → Review/Edit → Export.',capture:'Chụp',captureCopy:'Kết nối camera và chụp từng khung hình vào timeline.',animateCopy:'Kiểm soát timing và spacing từng frame.',reviewCopy:'Xem lại chuyển động, kiểm tra continuity và chỉnh sửa frame.',organize:'Tổ chức',organizeCopy:'Chuẩn bị project, sắp xếp shot, take và thư mục ảnh.',exportCopy:'Có thể Xuất định dạng Video hoặc chuỗi ảnh JPG&RAW',workflowLink:'Xem toàn bộ workflow →' },
+    en: { previewTitle:'From frames to motion.',previewCopy:'The essential tools come together in one workspace.',previewLink:'Explore the software →',sequenceTitle:'One continuous production rhythm.',sequenceCopy:'Organize → Capture → Animate → Review/Edit → Export.',capture:'Capture',captureCopy:'Connect your camera and capture each frame into the timeline.',animateCopy:'Control timing and spacing frame by frame.',reviewCopy:'Review motion, check continuity and edit your frames.',organize:'Organize',organizeCopy:'Prepare the project, organize shots, takes and image folders.',exportCopy:'Export video or a JPG & RAW image sequence.',workflowLink:'See the full workflow →' }
   };
 
   const sequenceFrames = [
-    { label:'CAPTURE', src:'assets/images/app/product-frame-4.webp', position:'center' },
-    { label:'ANIMATE', src:'assets/images/app/hero-main.webp.webp', position:'center' },
-    { label:'REVIEW', src:'assets/images/app/product-frame-1.webp', position:'center' },
-    { label:'ORGANIZE', src:'assets/images/app/product-frame-3.webp', position:'center' },
-    { label:'EXPORT', src:'assets/images/app/hero-main.webp.webp', position:'center top' }
-  ];
+    {
+        "label": "ORGANIZE",
+        "src": "assets/images/app/product-frame-3.webp",
+        "position": "center"
+    },
+    {
+        "label": "CAPTURE",
+        "src": "assets/images/workflow/capture.webp",
+        "position": "center"
+    },
+    {
+        "label": "ANIMATE",
+        "src": "assets/images/workflow/animate.webp",
+        "position": "center"
+    },
+    {
+        "label": "REVIEW/EDIT",
+        "src": "assets/images/workflow/edit.webp",
+        "position": "center"
+    },
+    {
+        "label": "EXPORT",
+        "src": "assets/images/workflow/export.webp",
+        "position": "center"
+    }
+];
   const labels = sequenceFrames.map(frame => frame.label);
 
   function translate() {
