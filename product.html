@@ -23,7 +23,7 @@
     @media(max-width:720px){.product-carousel-root{max-width:100%}.product-frame-card{width:calc(100% - 34px);max-width:none;padding:34px 12px 14px}.product-frame-card .frame-meta{left:12px;right:12px}.product-frame-card .photo-caption{gap:10px;font-size:8px}.product-carousel-track{min-height:340px}}
     @media(prefers-reduced-motion:reduce){.product-carousel-motion,.product-carousel-tilt{transform:none!important}}
   </style>
-  <link rel="stylesheet" href="product-workflow.css?v=20261006-workflow2">
+  <link rel="stylesheet" href="product-workflow.css?v=20261007-output">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
   <script src="app.js?v=20261006-brand" defer></script>
@@ -126,8 +126,8 @@
       <div class="container">
         <div class="section-head motion-reveal"><div><span class="section-kicker" data-i18n="outputKicker">Xuất thành phẩm</span><h2 data-i18n="outputTitle">Từ preview tới material hậu kỳ.</h2></div><p class="section-copy" data-i18n="outputCopy">DAAD StopMotion tách rõ trải nghiệm Preview và dữ liệu nguồn. Các lớp hỗ trợ như Onion Skin, grid hay Chroma Preview không được ghi đè vào ảnh gốc.</p></div>
         <div class="output-grid motion-stagger">
-          <article class="output-card"><a class="app-shot " href="assets/images/workflow/export.webp" data-app-shot><img src="assets/images/workflow/export.webp" alt="DAAD StopMotion — Render Video" width="1536" height="816" loading="lazy"><span class="shot-expand" aria-hidden="true">↗</span></a><span class="step-no">VIDEO / RENDER</span><h3 data-i18n="renderTitle">Video render</h3><p data-i18n="renderCopy">Renderer hiện có lựa chọn tỷ lệ Gốc, 16:9, 9:16, 1:1, 4:3 và 2.39:1 cùng các mức 720p, 1080p, 4K và Max Setting.</p></article>
-          <article class="output-card"><span class="step-no">IMAGE / RENDER</span><h3 data-i18n="sequenceTitle">Render Ảnh</h3><p data-i18n="sequenceCopy">Xuất bộ ảnh theo thứ tự frame, đánh số từ 0001 đến frame cuối, vào các folder JPG, RAW và BACKGROUND.</p><img class="export-folders" src="assets/images/workflow/export-folders.svg" alt="Background / JPG / RAW" width="960" height="390" loading="lazy"></article>
+          <article class="output-card"><div class="output-copy"><span class="step-no">VIDEO / RENDER</span><h3 data-i18n="renderTitle">Video render</h3><p data-i18n="renderCopy">Renderer hiện có lựa chọn tỷ lệ Gốc, 16:9, 9:16, 1:1, 4:3 và 2.39:1 cùng các mức 720p, 1080p, 4K và Max Setting.</p></div><a class="app-shot output-media" href="assets/images/workflow/export.webp" data-app-shot><img src="assets/images/workflow/export.webp" alt="DAAD StopMotion — Render Video" width="1536" height="816" loading="lazy"><span class="shot-expand" aria-hidden="true">↗</span></a></article>
+          <article class="output-card"><div class="output-copy"><span class="step-no">IMAGE / RENDER</span><h3 data-i18n="sequenceTitle">Render Ảnh</h3><p data-i18n="sequenceCopy">Xuất bộ ảnh theo thứ tự frame, đánh số từ 0001 đến frame cuối, vào các folder JPG, RAW và BACKGROUND.</p></div><div class="output-media"><img class="export-folders" src="assets/images/workflow/export-folders.svg" alt="Background / JPG / RAW" width="960" height="390" loading="lazy"></div></article>
         </div>
       </div>
     </section>
