@@ -101,8 +101,8 @@
     const toggle=cinema.querySelector('.download-video-toggle');
     const caption=cinema.querySelector('figcaption [data-download-copy]');
     const words={
-      vi:{preview:'GÓC NHÌN TỪ MỘT KHUNG HÌNH',still:'Ảnh xem trước',film:'STOP-MOTION / VIDEO',play:'Phát video',pause:'Tạm dừng',poster:'Một cảnh stop-motion trong giao diện DA&D'},
-      en:{preview:'A WORLD INSIDE A FRAME',still:'Preview image',film:'STOP-MOTION / VIDEO',play:'Play video',pause:'Pause video',poster:'A stop-motion scene in the DA&D workspace'}
+      vi:{preview:'GÓC NHÌN TỪ MỘT KHUNG HÌNH',still:'Ảnh xem trước',film:'STOP-MOTION / VIDEO',play:'Phát video',pause:'Tạm dừng',poster:'Một cảnh stop-motion trong giao diện DAAD StopMotion'},
+      en:{preview:'A WORLD INSIDE A FRAME',still:'Preview image',film:'STOP-MOTION / VIDEO',play:'Play video',pause:'Pause video',poster:'A stop-motion scene in the DAAD StopMotion workspace'}
     };
     let visible=false,loaded=false,userPaused=false,failed=false;
     const source=video.dataset.videoSrc.trim();

@@ -7,15 +7,15 @@ Object.assign(I18N.vi,{
   toolXsheetTitle:"X-Sheet",toolXsheetCopy:"Theo dõi frame, exposure và ghi chú để kiểm soát nhịp chuyển động của từng shot.",
 
   toolAnalysisTitle:"Preview Tools",toolAnalysisCopy:"Xem thử ghép nền bằng Chroma Key và kiểm tra độ sáng với Flicker Detection.",
-  projectKicker:"Dự án & media",projectTitle:"Giữ project rõ ràng mà không giấu file của bạn.",projectCopy:"Project DA&D lưu cấu trúc và trạng thái làm việc, trong khi media nguồn vẫn là file thật trên ổ đĩa. Điều này giúp workflow dễ kiểm tra, sao lưu và chuyển tiếp sang hậu kỳ.",
+  projectKicker:"Dự án & media",projectTitle:"Giữ project rõ ràng mà không giấu file của bạn.",projectCopy:"Project DAAD StopMotion lưu cấu trúc và trạng thái làm việc, trong khi media nguồn vẫn là file thật trên ổ đĩa. Điều này giúp workflow dễ kiểm tra, sao lưu và chuyển tiếp sang hậu kỳ.",
   factProject:"Project",factProjectCopy:"File .smproj lưu timeline và cài đặt; ảnh nguồn vẫn phải còn trên ổ đĩa.",factLabels:"Shot labels",factLabelsCopy:"Production / Scene / Take dùng để định danh shot và liên kết một số dữ liệu kế hoạch theo take.",factImport:"Import",factImportCopy:"Open Folder và Watch Folder nhận ảnh mới vào timeline; luồng import hiện nhận JPG, JPEG, PNG, TIF và TIFF.",factRecovery:"Recovery",factRecoveryCopy:"Có snapshot phục hồi dự án, khay frame đã xóa và Undo/Redo cho các chỉnh sửa timeline trong phiên.",
   process1:"Nhập hoặc chụp",process1c:"Chụp trực tiếp từ Camera Capture hoặc theo dõi một thư mục ảnh đang nhận file mới.",process2:"Tổ chức shot",process2c:"Gắn Production / Scene / Take, sắp xếp frame, Hold, nhóm hoặc di chuyển media theo nhu cầu.",process3:"Kiểm tra chuyển động",process3c:"Playback, Onion Skin, X-Sheet và các công cụ Preview hỗ trợ kiểm tra từng frame.",process4:"Đóng gói / xuất",process4c:"Có thể đóng gói project cùng media liên quan hoặc xuất sequence được đánh số để chuyển tiếp sang hậu kỳ.",
-  cameraKicker:"Kết nối camera",cameraTitle:"Các dòng Camera được hỗ trợ",cameraCopy:"Kết nối máy ảnh và bắt đầu chụp ngay trong DA&D StopMotion.",
+  cameraKicker:"Kết nối camera",cameraTitle:"Các dòng Camera được hỗ trợ",cameraCopy:"Kết nối máy ảnh và bắt đầu chụp ngay trong DAAD StopMotion.",
 
-  outputKicker:"Xuất thành phẩm",outputTitle:"Từ preview tới material hậu kỳ.",outputCopy:"DA&D tách rõ trải nghiệm Preview và dữ liệu nguồn. Các lớp hỗ trợ như Onion Skin, grid hay Chroma Preview không được ghi đè vào ảnh gốc.",
+  outputKicker:"Xuất thành phẩm",outputTitle:"Từ preview tới material hậu kỳ.",outputCopy:"DAAD StopMotion tách rõ trải nghiệm Preview và dữ liệu nguồn. Các lớp hỗ trợ như Onion Skin, grid hay Chroma Preview không được ghi đè vào ảnh gốc.",
   renderTitle:"Video render",renderCopy:"Renderer hiện có lựa chọn tỷ lệ Gốc, 16:9, 9:16, 1:1, 4:3 và 2.39:1 cùng các mức 720p, 1080p, 4K và Max Setting.",sequenceTitle:"Render Ảnh",sequenceCopy:"Xuất bộ ảnh theo thứ tự frame, đánh số từ 0001 đến frame cuối, vào các folder JPG, RAW và BACKGROUND.",
 
-  productLead:"DA&D StopMotion đồng hành từ chụp ảnh, tạo chuyển động, xem lại, chụp lại / chỉnh sửa đến xuất thành phẩm.",
+  productLead:"DAAD StopMotion đồng hành từ chụp ảnh, tạo chuyển động, xem lại, chụp lại / chỉnh sửa đến xuất thành phẩm.",
   toolOnionCopy:"Chồng các frame để so sánh vị trí và điều chỉnh chuyển động giữa từng lần chụp.",
   sequenceRaw:"Hỗ trợ xuất folder RAW tương ứng nếu bạn chụp RAW.",
   workflowTitle:"Từ khung hình đầu tiên đến thước phim hoàn chỉnh.",
@@ -38,15 +38,15 @@ Object.assign(I18N.en,{
   toolXsheetTitle:"X-Sheet",toolXsheetCopy:"Track frames, exposures and notes to shape the timing of each shot.",
 
   toolAnalysisTitle:"Preview Tools",toolAnalysisCopy:"Preview backgrounds with Chroma Key and inspect brightness with Flicker Detection.",
-  projectKicker:"Projects & media",projectTitle:"Keep the project structured without hiding your files.",projectCopy:"DA&D stores project structure and working state while source media remains as real files on disk, making the workflow easier to inspect, back up and hand off.",
+  projectKicker:"Projects & media",projectTitle:"Keep the project structured without hiding your files.",projectCopy:"DAAD StopMotion stores project structure and working state while source media remains as real files on disk, making the workflow easier to inspect, back up and hand off.",
   factProject:"Project",factProjectCopy:"The .smproj file stores timeline data and settings; source images still need to remain available on disk.",factLabels:"Shot labels",factLabelsCopy:"Production / Scene / Take identify a shot and are also used by some per-take planning data.",factImport:"Import",factImportCopy:"Open Folder and Watch Folder can bring new media into the timeline; the current import path accepts JPG, JPEG, PNG, TIF and TIFF.",factRecovery:"Recovery",factRecoveryCopy:"Project recovery snapshots, a deleted-frame tray and session Undo/Redo are available for timeline edits.",
   process1:"Import or capture",process1c:"Capture directly from Camera Capture or watch a folder that receives new image files.",process2:"Organize the shot",process2c:"Set Production / Scene / Take, reorder frames, use Holds, group or move media as needed.",process3:"Review motion",process3c:"Playback, Onion Skin, X-Sheet and Preview tools help you inspect individual frames.",process4:"Package or export",process4c:"Package the project with related media or export a numbered sequence for post-production handoff.",
-  cameraKicker:"Camera connection",cameraTitle:"Supported camera brands",cameraCopy:"Connect your camera and start capturing in DA&D StopMotion.",
+  cameraKicker:"Camera connection",cameraTitle:"Supported camera brands",cameraCopy:"Connect your camera and start capturing in DAAD StopMotion.",
 
-  outputKicker:"Export",outputTitle:"From preview to post-production material.",outputCopy:"DA&D keeps preview assistance separate from source data. Onion Skin, grids and Chroma Preview do not overwrite the original captured image.",
+  outputKicker:"Export",outputTitle:"From preview to post-production material.",outputCopy:"DAAD StopMotion keeps preview assistance separate from source data. Onion Skin, grids and Chroma Preview do not overwrite the original captured image.",
   renderTitle:"Video render",renderCopy:"The current renderer offers Original, 16:9, 9:16, 1:1, 4:3 and 2.39:1 aspect choices, with 720p, 1080p, 4K and Max Setting resolution options.",sequenceTitle:"Image Render",sequenceCopy:"Export images in frame order, numbered from 0001 to the final frame, into JPG, RAW and BACKGROUND folders.",
 
-  productLead:"DA&D StopMotion takes you from capture and animation through review, retakes and editing to final export.",
+  productLead:"DAAD StopMotion takes you from capture and animation through review, retakes and editing to final export.",
   toolOnionCopy:"Overlay frames to compare positions and adjust motion between captures.",
   sequenceRaw:"Matching RAW folder export is supported when you shoot RAW.",
   workflowTitle:"From the first frame to the finished film.",

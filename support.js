@@ -2,9 +2,9 @@
 Object.assign(I18N.vi, {
   supportBar: 'Ủng hộ phát triển phần mềm:',
   donateTitle: 'Một ly cà phê.\nThêm nhiều khung hình.',
-  donateLead: 'Cảm ơn bạn đã đồng hành cùng DA&D StopMotion — từ những khung hình đầu tiên đến những câu chuyện đang thành hình.',
+  donateLead: 'Cảm ơn bạn đã đồng hành cùng DAAD StopMotion — từ những khung hình đầu tiên đến những câu chuyện đang thành hình.',
   donateStoryTitle: 'Một chút chia sẻ từ KILN',
-  donateStory: 'DA&D StopMotion bắt đầu từ mong muốn có một công cụ gần gũi với những người làm stop-motion. Đằng sau mỗi tính năng là thời gian thử nghiệm, sửa lỗi và lắng nghe trải nghiệm của bạn.',
+  donateStory: 'DAAD StopMotion bắt đầu từ mong muốn có một công cụ gần gũi với những người làm stop-motion. Đằng sau mỗi tính năng là thời gian thử nghiệm, sửa lỗi và lắng nghe trải nghiệm của bạn.',
   donatePurpose: 'Nếu phần mềm giúp công việc của bạn thuận tiện hơn, bạn có thể mời tụi mình một ly cà phê. Sự ủng hộ của bạn tiếp thêm động lực để KILN tiếp tục cải thiện phần mềm và chăm chút cho từng trải nghiệm nhỏ.',
   donateVoluntary: 'Ủng hộ hoàn toàn tự nguyện, với số tiền tùy bạn. Việc sử dụng phần mềm không yêu cầu đóng góp.',
   donateThanksTitle: 'Cảm ơn vì đã ở đây.',
@@ -16,9 +16,9 @@ Object.assign(I18N.vi, {
 });
 Object.assign(I18N.en, {
   supportBar: 'Support software development:', donateTitle: 'One cup of coffee.\nMany more frames.',
-  donateLead: 'Thank you for being part of DA&D StopMotion — from the very first frames to the stories taking shape.',
+  donateLead: 'Thank you for being part of DAAD StopMotion — from the very first frames to the stories taking shape.',
   donateStoryTitle: 'A little note from KILN',
-  donateStory: 'DA&D StopMotion began with a wish for an approachable tool for stop-motion creators. Behind each feature are hours of testing, fixing bugs and listening to your experiences.',
+  donateStory: 'DAAD StopMotion began with a wish for an approachable tool for stop-motion creators. Behind each feature are hours of testing, fixing bugs and listening to your experiences.',
   donatePurpose: 'If the software makes your work easier, you can buy us a coffee. Your support encourages KILN to keep improving the software and caring for the little details.',
   donateVoluntary: 'Support is entirely optional, with any amount you choose. No contribution is required to use the software.',
   donateThanksTitle: 'Thank you for being here.',

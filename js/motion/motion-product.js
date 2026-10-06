@@ -25,7 +25,7 @@
     const dialog = document.createElement('dialog');
     if (typeof dialog.showModal !== 'function') return;
     dialog.className = 'shot-dialog';
-    dialog.setAttribute('aria-label', 'DA&D StopMotion');
+    dialog.setAttribute('aria-label', 'DAAD StopMotion');
     dialog.innerHTML = '<div class="shot-dialog-bar"><span></span><button type="button"></button></div><img alt="">';
     document.body.appendChild(dialog);
     const photo = dialog.querySelector('img');
