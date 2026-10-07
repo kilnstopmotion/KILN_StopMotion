@@ -36,6 +36,11 @@ body[data-page] .site-menu .nav-links>a{display:flex;align-items:center;min-heig
   body[data-page] .site-header .brand-name{display:inline;order:1;font-family:var(--serif);font-size:21px;font-weight:700;letter-spacing:-.025em;white-space:nowrap}
   body[data-page] .site-header .desktop-nav{display:flex;align-items:center;justify-content:flex-end;gap:clamp(18px,2.2vw,32px);margin-left:auto;white-space:nowrap;font-size:13px;font-weight:650}
   body[data-page] .site-header .desktop-nav>a{display:flex;align-items:center;min-height:44px;padding:0;color:var(--ink-soft)}
+  body[data-page] .site-header .desktop-nav>a.nav-cta{min-height:44px;gap:11px;padding:7px 9px 7px 18px;border:1px solid var(--orange);border-radius:999px;background:var(--orange);color:var(--cream);font-weight:750;letter-spacing:.01em;box-shadow:0 7px 18px rgba(191,70,25,.16);transition:background .2s ease,border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+  body[data-page] .site-header .desktop-nav>a.nav-cta:after{display:none}
+  body[data-page] .site-header .desktop-nav>a.nav-cta:hover{background:var(--orange-dark);border-color:var(--orange-dark);color:var(--cream);box-shadow:0 10px 22px rgba(191,70,25,.23);transform:translateY(-1px)}
+  body[data-page] .site-header .desktop-nav>a.nav-cta .arrow{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:rgba(255,248,239,.2);color:var(--cream);font-size:16px;line-height:1;transition:background .2s ease,color .2s ease,transform .2s ease}
+  body[data-page] .site-header .desktop-nav>a.nav-cta:hover .arrow{background:var(--cream);color:var(--orange-dark);transform:translate(1px,-1px)}
   body[data-page] .site-header .desktop-nav .lang-switch{gap:0;border-left:1px solid var(--line);padding-left:13px}
   body[data-page] .site-header .desktop-nav .lang-switch button{min-width:auto;min-height:44px;padding:8px 6px;font-size:12px;letter-spacing:.06em}
   body[data-page] .site-header .desktop-nav .lang-switch button+button:before{content:"/";display:inline-block;margin-right:6px;color:var(--muted)}
@@ -122,3 +127,4 @@ body[data-page] .site-menu .nav-links>a{display:flex;align-items:center;min-heig
   body[data-page="featured"] .featured-work-full h3{font-size:30px;line-height:1.15}
   .donate-heading h1{font-size:clamp(30px,8vw,40px);line-height:1.15;text-wrap:balance}
 }
+
