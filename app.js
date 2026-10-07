@@ -104,6 +104,25 @@ function ensureFeaturedMainNav(){
   syncFeaturedMainNav();
 }
 
+function upgradeResponsiveNavigation(){
+  const header=document.querySelector('.site-header');
+  const nav=header?.querySelector('.nav');
+  const primary=nav?.querySelector(':scope > .nav-links');
+  if(!nav||!primary||nav.querySelector('.desktop-nav'))return;
+  primary.classList.add('desktop-nav');
+  const brand=nav.querySelector('.brand');
+  if(brand&&!brand.querySelector('.brand-name')){
+    const name=document.createElement('span');
+    name.className='brand-name';
+    name.textContent='DAAD StopMotion';
+    brand.appendChild(name);
+  }
+  const actions=document.createElement('div');
+  actions.className='nav-actions';
+  actions.innerHTML='<a class="nav-cta" href="download.html"><span data-i18n="navDownload">Tải xuống</span><span class="arrow" aria-hidden="true">↓</span></a><details class="site-menu"><summary class="menu-toggle" aria-controls="site-navigation"><span class="menu-icon" aria-hidden="true"><i></i><i></i><i></i></span><span class="visually-hidden" data-i18n="navMenu">Menu website</span></summary><nav class="nav-links" id="site-navigation" aria-label="Menu website"><a href="product.html" data-i18n="navProduct">Phần mềm</a><a href="featured.html" data-featured-main-nav data-i18n="navFeatured">Tác phẩm tiêu biểu</a><a href="developer.html" data-i18n="navDeveloper">Nhà phát triển</a><a href="donate.html" data-i18n="navSupport">Ủng hộ</a><div class="menu-language"><span data-i18n="navLanguage">Ngôn ngữ</span><div class="lang-switch"><button type="button" data-lang="vi" lang="vi" aria-label="Tiếng Việt">VI</button><button type="button" data-lang="en" lang="en" aria-label="English">EN</button></div></div></nav></details>';
+  nav.appendChild(actions);
+}
+
 function initNavigation(){
   const menu=document.querySelector('.site-menu');
   const toggle=menu?.querySelector('summary');
@@ -226,6 +245,7 @@ function initGSAP(){
 }
 
 function init(){
+  upgradeResponsiveNavigation();
   ensureFeaturedMainNav();
   applyI18n();
   syncFeaturedMainNav();
