@@ -14,7 +14,7 @@ const RELEASES=[{
 
 const I18N={
   en:{
-    navMenu:"Website menu",navSupport:"Support",navLanguage:"Language",navProduct:"Software",navFeatured:"Featured work",navDeveloper:"Developer",navDownload:"Download",
+    navMenu:"Website menu",navSupport:"Support",navLanguage:"Language",homeLink:"DAAD StopMotion — Home",mainNav:"Main navigation",navProduct:"Software",navFeatured:"Featured work",navDeveloper:"Developer",navDownload:"Download",
     heroEyebrow:"Developed by KILN",heroLead:"Software that helps you capture, preview and manage every frame with ease and intuitive control.",heroDownload:"Download DAAD StopMotion",heroExplore:"Explore the product",heroMicro:"Windows x64 · Official release",heroNote:"Small things move big stories.",
     preview:"APP SCREENSHOT",previewHint:"Your DAAD StopMotion screenshot will live here",frameCaption:"A frame-by-frame production workspace",
     featKicker:"From small frames to bigger stories",featTitle:"Everything you need for stop-motion.",featCopy:"Capture, animate, review and organize without losing the rhythm of the shot.",
@@ -23,10 +23,11 @@ const I18N={
     productHero:"AN INTUITIVE, EASY-TO-USE WORKFLOW",productLead:"DAAD StopMotion follows the real sequence of stop-motion production — capture, animate, review, organize and export.",workflow:"Workflow",captureDesc:"Camera-first frame capture with production feedback close at hand.",animateDesc:"Timing and motion support for frame-by-frame decisions.",reviewDesc:"Review movement and continuity without leaving the project flow.",organizeDesc:"Keep shots and frames structured as projects grow.",exportDesc:"Move finished material cleanly into the next stage of post-production.",former:"Formerly KILN Motion",formerCopy:"The project began as KILN Motion and evolved into DAAD StopMotion as the workflow, scope and identity became more mature.",
     devHero:"Built by people who needed the tool themselves.",devLead:"DAAD StopMotion is developed by KILN — a small creative group focused on practical tools for frame-by-frame production.",behind:"Behind DAAD StopMotion",kilnCopy:"KILN is a furnace — where earth meets fire, where raw materials are fired and transformed into a work of art. And so are we: five different people, each with a distinct color, yet sharing the same fiercely burning passion.",history:"Project history",creator:"Creator & Developer",creatorCopy:"Product direction, design and development for DAAD StopMotion.",philosophy:"Design philosophy",p1:"Simple",p1c:"Keep important actions visible and remove noise.",p2:"Production-focused",p2c:"Prioritize decisions that matter during an actual shoot.",p3:"Frame-aware",p3c:"Design around the unique rhythm of frame-by-frame work.",
     typeLine1:"Good motion does not begin with playback.",typeLine2:"It begins with one frame.",typeLine3:"Then one more frame.",
-    coffeeTitle:"Support DAAD StopMotion",coffeeCopy:"If DAAD StopMotion helps your work, you can support its continued development.",coffeeBtn:"Buy me a coffee",footerNote:"Formerly KILN Motion",footerTagline:"Make every frame count."
+    coffeeTitle:"Support DAAD StopMotion",coffeeCopy:"If DAAD StopMotion helps your work, you can support its continued development.",coffeeBtn:"Buy me a coffee",footerNote:"Formerly KILN Motion",footerTagline:"Make every frame count.",supportCta:"SUPPORT KILN",supportArea:"Support KILN",brandSlogan:"Keep your Identity. Liberate your Nature.",footerSlogan:"Keep your Identity. Liberate your Nature",footerDeveloped:"Developed by",footerArtwork:"Artwork by",footerMotion:"Motion by",footerCopyright:"All rights reserved.",historyOrigin:"Origin / Early development",historyIdentity:"Current product identity",historyRelease:"Current release track",
+    metaHome:"DAAD StopMotion — stop-motion production software developed by KILN.",metaProduct:"Explore DAAD StopMotion's workflow, stop-motion tools, camera integration, project management and output.",metaFeatured:"Featured work created with DAAD StopMotion.",metaDeveloper:"KILN — the development team behind DAAD StopMotion.",metaDownload:"Download DAAD StopMotion for Windows. Start your story, one frame at a time.",metaDonate:"Support DAAD StopMotion. One cup of coffee helps us keep making stories frame by frame."
   },
   vi:{
-    navMenu:"Menu website",navSupport:"Ủng hộ",navLanguage:"Ngôn ngữ",navProduct:"Phần mềm",navFeatured:"Tác phẩm tiêu biểu",navDeveloper:"Nhà phát triển",navDownload:"Tải xuống",
+    navMenu:"Menu website",navSupport:"Ủng hộ",navLanguage:"Ngôn ngữ",homeLink:"DAAD StopMotion — Trang chủ",mainNav:"Điều hướng chính",navProduct:"Phần mềm",navFeatured:"Tác phẩm tiêu biểu",navDeveloper:"Nhà phát triển",navDownload:"Tải xuống",
     heroEyebrow:"Phát triển bởi KILN",heroLead:"Phần mềm giúp bạn chụp, xem trước và quản lý từng khung hình một cách dễ dàng và trực quan nhất.",heroDownload:"Tải DAAD StopMotion",heroExplore:"Khám phá phần mềm",heroMicro:"Windows x64 · Bản chính thức",heroNote:"Những điều nhỏ tạo nên câu chuyện lớn.",
     preview:"ẢNH GIAO DIỆN ỨNG DỤNG",previewHint:"Sau này chỉ cần thay bằng screenshot DAAD StopMotion",frameCaption:"Không gian sản xuất frame-by-frame",
     featKicker:"Từ những khung hình nhỏ đến những câu chuyện lớn",featTitle:"Mọi thứ bạn cần cho stop-motion.",featCopy:"Chụp, animate, review và tổ chức mà không làm đứt nhịp của cảnh quay.",
@@ -35,11 +36,12 @@ const I18N={
     productHero:"WORKFLOW TRỰC QUAN, DỄ SỬ DỤNG",productLead:"DAAD StopMotion được xây theo đúng trình tự sản xuất stop-motion: chụp, animate, review, tổ chức và xuất.",workflow:"Quy trình",captureDesc:"Chụp frame ưu tiên camera, luôn giữ feedback production ở gần.",animateDesc:"Hỗ trợ timing và chuyển động cho những quyết định frame-by-frame.",reviewDesc:"Kiểm tra chuyển động và continuity mà không rời workflow.",organizeDesc:"Giữ shot và frame có cấu trúc khi project lớn dần.",exportDesc:"Đưa material hoàn thiện sang hậu kỳ một cách sạch sẽ.",former:"Tiền thân: KILN Motion",formerCopy:"Dự án bắt đầu với tên KILN Motion và phát triển thành DAAD StopMotion khi workflow, phạm vi và nhận diện trưởng thành hơn.",
     devHero:"Được làm bởi chính những người cần công cụ này.",devLead:"DAAD StopMotion được phát triển bởi KILN — một nhóm sáng tạo nhỏ tập trung vào những công cụ thực tế cho sản xuất frame-by-frame.",behind:"Đằng sau DAAD StopMotion",kilnCopy:"KILN là lò nung – nơi đất gặp lửa, nơi những điều thô mộc được nung nấu để trở thành một tác phẩm. Và tụi tui cũng vậy, 5 con người khác nhau, mỗi người mang một màu sắc riêng nhưng lại có cùng một ngọn lửa đam mê nồng cháy.",history:"Lịch sử dự án",creator:"Creator & Developer",creatorCopy:"Định hướng sản phẩm, thiết kế và phát triển DAAD StopMotion.",philosophy:"Triết lý thiết kế",p1:"Đơn giản",p1c:"Giữ hành động quan trọng luôn dễ thấy và giảm nhiễu.",p2:"Tập trung production",p2c:"Ưu tiên những quyết định thật sự quan trọng trên set.",p3:"Hiểu từng frame",p3c:"Thiết kế theo nhịp đặc trưng của công việc frame-by-frame.",
     typeLine1:"Một chuyển động tốt không bắt đầu từ playback.",typeLine2:"Nó bắt đầu từ một frame.",typeLine3:"Rồi thêm một frame nữa.",
-    coffeeTitle:"Ủng hộ DAAD StopMotion",coffeeCopy:"Nếu DAAD StopMotion hữu ích cho công việc của bạn, bạn có thể hỗ trợ dự án tiếp tục phát triển.",coffeeBtn:"Buy me a coffee",footerNote:"Tiền thân là KILN Motion",footerTagline:"Mỗi khung hình đều có ý nghĩa."
+    coffeeTitle:"Ủng hộ DAAD StopMotion",coffeeCopy:"Nếu DAAD StopMotion hữu ích cho công việc của bạn, bạn có thể hỗ trợ dự án tiếp tục phát triển.",coffeeBtn:"Mời tụi mình một ly cà phê",footerNote:"Tiền thân là KILN Motion",footerTagline:"Mỗi khung hình đều có ý nghĩa.",supportCta:"ỦNG HỘ KILN",supportArea:"Ủng hộ KILN",brandSlogan:"Giữ lấy bản sắc. Khai phóng bản năng.",footerSlogan:"Giữ lấy bản sắc. Khai phóng bản năng",footerDeveloped:"Phát triển bởi",footerArtwork:"Hình ảnh bởi",footerMotion:"Chuyển động bởi",footerCopyright:"Mọi quyền được bảo lưu.",historyOrigin:"Khởi nguồn / Giai đoạn đầu",historyIdentity:"Nhận diện sản phẩm hiện tại",historyRelease:"Lộ trình phát hành hiện tại",
+    metaHome:"DAAD StopMotion — phần mềm sản xuất stop-motion được phát triển bởi KILN.",metaProduct:"Khám phá quy trình, công cụ stop-motion, tích hợp máy ảnh, quản lý dự án và xuất sản phẩm của DAAD StopMotion.",metaFeatured:"Những tác phẩm tiêu biểu được thực hiện cùng DAAD StopMotion.",metaDeveloper:"KILN — nhóm phát triển đứng sau DAAD StopMotion.",metaDownload:"Tải DAAD StopMotion cho Windows. Bắt đầu câu chuyện của bạn, từng khung hình.",metaDonate:"Ủng hộ sự phát triển của DAAD StopMotion. Một ly cà phê tiếp thêm động lực kể chuyện bằng từng khung hình."
   }
 };
 
-let lang=localStorage.getItem("daa-lang")||"vi";
+let lang=localStorage.getItem("daa-lang")==="en"?"en":"vi";
 let typewriterRefresh=()=>{};
 const reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)");
 const finePointer=window.matchMedia("(hover:hover) and (pointer:fine)");
@@ -48,6 +50,34 @@ function translateSite(key){return I18N[lang]?.[key]??key}
 function applyI18n(){
   document.documentElement.lang=lang;
   document.querySelectorAll("[data-i18n]").forEach(el=>{el.textContent=translateSite(el.dataset.i18n)});
+  const page=document.body?.dataset.page;
+  const titles={home:{vi:"DAAD StopMotion — by KILN",en:"DAAD StopMotion — by KILN"},product:{vi:"Sản phẩm — DAAD StopMotion",en:"Software — DAAD StopMotion"},featured:{vi:"Tác phẩm tiêu biểu — DAAD StopMotion",en:"Featured work — DAAD StopMotion"},developer:{vi:"Nhà phát triển — DAAD StopMotion",en:"Developer — DAAD StopMotion"},download:{vi:"Tải DAAD StopMotion",en:"Download DAAD StopMotion"},donate:{vi:"Ủng hộ phát triển phần mềm — DAAD StopMotion",en:"Support DAAD StopMotion"}};
+  const descriptions={home:"metaHome",product:"metaProduct",featured:"metaFeatured",developer:"metaDeveloper",download:"metaDownload",donate:"metaDonate"};
+  if(titles[page])document.title=titles[page][lang];
+  const description=document.querySelector('meta[name="description"]');
+  if(description&&descriptions[page])description.content=translateSite(descriptions[page]);
+  document.querySelector(".site-header .brand")?.setAttribute("aria-label",translateSite("homeLink"));
+  document.querySelectorAll(".site-header .desktop-nav").forEach(nav=>nav.setAttribute("aria-label",translateSite("mainNav")));
+  document.querySelectorAll(".site-header .site-menu .nav-links").forEach(nav=>nav.setAttribute("aria-label",translateSite("navMenu")));
+  document.querySelectorAll(".site-header .lang-switch").forEach(switcher=>switcher.setAttribute("aria-label",translateSite("navLanguage")));
+  document.querySelector(".site-header .site-menu")?.querySelector(".menu-toggle")?.setAttribute("aria-label",translateSite("navMenu"));
+  document.querySelectorAll(".showcase-philosophy,.download-tagline").forEach(el=>{el.textContent=translateSite("brandSlogan");el.lang=lang;});
+  const footer=document.querySelector(".kiln-footer");
+  if(footer){
+    footer.lang=lang;
+    footer.querySelector(".support-bar")?.setAttribute("aria-label",translateSite("supportArea"));
+    const supportLabel=footer.querySelector(".support-bar .support-label");
+    if(supportLabel)supportLabel.textContent=translateSite("supportCta");
+    const supportCopy=footer.querySelector(".support-bar p");
+    if(supportCopy)supportCopy.textContent=translateSite("supportBar");
+    const slogan=footer.querySelector(".footer-slogan");
+    if(slogan)slogan.textContent=translateSite("footerSlogan");
+    const credits=footer.querySelector(".footer-credits");
+    if(credits)credits.innerHTML=`${translateSite("footerDeveloped")} Trieu Phi · ${translateSite("footerArtwork")} Nguyn &amp; Nho &amp; Linh <span class="footer-credit-motion">· ${translateSite("footerMotion")} dkhoa</span>`;
+    const copyright=footer.querySelector(".footer-copyright");
+    if(copyright)copyright.textContent=`© 2026 KILN. ${translateSite("footerCopyright")}`;
+  }
+  if(page==="developer")document.querySelectorAll(".timeline .timeline-item .release-date").forEach((el,index)=>{el.textContent=translateSite(["historyOrigin","historyIdentity","historyRelease"][index]||"history");});
   document.querySelectorAll("[data-lang]").forEach(btn=>{btn.classList.toggle("active",btn.dataset.lang===lang);btn.setAttribute("aria-pressed",String(btn.dataset.lang===lang));});
   document.querySelectorAll("[data-type-key]").forEach(el=>el.dataset.fullText=translateSite(el.dataset.typeKey));
   renderReleases();
@@ -108,7 +138,19 @@ function upgradeResponsiveNavigation(){
   const header=document.querySelector('.site-header');
   const nav=header?.querySelector('.nav');
   const primary=nav?.querySelector(':scope > .nav-links');
-  if(!nav||nav.querySelector('.desktop-nav'))return;
+  if(!nav)return;
+  const desktop=nav.querySelector('.desktop-nav');
+  if(desktop){
+    if(!desktop.querySelector(':scope > .nav-cta')){
+      const download=document.createElement('a');
+      download.className='nav-cta desktop-download-cta magnetic';
+      download.href='download.html';
+      download.innerHTML='<span data-i18n="navDownload">Tải xuống</span><span class="arrow" aria-hidden="true">↓</span>';
+      if(document.body.dataset.page==='download')download.setAttribute('aria-current','page');
+      desktop.appendChild(download);
+    }
+    return;
+  }
   if(!primary){
     const actions=nav.querySelector('.nav-actions');
     const menu=actions?.querySelector('.site-menu .nav-links');
@@ -151,7 +193,12 @@ function initNavigation(){
     menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{menu.open=false;}));
     window.addEventListener('pageshow',()=>{menu.open=false;});
   }
-  document.querySelectorAll("[data-lang]").forEach(btn=>btn.addEventListener("click",()=>{lang=btn.dataset.lang;localStorage.setItem("daa-lang",lang);applyI18n();}));
+  document.querySelectorAll("[data-lang]").forEach(btn=>btn.addEventListener("click",()=>{
+    const selected=btn.dataset.lang==='en'?'en':'vi';
+    if(selected===lang)return;
+    localStorage.setItem("daa-lang",selected);
+    window.location.reload();
+  }));
 }
 
 function initPointer(){
@@ -274,3 +321,4 @@ function init(){
   initTypewriter();
 }
 document.addEventListener("DOMContentLoaded",init);
+
