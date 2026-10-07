@@ -108,7 +108,25 @@ function upgradeResponsiveNavigation(){
   const header=document.querySelector('.site-header');
   const nav=header?.querySelector('.nav');
   const primary=nav?.querySelector(':scope > .nav-links');
-  if(!nav||!primary||nav.querySelector('.desktop-nav'))return;
+  if(!nav||nav.querySelector('.desktop-nav'))return;
+  if(!primary){
+    const actions=nav.querySelector('.nav-actions');
+    const menu=actions?.querySelector('.site-menu .nav-links');
+    if(!actions||!menu)return;
+    const desktop=document.createElement('nav');
+    desktop.className='desktop-nav';
+    desktop.setAttribute('aria-label','Main navigation');
+    desktop.innerHTML='<a href="product.html" data-i18n="navProduct">Phần mềm</a><a href="featured.html" data-featured-main-nav data-i18n="navFeatured">Tác phẩm tiêu biểu</a><a href="developer.html" data-i18n="navDeveloper">Nhà phát triển</a><div class="lang-switch" aria-label="Language"><button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button></div><a class="nav-cta magnetic" href="download.html"><span data-i18n="navDownload">Tải xuống</span><span class="arrow" aria-hidden="true">↓</span></a>';
+    const brand=nav.querySelector('.brand');
+    if(brand&&!brand.querySelector('.brand-name')){
+      const name=document.createElement('span');
+      name.className='brand-name';
+      name.textContent='DAAD StopMotion';
+      brand.appendChild(name);
+    }
+    nav.insertBefore(desktop,actions);
+    return;
+  }
   primary.classList.add('desktop-nav');
   const brand=nav.querySelector('.brand');
   if(brand&&!brand.querySelector('.brand-name')){
