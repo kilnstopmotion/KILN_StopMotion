@@ -26,6 +26,22 @@ body[data-page] .site-menu .nav-links>a{display:flex;align-items:center;min-heig
 .site-menu .lang-switch button.active:after{display:none}
 .site-header :is(a,summary,button):focus-visible{outline:2px solid var(--orange);outline-offset:3px}
 
+/* Desktop: restore the full wordmark and horizontal primary navigation. */
+.brand-name{display:none}
+.desktop-nav{display:none}
+@media (min-width:821px){
+  body[data-page] .site-header .nav{height:76px;min-height:76px;padding-block:0;flex-wrap:nowrap;gap:24px}
+  .site-header .brand{flex:0 0 auto;width:auto;justify-content:flex-start;gap:10px}
+  .site-header .brand img{order:0}
+  body[data-page] .site-header .brand-name{display:inline;order:1;font-family:var(--serif);font-size:21px;font-weight:700;letter-spacing:-.025em;white-space:nowrap}
+  body[data-page] .site-header .desktop-nav{display:flex;align-items:center;justify-content:flex-end;gap:clamp(18px,2.2vw,32px);margin-left:auto;white-space:nowrap;font-size:13px;font-weight:650}
+  body[data-page] .site-header .desktop-nav>a{display:flex;align-items:center;min-height:44px;padding:0;color:var(--ink-soft)}
+  body[data-page] .site-header .desktop-nav .lang-switch{gap:0;border-left:1px solid var(--line);padding-left:13px}
+  body[data-page] .site-header .desktop-nav .lang-switch button{min-width:auto;min-height:44px;padding:8px 6px;font-size:12px;letter-spacing:.06em}
+  body[data-page] .site-header .desktop-nav .lang-switch button+button:before{content:"/";display:inline-block;margin-right:6px;color:var(--muted)}
+  body[data-page] .site-header .nav-actions{display:none}
+}
+
 /* Phone layouts: readable titles, full-width cards and uncropped content images. */
 @media(max-width:720px){
   .container{width:calc(100% - 32px)}

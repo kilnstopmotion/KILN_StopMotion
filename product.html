@@ -32,14 +32,23 @@
   <script src="js/motion/motion-product.js?v=20261006-brand" defer></script>
   <link rel="stylesheet" href="support.css?v=20261005-credit">
   <script src="support.js?v=20261006-brand" defer></script>
-  <link rel="stylesheet" href="responsive.css?v=20261007-mobile">
+  <link rel="stylesheet" href="responsive.css?v=20261007-desktop-header">
 </head>
 <body data-page="product">
   <div class="scroll-progress" aria-hidden="true"><span></span></div>
   <div class="cursor-frame" aria-hidden="true"><span>FRAME</span><b>021</b></div>
   <header class="site-header">
     <div class="container nav">
-      <a class="brand" href="index.html" aria-label="DAAD StopMotion — Home"><img src="assets/images/app/logo.webp" alt="DAAD StopMotion" width="36" height="36"></a>
+      <a class="brand" href="index.html" aria-label="DAAD StopMotion — Home"><img src="assets/images/app/logo.webp" alt="DAAD StopMotion" width="36" height="36"><span class="brand-name">DAAD StopMotion</span></a>
+      <nav class="nav-links desktop-nav" aria-label="Main navigation">
+        <a href="product.html" data-i18n="navProduct" class="active" aria-current="page">Phần mềm</a>
+        <a href="featured.html" data-i18n="navFeatured" data-featured-main-nav>Tác phẩm tiêu biểu</a>
+        <a href="developer.html" data-i18n="navDeveloper">Nhà phát triển</a>
+        <div class="lang-switch" aria-label="Language">
+          <button type="button" data-lang="vi" lang="vi" aria-label="Tiếng Việt">VI</button>
+          <button type="button" data-lang="en" lang="en" aria-label="English">EN</button>
+        </div>
+      </nav>
       <div class="nav-actions">
         <a class="nav-cta" href="download.html"><span data-i18n="navDownload">Tải xuống</span><span class="arrow" aria-hidden="true">↓</span></a>
         <details class="site-menu">
