@@ -1,4 +1,10 @@
 const RELEASES=[{
+  version:"6.0.0",date:"2026-10-23",stable:false,betaUrl:"",installerUrl:"https://github.com/kilnstopmotion/KILN_StopMotion/releases/download/v6.0.0-beta/KILN-StopMotion-6.0.0-Setup-x64.exe",portableUrl:"",sizeInstaller:"583.4 MiB",sizePortable:"",
+  changes:{
+    en:["KILN StopMotion 6.0.0 (BETA).","Windows x64 installer."],
+    vi:["KILN StopMotion 6.0.0 (BETA).","Bộ cài dành cho Windows x64."]
+  }
+},{
   version:"5.0.0",date:"2026-10-05",stable:true,betaUrl:"",installerUrl:"https://github.com/kilnstopmotion/KILN_StopMotion/releases/download/v5.0.0/DAAD-StopMotion-5.0.0-Setup-x64.exe",portableUrl:"",sizeInstaller:"568.3 MiB",sizePortable:"",
   changes:{
     en:["First official release of DAAD StopMotion.","Windows x64 installer."],
